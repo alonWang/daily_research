@@ -12,19 +12,23 @@ public class LCS {
     public static void main(String[] args) {
         String s1 = "ACBFGXXXXFXXXXXXXXX";
         String s2 = "AHUJCJKBHIFJIGVF";
-        int m = s1.length();
-        int n = s2.length();
-
-        //约定 1{-1,-1} 2{0,-1} 3{-1,0}
+        //trace[i][j]表示dp[i][j]是经  `1` dp[i-1][j-1]    `2` dp[i][j-1]   `3`  dp[i-1][j] 得到的
         int[][] trace= longestCommonSequence(s1, s2);
-        showLcs(trace, m, n, s1);
+        showLcs(trace, s1.length(), s2.length(), s1);
 
     }
 
+    /**
+     *设置轨迹矩阵
+     * @param s1
+     * @param s2
+     * @return 轨迹矩阵
+     * 输出最长子序列长度
+     */
     public static int[][] longestCommonSequence(String s1, String s2) {
         int m = s1.length();
         int n = s2.length();
-        //dp[i][j]表示s1[0-i]、s2[0-j]时的最长公共子序列
+        //dp[i][j]表示s1[0~i]、s2[0~j]时的最长公共子序列
         int[][] dp=new int[m + 1][n + 1];
         int[][] trace = new int[m + 1][n + 1];
 
@@ -50,6 +54,13 @@ public class LCS {
         return trace;
     }
 
+    /**
+     *输出最长子序列
+     * @param trace
+     * @param i s1长度
+     * @param j s2长度
+     * @param s s1、s2任意
+     */
     public static void showLcs(int[][] trace, int i, int j, String s) {
         //递归
         /*if(i==0||j==0)return;
