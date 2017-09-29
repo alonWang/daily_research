@@ -2,6 +2,7 @@ package com.velo.algorithm4.subsequence;
 
 /**
  * 最长公共子序列lcs
+ * 时间复杂度 O(mn),空间复杂度 O(2mn) (如果把轨迹数组优化一下可以达到O(mn))
  *自己尝试描述了一下,不是很满意,请看作者的讲解
  *  http://blog.csdn.net/v_JULY_v/article/details/6110269
  *
@@ -19,10 +20,10 @@ public class LCS {
     }
 
     /**
-     *设置轨迹矩阵
+     *设置轨迹数组
      * @param s1
      * @param s2
-     * @return 轨迹矩阵
+     * @return 轨迹数组
      * 输出最长子序列长度
      */
     public static int[][] longestCommonSequence(String s1, String s2) {
