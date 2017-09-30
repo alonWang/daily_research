@@ -1,6 +1,5 @@
 package com.velo.algorithm4.sort;
 
-import com.velo.alg4.Merge;
 
 public class MergeSort extends CompareTemplate {
     public static Comparable[] aux;

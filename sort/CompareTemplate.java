@@ -1,5 +1,8 @@
 package com.velo.algorithm4.sort;
 
+/*
+比较模版,实现了判定/显示/比较功能
+ */
 public abstract class CompareTemplate {
     public abstract void sort(Comparable[] a);
     public boolean less(Comparable v,Comparable w){

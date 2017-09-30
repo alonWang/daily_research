@@ -1,7 +1,5 @@
 package com.velo.algorithm4.sort;
 
-import com.velo.alg4.Shell;
-
 /**
  * shell排序
  * 平均 N^1.3
