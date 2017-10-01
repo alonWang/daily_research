@@ -1,38 +1,43 @@
 package com.velo.algorithm4.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Q77 {
+    /**
+     * path 记录单个排列
+     */
     static List<List<Integer>> ans = new ArrayList();
-    static boolean[] flag = new boolean[1000];
-    static int[] path = new int[1000];
+    static int[] path;
 
     public List<List<Integer>> combine(int n, int k) {
         ans.clear();
+        path=new int[k];
         deepSearch(0, n, k);
         return ans;
     }
 
+
+    /**
+     *path[k-1]的取值范围[idx+1,n]
+     * @param idx [0,n]
+     * @param n 最大值
+     * @param k 剩余个数
+     */
     public static void deepSearch(int idx, int n, int k) {
-        if (idx == k) {
-            List<Integer> ls = new ArrayList<>();
-            for (int i = 0; i < k; i++) {
+        if (0==k) {
+            List<Integer> ls=new ArrayList<>();
+            for(int i=path.length-1;i>=0;i--){
                 ls.add(path[i]);
             }
             ans.add(ls);
             return;
         }
-        for (int i = 1; i <= n; i++) {
-            if (false == flag[i]) {
-                if (0 == idx || path[idx - 1] < i) {
-                    path[idx] = i;
-                    flag[i] = true;
-                    deepSearch(idx + 1, n, k);
-                    flag[i] = false;
-                }
-
-            }
+        for (int i = idx+1; i <= n; i++) {
+                    //k是递减的,只能用它做下标
+                    path[k-1] = i;
+                    deepSearch(i, n, k-1);
         }
     }
 }
