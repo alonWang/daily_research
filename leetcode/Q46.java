@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Q46 {
-    static List<List<Integer>> ans = new ArrayList<>();
-    static int[] record = new int[100];
-    static boolean[] flag = new boolean[100];
+    List<List<Integer>> ans = new ArrayList<>();
+    int[] record = new int[100];
+    boolean[] flag = new boolean[100];
 
-    public static void deepSearch(int[] nums, int idx) {
+    public void deepSearch(int[] nums, int idx) {
         if (idx == nums.length) {
             List<Integer> ls = new ArrayList<>();
             for (int i = 0; i < nums.length; i++) {
@@ -34,4 +34,5 @@ public class Q46 {
         deepSearch(nums, 0);
         return ans;
     }
+
 }

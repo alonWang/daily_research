@@ -5,18 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Q90 {
-    public static List<List<Integer>> ans=new ArrayList<>();
-    public static boolean []v;
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        ans.clear();
-        v=new boolean[nums.length];
-        Arrays.sort(nums);
-        deepSearch(0,nums);
-        return ans;
-    }
+    public List<List<Integer>> ans = new ArrayList<>();
+    public boolean[] v;
 
     /**
-     *关键时去重
+     * 关键时去重
      * 举个例子,数组 [7,8,8],用1,0代表取或不取
      * 如果不去重
      * 对于 组合[7,8]
@@ -27,25 +20,32 @@ public class Q90 {
      * @param idx
      * @param nums
      */
-    public static void deepSearch(int idx,int[] nums){
-        if(idx== nums.length){
-            List<Integer> ls=new ArrayList<>();
-            for(int i=0;i<nums.length;i++){
-                if(v[i])
+    public void deepSearch(int idx, int[] nums) {
+        if (idx == nums.length) {
+            List<Integer> ls = new ArrayList<>();
+            for (int i = 0; i < nums.length; i++) {
+                if (v[i])
                     ls.add(nums[i]);
             }
             ans.add(ls);
             return;
         }
 
-        v[idx]=false;
-        deepSearch(idx+1,nums);
+        v[idx] = false;
+        deepSearch(idx + 1, nums);
         //只有前一个数字和当前数字相同并且前一个数字被选中才能选择当前数字
-        if(!(idx>0&&nums[idx-1]==nums[idx]&&false==v[idx-1])){
-            v[idx]=true;
-            deepSearch(idx+1,nums);
+        if (!(idx > 0 && nums[idx - 1] == nums[idx] && false == v[idx - 1])) {
+            v[idx] = true;
+            deepSearch(idx + 1, nums);
         }
 
+    }
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        v = new boolean[nums.length];
+        Arrays.sort(nums);
+        deepSearch(0, nums);
+        return ans;
     }
 
 }
