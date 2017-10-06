@@ -5,6 +5,7 @@ class Solution {
     public int mySqrt(int x) {
         //这里的强转确保x为Integer.MAX_VALUE时不会溢出
         long l=0,r= (long)x+1;
+        //暂存结果,防止死循环
         long ans=0;
         while(l<r){
             long mid=(l+r)/2;
