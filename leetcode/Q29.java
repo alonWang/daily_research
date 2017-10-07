@@ -1,5 +1,5 @@
 /**
-    O(logn)
+    时间复杂度 O(logn)
 */
 class Solution {
     
