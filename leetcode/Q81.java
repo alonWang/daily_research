@@ -1,3 +1,4 @@
+//分割点查找需要优化
 class Solution {
     public boolean search(int[] nums, int target) {
        int n=nums.length;
