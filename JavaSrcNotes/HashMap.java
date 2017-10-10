@@ -275,7 +275,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
      */
-    
+    /**
+     * Map中的基本元素,很容易看出是链表的结构,Node实现了Map.Entry接口,这个接口定义了基本方法
+    */
     static class Node<K,V> implements Map.Entry<K,V> {
         final int hash;
         final K key;
@@ -292,7 +294,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         public final K getKey()        { return key; }
         public final V getValue()      { return value; }
         public final String toString() { return key + "=" + value; }
-
+        
+        
+        /**
+         * 这里是对Node的hashcode的简单处理
+         * Objects.hashcode(o)的作用很简单,当o不为null调用o自身的hashcode,否则为0
+         *  return o != null ? o.hashCode() : 0;
+         * 
+         */
         public final int hashCode() {
             return Objects.hashCode(key) ^ Objects.hashCode(value);
         }
@@ -333,6 +342,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * cheapest possible way to reduce systematic lossage, as well as
      * to incorporate impact of the highest bits that would otherwise
      * never be used in index calculations because of table bounds.
+     */
+    /**
+     * hash的实现,key调用继承自Object的hashCode方法获得h,并将h和h的低16位求异或
      */
     static final int hash(Object key) {
         int h;
@@ -392,6 +404,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * necessary. When allocated, length is always a power of two.
      * (We also tolerate length zero in some operations to allow
      * bootstrapping mechanics that are currently not needed.)
+     */
+    /**
+     * 链表数组,
      */
     transient Node<K,V>[] table;
 
