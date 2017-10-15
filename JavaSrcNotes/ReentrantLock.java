@@ -126,10 +126,12 @@ public class ReentrantLock implements Lock, java.io.Serializable {
          * Performs non-fair tryLock.  tryAcquire is implemented in
          * subclasses, but both need nonfair try for trylock method.
          */
+        
         final boolean nonfairTryAcquire(int acquires) {
             final Thread current = Thread.currentThread();
             int c = getState();
-            if (c == 0) {
+            if (c == 0) { 
+                //CAS 内部调用了unsafe.compareAndSwapInt方法
                 if (compareAndSetState(0, acquires)) {
                     setExclusiveOwnerThread(current);
                     return true;
@@ -209,6 +211,9 @@ public class ReentrantLock implements Lock, java.io.Serializable {
                 acquire(1);
         }
 
+        /**
+         * 继承自AbstractQueueSynchronizer,独占锁实现
+         */
         protected final boolean tryAcquire(int acquires) {
             return nonfairTryAcquire(acquires);
         }

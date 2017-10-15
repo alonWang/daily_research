@@ -1195,6 +1195,7 @@ public abstract class AbstractQueuedSynchronizer
      *        can represent anything you like.
      */
     public final void acquire(int arg) {
+        //尝试获取锁,如果获取失败就把当前线程加到队列中等待并中断
         if (!tryAcquire(arg) &&
             acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
             selfInterrupt();
