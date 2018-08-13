@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q6 {
     public String convert(String s, int numRows) {
         if(numRows<1)
             return "";

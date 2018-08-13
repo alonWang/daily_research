@@ -1,7 +1,7 @@
 package com.github.alonwang.leetcode;
 
 //分割点查找需要优化
-class Solution {
+class Q81 {
     public boolean search(int[] nums, int target) {
         int n=nums.length;
         if(n<1)

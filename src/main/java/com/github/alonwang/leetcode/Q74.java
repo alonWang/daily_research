@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q74 {
     public boolean searchMatrix(int[][] matrix, int target) {
         int m=matrix.length;
         if(m==0)

@@ -9,7 +9,7 @@ n为奇数 中间值为num[n/2];
 
 */
 
-class Solution {
+class Q4 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int n1=nums1.length;
         int n2=nums2.length;

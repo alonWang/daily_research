@@ -3,7 +3,7 @@ package com.github.alonwang.leetcode;
 /**
  时间复杂度 O(logn)
 */
-class Solution {
+class Q29 {
 
     public int divide(int dividend, int divisor) {
         //-2147483648/-1 很特殊，按照数学规则应该等于2147483648,由于Integer的范围限制，只能等于2147483647

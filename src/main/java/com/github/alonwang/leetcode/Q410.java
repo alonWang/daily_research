@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q410{
     /**
      * 判断mid是否满足需要
      * 将m认为是m个相同箱子,mid箱子的最大容量,sum记录每个箱子的当前容量.

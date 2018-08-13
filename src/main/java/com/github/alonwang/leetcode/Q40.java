@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q40 {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res=new ArrayList<>();
         Arrays.sort(candidates);

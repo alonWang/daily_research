@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q153 {
     public int findMin(int[] nums) {
         int n=nums.length;
 

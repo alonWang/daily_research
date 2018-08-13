@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q88 {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int idx1=m-1,idx2=n-1,idx3=m+n-1;
         while(idx1>=0&&idx2>=0){

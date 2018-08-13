@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q69 {
     boolean guess(long m, long x){
         return m*m <= x;
     }

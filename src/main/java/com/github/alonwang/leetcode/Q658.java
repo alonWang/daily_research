@@ -1,5 +1,8 @@
 package com.github.alonwang.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 1....M....N
  * 结果肯定是从i....j 的连续序列
@@ -13,7 +16,7 @@ package com.github.alonwang.leetcode;
  * 2. arr[mid]-x<=arr[mid+k]-x,此时用到约束条件:优先选取更小者,下标范围为begin~mid-1;
  */
 
-class Solution {
+class Q658 {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
         List<Integer> res=new ArrayList<>();
         int begin=0,end=arr.length-k;

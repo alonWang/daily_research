@@ -1,6 +1,9 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+import java.util.HashSet;
+import java.util.Set;
+
+class Q3 {
     public int lengthOfLongestSubstring(String s) {
         Set<Character> set=new HashSet<Character>();
 

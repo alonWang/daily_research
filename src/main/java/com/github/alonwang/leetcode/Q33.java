@@ -1,7 +1,7 @@
 package com.github.alonwang.leetcode;
 
 //O(nLogn)
-class Solution {
+class Q33 {
     public int search(int[] nums, int target) {
         int n=nums.length;
         if(n<1)

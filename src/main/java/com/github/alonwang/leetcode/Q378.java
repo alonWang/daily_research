@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q378 {
     boolean guess(int m, int k, int[][]matrix){
         int n=matrix[0].length;
         //小于m的数字的总数

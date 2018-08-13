@@ -3,7 +3,7 @@ package com.github.alonwang.leetcode;
 /**
  * 以第一个字符串为前缀,不断缩短长度,与剩余字符串比较.
  */
-class Solution {
+class Q14 {
     public String longestCommonPrefix(String[] strs) {
         if(strs.length<1)
             return "";

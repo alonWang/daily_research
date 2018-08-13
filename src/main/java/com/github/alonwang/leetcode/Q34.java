@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q34 {
     public int[] searchRange(int[] nums, int target) {
         int n=nums.length;
         int lastPos=guess(0,n,target,nums);

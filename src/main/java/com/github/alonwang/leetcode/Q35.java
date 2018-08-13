@@ -1,6 +1,6 @@
 package com.github.alonwang.leetcode;
 
-class Solution {
+class Q35 {
     public int searchInsert(int[] nums, int target) {
         int n=nums.length;
         if(target>nums[n-1])

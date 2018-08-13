@@ -9,7 +9,7 @@ int x=s<cols?0:s-(cols-1)
 int y=s<cols?s:cols-1
 */
 
-class Solution {
+class Q498 {
     public int[] findDiagonalOrder(int[][] matrix) {
         if(matrix.length==0||matrix[0].length==0)
             return new int[0];

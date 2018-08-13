@@ -9,7 +9,7 @@ package com.github.alonwang.leetcode;
  *     TreeNode(int x) { val = x; }
  * }
  */
-class Solution {
+class Q572 {
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if(s==null){
             return false;
