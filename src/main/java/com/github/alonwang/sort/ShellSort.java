@@ -19,19 +19,21 @@ public class ShellSort extends CompareTemplate {
 
     @Override
     public void sort(Comparable[] a) {
-        int N = a.length;
-        //N 过小 时生效
-        int h = 1;
-        while (h < N / 3) h = h * 3 + 1;
-        while (h >= 1) {
-            //选定第h个数组
-            for (int i = h; i < N; i++) {
-                //从这个数组的第二个元素开始执行插入排序
-                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
-                    exch(a, j, j - h);
+        int len = a.length;
+        //default is the second index of the array if this is no enough element
+        int childNum = 1;
+        //array len less than 6 degenerate to insert sort
+        while (childNum < len / 3) childNum = childNum * 3 + 1;
+        while (childNum >= 1) {
+            //idx is the second element of the first child array
+            for (int idx = (0 + childNum); idx < len; idx++) {
+                //sort the (idx%childNum) th child array with insert sort
+                for (int idxOfChild = idx; idxOfChild >= childNum && less(a[idxOfChild], a[idxOfChild - childNum]); idxOfChild -= childNum) {
+                    exch(a, idxOfChild, idxOfChild - childNum);
                 }
             }
-            h /= 3;
+            //shrink child array util there is only one child array ,in other way one array.
+            childNum /= 3;
         }
     }
 }
