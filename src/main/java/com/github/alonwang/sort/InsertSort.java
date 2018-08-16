@@ -18,11 +18,19 @@ public class InsertSort extends CompareTemplate {
 
     @Override
     public void sort(Comparable[] a) {
-        int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
-            }
+        final int len = a.length;
+        for (int idx = 1; idx < len; idx++) {
+            int inboundIdx = idx;
+            do {
+                /**
+                 exchange if the latter is smaller then the former by index
+                 it guarantee [0-inboundIdx-1] is ordered and at least exec once
+                 **/
+                if (less(a[inboundIdx], a[inboundIdx - 1])) {
+                    exch(a, inboundIdx, inboundIdx - 1);
+                }
+                inboundIdx--;
+            } while (inboundIdx >= 1);
         }
     }
 }
