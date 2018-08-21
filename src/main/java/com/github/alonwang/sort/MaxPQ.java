@@ -43,7 +43,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
             if (j < N && less(pq[j], pq[j + 1])) {
                 j++;
             }
-            if (!less(i, j)) {
+            if (!less(pq[i], pq[j])) {
                 break;
             }
             exch(pq, i, j);
