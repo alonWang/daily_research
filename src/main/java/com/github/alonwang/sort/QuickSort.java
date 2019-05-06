@@ -27,7 +27,7 @@ public class QuickSort extends CompareTemplate {
                 }
             }
             //find smaller in right
-            while (less(partition, sources[--high])) {
+			while (less(partition, sources[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -45,10 +45,11 @@ public class QuickSort extends CompareTemplate {
     }
 
     public static void main(String[] args) {
-        ChooseSort chooseSort = new ChooseSort();
-        Integer a[] = new Integer[]{1, 5, 3, 4, 7, 2, 4, 6};
-        chooseSort.sort(a);
-        System.out.println(chooseSort.isSorted(a));
-        chooseSort.show(a);
+		QuickSort quickSort = new QuickSort();
+		Integer a[] = new Integer[] { -400, 3465, 55443, 5, 3, 4, 7, 2, 4, 6,
+				1459 };
+		quickSort.sort(a);
+		System.out.println(quickSort.isSorted(a));
+		quickSort.show(a);
     }
 }
