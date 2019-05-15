@@ -1,7 +1,9 @@
 package com.github.alonwang.leetcode;
 
+import java.util.Arrays;
+
 public class Q973 {
-	// k smallest base on heap sort.
+	// k smallest base on heap sort. if requires order ,this is the best choose
 	public int[][] kClosest(int[][] points, int K) {
 
 		for (int i = points.length / 2 - 1; i >= 0; i--) {
@@ -46,5 +48,44 @@ public class Q973 {
 		int[] temp = arrays[i];
 		arrays[i] = arrays[j];
 		arrays[j] = temp;
+	}
+
+	// base on quickSort or quickSelect, if don't requre order, this is the
+	// fast.
+	public int[][] kClosest1(int[][] points, int K) {
+		int len = points.length, l = 0, r = len - 1;
+		while (l <= r) {
+			int mid = helper(points, l, r);
+			if (mid == K)
+				break;
+			if (mid < K) {
+				l = mid + 1;
+			} else {
+				r = mid - 1;
+			}
+		}
+		return Arrays.copyOfRange(points, 0, K);
+	}
+
+	private int helper(int[][] A, int l, int r) {
+		int[] pivot = A[l];
+		// A[l] ensure <= pivot(if loop never exec, then A[l] is pivot exactly)
+		while (l < r) {
+			// 1
+			while (l < r && compare(A[r], pivot) >= 0)
+				r--;
+			A[l] = A[r];
+			// 2
+			while (l < r && compare(A[l], pivot) <= 0)
+				l++;
+			A[r] = A[l];
+		}
+		// 3
+		A[l] = pivot;
+		return l;
+	}
+
+	private int compare(int[] p1, int[] p2) {
+		return p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1];
 	}
 }
