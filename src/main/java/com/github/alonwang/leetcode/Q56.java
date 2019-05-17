@@ -4,53 +4,34 @@ package com.github.alonwang.leetcode;
  * @author weilong.wang Created on 2018/8/16
  */
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Arrays;
 
 /**
- * Definition for an interval.
+ * 将左区间和右区间分别排序, 如果 starts[i+1]>ends[i] 说明不能合并 大头在排序上 时间复杂度O(NlogN) 空间复杂度 O(N)
  */
-class Interval {
-	int start;
-	int end;
-
-	Interval() {
-		start = 0;
-		end = 0;
-	}
-
-	Interval(int s, int e) {
-		start = s;
-		end = e;
-	}
-}
-
 public class Q56 {
-	public List<Interval> merge(List<Interval> intervals) {
-		if (intervals.size() == 0) {
-			return new ArrayList();
+
+	public int[][] merge(int[][] intervals) {
+		if (intervals == null || intervals.length == 0) {
+			return new int[0][0];
 		}
-
-		List<Interval> result = new ArrayList();
-
-		// make sure the start is ordered
-		intervals.sort(Comparator.comparingInt(val -> val.start));
-		// if the first two element can merge,merge it and replace the first two
-		// element with merged element.nor remove the first and add to result
-		while (intervals.size() > 1) {
-			Interval firstVal = intervals.get(0);
-			Interval secondVal = intervals.get(1);
-			if (firstVal.end >= secondVal.start) {
-				intervals = intervals.subList(2, intervals.size());
-				intervals.add(0, new Interval(firstVal.start,
-						Math.max(firstVal.end, secondVal.end)));
-			} else {
-				intervals.remove(0);
-				result.add(firstVal);
+		final int N = intervals.length;
+		int[] starts = new int[N];
+		int[] ends = new int[N];
+		for (int i = 0; i < N; i++) {
+			starts[i] = intervals[i][0];
+			ends[i] = intervals[i][1];
+		}
+		Arrays.sort(starts);
+		Arrays.sort(ends);
+		int resultLen = 0;
+		for (int i = 0, j = 0; i < N; i++) {
+			if (i == N - 1 || starts[i + 1] > ends[i]) {
+				intervals[resultLen++] = new int[] { starts[j], ends[i] };
+				j = i + 1;
 			}
 		}
-		result.add(intervals.get(0));
-		return result;
+		return Arrays.copyOf(intervals, resultLen);
+
 	}
 }
