@@ -3,6 +3,15 @@ package com.github.alonwang.leetcode;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * 基于桶排序,由扩张的最大范围确定桶的数量,将"相同距离"的元素放在同一个桶中
+ * 关键:
+ * 1. 每个桶的大小和范围相关
+ * 2. 自己维护每个桶的当前下标减少内存消耗
+ *
+ * 主要在R,C的两次循环  时间复杂度 O(R*C)
+ * 空间复杂度 TODO
+ */
 public class Q1030 {
     //base on bucket sort,special handle {r0,c0}, save memory by only using array
     public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
