@@ -2,7 +2,7 @@ package com.github.alonwang.leetcode;
 
 /**
  * @author weilong.wang Created on 2018/8/17
- * <p>
+ * <p> 引入辅助节点,避免了头结点的判断逻辑
  * refer https://blog.csdn.net/happyaaaaaaaaaaa/article/details/51619973
  */
 
