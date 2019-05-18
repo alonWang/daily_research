@@ -16,45 +16,45 @@ class ListNode {
 }
 
 public class Q147 {
-    public static ListNode insertionSortList(ListNode head) {
-        if (head == null || head.next == null) {
+    //归并排序
+    public ListNode insertionSortList(ListNode head) {
+        // base case
+        if (null == head || null == head.next) {
             return head;
         }
-        // simplify insert of headNode
-        ListNode dummyNode = new ListNode(0);
-        ListNode curNode = head;
-        dummyNode.next = head;
-        while (curNode.next != null) {
-            if (curNode.val <= curNode.next.val) {
-                curNode = curNode.next;
-            } else {
-                ListNode targetNode = curNode.next;
-
-                //remove target node
-                curNode.next = curNode.next.next;
-
-                //user begin.node.next to complete insert
-                ListNode loopNode = dummyNode;
-                while (loopNode.next.val < targetNode.val) {
-                    loopNode = loopNode.next;
-                }
-                targetNode.next = loopNode.next;
-                loopNode.next = targetNode;
-            }
-
+        //等分为两个子链表
+        ListNode pre = null, slow = head, fast = head;
+        while (null != fast && null != fast.next) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return dummyNode.next;
-
+        pre.next = null;
+        //左侧有序
+        ListNode left = insertionSortList(head);
+        //右边有序
+        ListNode right = insertionSortList(slow);
+        //合并左右
+        return merge(left, right);
     }
 
-    public static void main(String[] args) {
-        ListNode head = new ListNode(4);
-        ListNode sec = new ListNode(2);
-        ListNode third = new ListNode(3);
-        ListNode four = new ListNode(1);
-        head.next = sec;
-        sec.next = third;
-        third.next = four;
-        insertionSortList(head);
+    private ListNode merge(ListNode left, ListNode right) {
+        // base case
+        if (null == left) {
+            return right;
+        }
+        if (null == right) {
+            return left;
+        }
+        ListNode head = null;
+        if (left.val < right.val) {
+            head = left;
+            left = left.next;
+        } else {
+            head = right;
+            right = right.next;
+        }
+        head.next = merge(left, right);
+        return head;
     }
 }
