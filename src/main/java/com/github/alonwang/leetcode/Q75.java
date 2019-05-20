@@ -1,25 +1,28 @@
 package com.github.alonwang.leetcode;
 
-import java.util.Arrays;
-
 /**
+ * 遍历,找到red就放置到左边(可看做交换),找到blue就放置到右边(同样是交换),遍历完成后,左边都是red,右边都是blue,中间肯定都是white了
  * @author weilong.wang Created on 2018/8/16
  */
 class Q75 {
-	public void sortColors(int[] nums) {
-		if (nums.length == 0) {
-			return;
-		}
-		int[] colorCounts = new int[3];
-		for (Integer num : nums) {
-			colorCounts[num]++;
-		}
-		int redCount = colorCounts[0];
-		int whiteCount = colorCounts[1];
-		int blueCount = colorCounts[2];
-		Arrays.fill(nums, 0, redCount, 0);
-		Arrays.fill(nums, redCount, redCount + whiteCount, 1);
-		Arrays.fill(nums, redCount + whiteCount,
-				redCount + whiteCount + blueCount, 2);
-	}
+    public void sortColors(int[] nums) {
+        if (nums == null && nums.length == 0) {
+            return;
+        }
+        int p1 = 0, p2 = nums.length - 1, index = 0;
+        while (index <= p2) {
+            if (nums[index] == 0) {
+                nums[index] = nums[p1];
+                nums[p1] = 0;
+                p1++;
+            }
+            if (nums[index] == 2) {
+                nums[index] = nums[p2];
+                nums[p2] = 2;
+                p2--;
+                index--;
+            }
+            index++;
+        }
+    }
 }
