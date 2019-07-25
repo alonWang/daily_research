@@ -16,22 +16,24 @@ public class TwinLock implements Lock {
 
         @Override
         protected int tryAcquireShared(int arg) {
-            int current = getState();
-            int newState = current - arg;
-            if (newState < 0 || compareAndSetState(current, newState)) {
-                return newState;
+            for (; ; ) {
+                int current = getState();
+                int newState = current - arg;
+                if (newState < 0 || compareAndSetState(current, newState)) {
+                    return newState;
+                }
             }
-            return -1;
         }
 
         @Override
         protected boolean tryReleaseShared(int arg) {
-            int current = getState();
-            int newState = current + arg;
-            if (compareAndSetState(current, newState)) {
-                return true;
+            for (; ; ) {
+                int current = getState();
+                int newState = current + arg;
+                if (compareAndSetState(current, newState)) {
+                    return true;
+                }
             }
-            return false;
         }
     }
 
