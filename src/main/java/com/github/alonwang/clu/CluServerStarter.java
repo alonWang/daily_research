@@ -1,8 +1,7 @@
 package com.github.alonwang.clu;
 
-import com.alibaba.fastjson.JSON;
-import com.github.alonwang.clu.command.Command;
 import com.github.alonwang.clu.handler.BusinessHandler;
+import com.github.alonwang.clu.handler.CommandCodec;
 import com.github.alonwang.clu.idiom.IdiomManager;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -12,13 +11,9 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
-
-import java.util.List;
 
 import lombok.extern.java.Log;
 
@@ -58,13 +53,7 @@ public class CluServerStarter {
                         new HttpServerCodec(),
                         new HttpObjectAggregator(65536),
                         new WebSocketServerProtocolHandler("/"),
-                        new MessageToMessageEncoder<Command>() {
-
-                            @Override
-                            protected void encode(ChannelHandlerContext ctx, Command msg, List<Object> out) throws Exception {
-                                out.add(new TextWebSocketFrame(JSON.toJSONString(msg)));
-                            }
-                        },
+                        new CommandCodec(),
                         new BusinessHandler()
 
                 );

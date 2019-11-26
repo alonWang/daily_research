@@ -8,11 +8,38 @@
         var ws = new WebSocket("ws://localhost:8080");
         ws.onopen = function () {
             // Web Socket 已连接上，使用 send() 方法发送数据
-
+            ws.send(JSON.stringify({'id': 1, 'body': ''}))
         };
         ws.onmessage = function (evt) {
             var received_msg = evt.data;
-            alert("数据已接收..." + received_msg);
+            console.log(received_msg);
+            result = JSON.parse(received_msg);
+            id = result['id'];
+            if (id === 0) {
+                alert(received_msg);
+                return;
+            }
+            var body = result['body'];
+            switch (id) {
+                case 1:
+
+                    break;
+                case 2:
+                    var test = JSON.parse(body)
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+
+            }
+
+
         };
         ws.onclose = function () {
             // 关闭 websocket
@@ -20,7 +47,7 @@
         }
 
         function sendWord() {
-            ws.send($("#answer").val())
+            ws.send(JSON.stringify({'id': 2, 'body': $("#answer").val()}))
         }
     </script>
 
