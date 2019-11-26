@@ -9,7 +9,7 @@ package com.github.alonwang.sort;
  */
 public class InsertSort extends CompareTemplate {
     public static void main(String[] args) {
-        Integer a[] = new Integer[]{1, 5, 3, 4, 7, 2, 4, 6};
+        Integer a[] = new Integer[]{1, 5, 34, 443, 7553, 23, 4, 6};
         InsertSort is = new InsertSort();
         is.sort(a);
         System.out.println(is.isSorted(a));
@@ -19,18 +19,17 @@ public class InsertSort extends CompareTemplate {
     @Override
     public void sort(Comparable[] a) {
         final int len = a.length;
-        for (int idx = 1; idx < len; idx++) {
-            int inboundIdx = idx;
-            do {
-                /**
-                 exchange if the latter is smaller then the former by index
-                 it guarantee [0-inboundIdx-1] is ordered and at least exec once
-                 **/
-                if (less(a[inboundIdx], a[inboundIdx - 1])) {
-                    exch(a, inboundIdx, inboundIdx - 1);
+        for (int i = 1; i < len; i++) {
+            Comparable targetVal = a[i];
+            int j = i;
+            for (; j > 0; j--) {
+                if (less(targetVal, a[j - 1])) {
+                    a[j] = a[j - 1];
+                } else {
+                    break;
                 }
-                inboundIdx--;
-            } while (inboundIdx >= 1);
+            }
+            a[j] = targetVal;
         }
     }
 }
