@@ -1,22 +1,18 @@
 package com.github.alonwang.clu.idiom;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.collection.ConcurrentHashSet;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.collection.ConcurrentHashSet;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import net.sourceforge.pinyin4j.PinyinHelper;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -25,17 +21,24 @@ import net.sourceforge.pinyin4j.PinyinHelper;
  **/
 public class IdiomManager {
     private static volatile String current;
-    private static Multimap<String, String> idioms = ArrayListMultimap.create();
+    private static Multimap<String, String> firstPYs = ArrayListMultimap.create();
+    private static Multimap<String, String> lastPYs = ArrayListMultimap.create();
     private static Set<String> usedIdioms = new ConcurrentHashSet<>();
+    private static Set<String> idioms = new HashSet<>();
 
     public static void init() {
         //解析文件,获取所有四字成语
         byte[] raws = FileUtil.readBytes("idiom.json");
         JSONArray jsonArray = JSON.parseArray(new String(raws));
         jsonArray.parallelStream().map(o -> ((JSONObject) o).getString("word")).filter(s -> !StrUtil.isEmpty(s) && s.length() == 4).forEach(word -> {
-            List<String> pinyins = getLastPinyins(word);
-            if (!CollectionUtil.isEmpty(pinyins)) {
-                pinyins.forEach(pinyin -> idioms.put(pinyin, word));
+            idioms.add(word);
+            List<String> lastPinyins = getLastPinyins(word);
+            if (!CollectionUtil.isEmpty(lastPinyins)) {
+                lastPinyins.forEach(pinyin -> lastPYs.put(pinyin, word));
+            }
+            List<String> firstPinyins = getFirstPinyins(word);
+            if (!CollectionUtil.isEmpty(firstPinyins)) {
+                firstPinyins.forEach(pinyin -> firstPYs.put(pinyin, word));
             }
         });
 
@@ -60,12 +63,12 @@ public class IdiomManager {
 
     private static String next(String prev) {
         if (prev == null) {
-            current = idioms.values().iterator().next();
+            current = firstPYs.values().iterator().next();
             usedIdioms.add(current);
         } else {
             List<String> pinyins = getLastPinyins(prev);
             current = pinyins.stream().map(pinyin ->
-                    idioms.get(pinyin)).filter(c -> !CollectionUtil.isEmpty(c)).flatMap(Collection::stream).filter(word -> !usedIdioms.contains(word)).findAny().get();
+                    firstPYs.get(pinyin)).filter(c -> !CollectionUtil.isEmpty(c)).flatMap(Collection::stream).filter(word -> !usedIdioms.contains(word)).findAny().get();
 
         }
         return current;
@@ -85,9 +88,16 @@ public class IdiomManager {
         List<String> currentEndPinyins = getLastPinyins(current);
         boolean correct = pinyins.stream().anyMatch(currentEndPinyins::contains);
         if (correct) {
-            next(current);
+            next(word);
         }
         return correct;
+    }
+
+    public static boolean isIdiom(String word) {
+        if (StrUtil.isEmpty(word) || word.length() != 4) {
+            return false;
+        }
+        return idioms.contains(word);
     }
 
 }

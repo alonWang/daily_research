@@ -5,18 +5,15 @@ import com.github.alonwang.clu.command.CID;
 import com.github.alonwang.clu.command.Command;
 import com.github.alonwang.clu.command.SID;
 import com.github.alonwang.clu.idiom.IdiomManager;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
-import io.netty.util.internal.StringUtil;
+import lombok.extern.java.Log;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -50,9 +47,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
 
     private void handleAnswer(ChannelHandlerContext ctx, String body) {
         String answer = body;
-        if (StringUtil.isNullOrEmpty(answer) || answer.length() != 4) {
+        if (!IdiomManager.isIdiom(answer)) {
             ctx.writeAndFlush(new Command(SID.ERROR.value(), "word length illegal"));
-
         }
         boolean correct = IdiomManager.correct(answer);
 
