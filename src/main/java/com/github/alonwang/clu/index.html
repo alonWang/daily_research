@@ -1,63 +1,164 @@
 <!DOCTYPE HTML>
-<html>
 <head>
     <meta charset="utf-8">
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
-        // 打开一个 web socket
-        var ws = new WebSocket("ws://localhost:8080");
-        ws.onopen = function () {
-            // Web Socket 已连接上，使用 send() 方法发送数据
-            ws.send(JSON.stringify({'id': 1, 'body': ''}))
-        };
-        ws.onmessage = function (evt) {
-            var received_msg = evt.data;
-            console.log(received_msg);
-            result = JSON.parse(received_msg);
-            id = result['id'];
-            if (id === 0) {
-                alert(received_msg);
-                return;
-            }
-            var body = result['body'];
-            switch (id) {
-                case 1:
-
-                    break;
-                case 2:
-                    var test = JSON.parse(body)
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-
-                    break;
-
-            }
-
-
-        };
-        ws.onclose = function () {
-            // 关闭 websocket
-            alert("连接已关闭...");
-        }
-
-        function sendWord() {
-            ws.send(JSON.stringify({'id': 2, 'body': $("#answer").val()}))
-        }
-    </script>
-
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 
-<div id="sse">
-    <label for="answer"></label><input id="answer" type="text">
-    <input id="btn" onclick="sendWord()" type="button" value="提交" minlength="4" required>
+<div id="clu">
+    <el-row :gutter="20">
+        <el-col v-for="user in users" :span="6">
+            <div class="grid-content bg-purple">{{user.word}}</div>
+        </el-col>
+    </el-row>
+    <div id="me">
+        <el-tag>{{word}}</el-tag>
+        <el-input v-model="input_word"></el-input>
+        <el-button type="primary" v-on:click="submit_answer">抢答</el-button>
+    </div>
 </div>
 
+<script type="text/javascript">
+
+    var vm = new Vue({
+            el: '#clu',
+            data: {
+                word: "",
+                input_word: "",
+                id: 0,
+                users: []
+
+            },
+            methods: {
+                submit_answer: function (event) {
+                    ws.send(JSON.stringify({'id': 2, 'body': this.input_word}))
+                },
+                notifyResult: function (correct) {
+                    if (correct) {
+                        this.$message({
+                            message: '回答正确',
+                            type: 'success'
+                        });
+                    } else {
+                        this.$message({
+                            message: '回答错误',
+                            type: 'warning'
+                        })
+                    }
+                }
+            }
+        }
+    )
+    var data = vm.$data;
+    // 打开一个 web socket
+    var ws = new WebSocket("ws://localhost:8080");
+    ws.onopen = function () {
+        // Web Socket 已连接上，使用 send() 方法发送数据
+        ws.send(JSON.stringify({'id': 1, 'body': ''}))
+    };
+    ws.onmessage = function (evt) {
+        var received_msg = evt.data;
+        console.log(received_msg);
+        result = JSON.parse(received_msg);
+        sid = result['id'];
+        if (sid === 0) {
+            alert(received_msg);
+            return;
+        }
+        var body = JSON.parse(result['body']);
+        switch (sid) {
+            case 1:
+                if (body['id'] !== data.id) {
+                    data.users.push({id: body['id'], word: ""})
+                    data.users.sort()
+                }
+                break;
+            case 2:
+                data.id = body['id'];
+                data.word = body['word'];
+                body['ids'].sort();
+                body['ids'].forEach((id, idx) => {
+                    if (data.id !== data.id) {
+                        data.users.push({id: id, word: ""})
+                    }
+                });
+                break;
+            case 3:
+                user = data.users.find((user) => user.id === body['id'])
+                if (user !== undefined) {
+                    console.log(user)
+                    user.word = body['word'];
+                }
+                if (body['id'] === data.id) {
+                    vm.notifyResult(body['correct'])
+                }
+
+                break;
+            case 4:
+                data.word = body['word'];
+                break;
+            case 5:
+                var index = data.users.findIndex((val, idx) => {
+                    return val.id === body['id'];
+                })
+                if (index !== undefined && index >= 0) {
+                    data.users.splice(index, 1)
+                }
+                break;
+
+        }
+
+
+    };
+    ws.onclose = function () {
+        // 关闭 websocket
+        alert("连接已关闭...");
+    }
+</script>
+<style>
+    .el-row {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .el-col {
+        margin-top: 20px;
+        border-radius: 4px;
+    }
+
+    .bg-purple-dark {
+        background: #99a9bf;
+    }
+
+    .bg-purple {
+        background: #d3dce6;
+    }
+
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
+    }
+
+    .el-tag {
+        height: 100px;
+        width: 200px;
+        font-size: 40px;
+        text-align: center;
+        margin: auto;
+    }
+</style>
 </body>
 </html>
