@@ -1,18 +1,26 @@
 package com.github.alonwang.clu.idiom;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.collection.ConcurrentHashSet;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import net.sourceforge.pinyin4j.PinyinHelper;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.collection.ConcurrentHashSet;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
+import net.sourceforge.pinyin4j.PinyinHelper;
 
 /**
  * @description:
@@ -63,9 +71,13 @@ public class IdiomManager {
 
     private static String next(String prev) {
         if (prev == null) {
-            current = firstPYs.values().iterator().next();
+            Iterator<String> iter = firstPYs.values().iterator();
+            IntStream.range(0, RandomUtil.randomInt(100)).forEach(i -> iter.next());
+            current = iter.next();
             usedIdioms.add(current);
         } else {
+            usedIdioms.add(current);
+            usedIdioms.add(prev);
             List<String> pinyins = getLastPinyins(prev);
             current = pinyins.stream().map(pinyin ->
                     firstPYs.get(pinyin)).filter(c -> !CollectionUtil.isEmpty(c)).flatMap(Collection::stream).filter(word -> !usedIdioms.contains(word)).findAny().get();
@@ -99,5 +111,4 @@ public class IdiomManager {
         }
         return idioms.contains(word);
     }
-
 }
