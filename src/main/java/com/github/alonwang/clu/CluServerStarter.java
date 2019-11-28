@@ -1,5 +1,9 @@
 package com.github.alonwang.clu;
 
+import com.alibaba.fastjson.JSONObject;
+import com.github.alonwang.clu.command.Command;
+import com.github.alonwang.clu.command.SID;
+import com.github.alonwang.clu.group.GroupManager;
 import com.github.alonwang.clu.handler.BusinessHandler;
 import com.github.alonwang.clu.handler.CommandCodec;
 import com.github.alonwang.clu.idiom.IdiomManager;
@@ -16,6 +20,8 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 
+import java.util.concurrent.TimeUnit;
+
 import lombok.extern.java.Log;
 
 /**
@@ -26,7 +32,7 @@ import lombok.extern.java.Log;
 @Log
 public class CluServerStarter {
     public static void main(String[] args) {
-        NioEventLoopGroup bossGroup = new NioEventLoopGroup();
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(10);
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup)
@@ -36,6 +42,16 @@ public class CluServerStarter {
                     public void handlerAdded(ChannelHandlerContext channelHandlerContext) throws Exception {
                         log.info(channelHandlerContext.name() + " handler add");
                         IdiomManager.init();
+                        //定期更换成语
+                        channelHandlerContext.channel().eventLoop().scheduleAtFixedRate(() -> {
+                            if (IdiomManager.idle()) {
+                                IdiomManager.next(IdiomManager.current());
+                                JSONObject jsonObject = new JSONObject();
+                                jsonObject.put("word", IdiomManager.current());
+                                GroupManager.getChannelGroup().writeAndFlush(new Command(SID.NEW_WORD.value(), jsonObject.toJSONString()));
+                            }
+                            IdiomManager.resetIdle();
+                        }, 20, 20, TimeUnit.SECONDS);
                     }
 
                     @Override
@@ -55,7 +71,7 @@ public class CluServerStarter {
                         new HttpObjectAggregator(65536),
                         new WebSocketServerProtocolHandler("/"),
                         new CommandCodec(),
-                        new IdleStateHandler(30, 30, 30),
+                        new IdleStateHandler(5, 0, 0),
                         new BusinessHandler()
 
                 );

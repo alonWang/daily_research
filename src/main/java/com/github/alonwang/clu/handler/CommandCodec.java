@@ -11,15 +11,18 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import java.util.List;
 
 import cn.hutool.core.util.StrUtil;
+import lombok.extern.java.Log;
 
 /**
  * @description:
  * @author: alonwang
  * @create: 2019-11-26 15:39
  **/
+@Log
 public class CommandCodec extends MessageToMessageCodec<TextWebSocketFrame, Command> {
     @Override
     protected void encode(ChannelHandlerContext ctx, Command msg, List<Object> out) throws Exception {
+        log.info("send " + ctx.hashCode() + " " + JSON.toJSONString(msg));
         out.add(new TextWebSocketFrame(JSON.toJSONString(msg)));
     }
 

@@ -28,6 +28,7 @@ import net.sourceforge.pinyin4j.PinyinHelper;
  * @create: 2019-11-16 10:12
  **/
 public class IdiomManager {
+    private static volatile boolean idle;
     private static volatile String current;
     private static Multimap<String, String> firstPYs = ArrayListMultimap.create();
     private static Multimap<String, String> lastPYs = ArrayListMultimap.create();
@@ -51,6 +52,7 @@ public class IdiomManager {
         });
 
         current = next(null);
+        idle = true;
     }
 
     private static List<String> getLastPinyins(String word) {
@@ -69,10 +71,10 @@ public class IdiomManager {
         return Arrays.stream(pinyins).map(s -> s.substring(0, s.length() - 1)).collect(Collectors.toList());
     }
 
-    private static String next(String prev) {
+    public static String next(String prev) {
         if (prev == null) {
             Iterator<String> iter = firstPYs.values().iterator();
-            IntStream.range(0, RandomUtil.randomInt(100)).forEach(i -> iter.next());
+            IntStream.range(0, RandomUtil.randomInt(20)).forEach(i -> iter.next());
             current = iter.next();
             usedIdioms.add(current);
         } else {
@@ -93,6 +95,10 @@ public class IdiomManager {
     }
 
     public static boolean correct(String word) {
+        idle = false;
+        if (!isIdiom(word)) {
+            return false;
+        }
         List<String> pinyins = getFirstPinyins(word);
         if (pinyins == null) {
             return false;
@@ -106,9 +112,14 @@ public class IdiomManager {
     }
 
     public static boolean isIdiom(String word) {
-        if (StrUtil.isEmpty(word) || word.length() != 4) {
-            return false;
-        }
         return idioms.contains(word);
+    }
+
+    public static boolean idle() {
+        return idle;
+    }
+
+    public static void resetIdle() {
+        idle = true;
     }
 }

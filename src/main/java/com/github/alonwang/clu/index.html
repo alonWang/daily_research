@@ -10,15 +10,14 @@
 <body>
 
 <div id="clu">
-    <el-row :gutter="20">
-        <el-col v-for="user in users" :span="6">
-            <div class="grid-content bg-purple">{{user.word}}</div>
-        </el-col>
-    </el-row>
+    <el-card shadow="always" class="users">
+        <el-button v-for="user in users" type="primary">{{user.id}} vs {{user.word}}</el-button>
+    </el-card>
+
+    <el-card class="word">{{word}}</el-card>
     <div id="me">
-        <el-tag>{{word}}</el-tag>
-        <el-input v-model="input_word"></el-input>
-        <el-button type="primary" v-on:click="submit_answer">抢答</el-button>
+        <el-input v-model="input_word" class="input"></el-input>
+        <el-button type="primary" v-on:click="submit_answer" round class="btn">抢答</el-button>
     </div>
 </div>
 
@@ -66,28 +65,28 @@
         result = JSON.parse(received_msg);
         sid = result['id'];
         if (sid === 0) {
-            alert(received_msg);
+            vm.$message(received_msg);
             return;
         }
         var body = JSON.parse(result['body']);
         switch (sid) {
-            case 1:
+            case 100:
                 if (body['id'] !== data.id) {
                     data.users.push({id: body['id'], word: ""})
                     data.users.sort()
                 }
                 break;
-            case 2:
+            case 101:
                 data.id = body['id'];
                 data.word = body['word'];
                 body['ids'].sort();
                 body['ids'].forEach((id, idx) => {
-                    if (data.id !== data.id) {
+                    if (id !== data.id) {
                         data.users.push({id: id, word: ""})
                     }
                 });
                 break;
-            case 3:
+            case 102:
                 user = data.users.find((user) => user.id === body['id'])
                 if (user !== undefined) {
                     console.log(user)
@@ -98,10 +97,10 @@
                 }
 
                 break;
-            case 4:
+            case 103:
                 data.word = body['word'];
                 break;
-            case 5:
+            case 104:
                 var index = data.users.findIndex((val, idx) => {
                     return val.id === body['id'];
                 })
@@ -116,48 +115,35 @@
     };
     ws.onclose = function () {
         // 关闭 websocket
-        alert("连接已关闭...");
+        vm.$message("连接已关闭...");
     }
 </script>
 <style>
-    .el-row {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    .el-col {
-        margin-top: 20px;
-        border-radius: 4px;
-    }
-
-    .bg-purple-dark {
-        background: #99a9bf;
-    }
-
-    .bg-purple {
-        background: #d3dce6;
-    }
-
-    .bg-purple-light {
-        background: #e5e9f2;
-    }
-
-    .grid-content {
-        border-radius: 4px;
-        min-height: 36px;
-    }
-
-    .row-bg {
-        padding: 10px 0;
-        background-color: #f9fafc;
-    }
-
-    .el-tag {
-        height: 100px;
-        width: 200px;
-        font-size: 40px;
-        text-align: center;
+    .users {
+        width: 60%;
         margin: auto;
+        margin-top: 20px;
+    }
+
+    .word {
+        width: 60%;
+        margin: auto;
+        text-align: center;
+        color: #DB8E71;
+        margin-top: 20px;
+    }
+
+    .input {
+        display: block;
+        width: 30%;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .btn {
+        display: block;
+        margin: auto;
+        margin-top: 20px;
     }
 </style>
 </body>
