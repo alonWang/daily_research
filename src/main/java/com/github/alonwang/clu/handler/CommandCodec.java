@@ -1,17 +1,15 @@
 package com.github.alonwang.clu.handler;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
-import com.github.alonwang.clu.command.Command;
+import com.github.alonwang.clu.command.CommandParam;
 import com.github.alonwang.clu.command.SID;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import lombok.extern.java.Log;
 
 import java.util.List;
-
-import cn.hutool.core.util.StrUtil;
-import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -19,28 +17,31 @@ import lombok.extern.java.Log;
  * @create: 2019-11-26 15:39
  **/
 @Log
-public class CommandCodec extends MessageToMessageCodec<TextWebSocketFrame, Command> {
+public class CommandCodec
+		extends MessageToMessageCodec<TextWebSocketFrame, CommandParam> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, Command msg, List<Object> out) throws Exception {
+	protected void encode(ChannelHandlerContext ctx, CommandParam msg,
+			List<Object> out) throws Exception {
         log.info("send " + ctx.hashCode() + " " + JSON.toJSONString(msg));
         out.add(new TextWebSocketFrame(JSON.toJSONString(msg)));
     }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, TextWebSocketFrame msg, List<Object> out) throws Exception {
-        Command command = null;
+		CommandParam commandParam = null;
         String text = msg.text();
         if (!StrUtil.isEmpty(text)) {
             try {
-                command = JSON.parseObject(text, Command.class);
+				commandParam = JSON.parseObject(text, CommandParam.class);
             } catch (Exception ignore) {
 
             }
         }
-        if (command != null) {
-            out.add(command);
+		if (commandParam != null) {
+			out.add(commandParam);
         } else {
-            ctx.writeAndFlush(new Command(SID.ERROR.value(), "illegal argument"));
+			ctx.writeAndFlush(
+					new CommandParam(SID.ERROR.value(), "illegal argument"));
         }
     }
 }

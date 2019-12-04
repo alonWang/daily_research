@@ -1,13 +1,12 @@
 package com.github.alonwang.clu;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.alonwang.clu.command.Command;
+import com.github.alonwang.clu.command.CommandParam;
 import com.github.alonwang.clu.command.SID;
 import com.github.alonwang.clu.group.GroupManager;
 import com.github.alonwang.clu.handler.BusinessHandler;
 import com.github.alonwang.clu.handler.CommandCodec;
 import com.github.alonwang.clu.idiom.IdiomManager;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -19,10 +18,9 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.java.Log;
 
 import java.util.concurrent.TimeUnit;
-
-import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -48,10 +46,14 @@ public class CluServerStarter {
                                 IdiomManager.next(IdiomManager.current());
                                 JSONObject jsonObject = new JSONObject();
                                 jsonObject.put("word", IdiomManager.current());
-                                GroupManager.getChannelGroup().writeAndFlush(new Command(SID.NEW_WORD.value(), jsonObject.toJSONString()));
+										GroupManager.getChannelGroup()
+												.writeAndFlush(new CommandParam(
+														SID.NEW_WORD.value(),
+														jsonObject
+																.toJSONString()));
                             }
                             IdiomManager.resetIdle();
-                        }, 20, 20, TimeUnit.SECONDS);
+								}, 60, 60, TimeUnit.SECONDS);
                     }
 
                     @Override

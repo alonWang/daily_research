@@ -1,22 +1,20 @@
 package com.github.alonwang.clu.handler;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.github.alonwang.clu.command.CID;
-import com.github.alonwang.clu.command.Command;
+import com.github.alonwang.clu.command.CommandParam;
 import com.github.alonwang.clu.command.SID;
 import com.github.alonwang.clu.group.GroupManager;
 import com.github.alonwang.clu.idiom.IdiomManager;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
 import io.netty.handler.timeout.IdleStateEvent;
+import lombok.extern.java.Log;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import cn.hutool.core.util.StrUtil;
-import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -24,15 +22,17 @@ import lombok.extern.java.Log;
  * @create: 2019-11-15 14:31
  **/
 @Log
-public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
+public class BusinessHandler extends SimpleChannelInboundHandler<CommandParam> {
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Command cmd) throws Exception {
-        int id = cmd.getId();
+	protected void channelRead0(ChannelHandlerContext ctx, CommandParam cmd)
+			throws Exception {
+		int id = cmd.getCid();
         CID cid = CID.valueOf(id);
         if (cid == null) {
-            ctx.writeAndFlush(new Command(SID.ERROR.value(), "illegal cid"));
+			ctx.writeAndFlush(
+					new CommandParam(SID.ERROR.value(), "illegal cid"));
         }
         switch (cid) {
             case CONNECT:
@@ -42,7 +42,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
                 handleAnswer(ctx, cmd.getBody());
                 break;
             default:
-                ctx.writeAndFlush(new Command(SID.ERROR.value(), "illegal cid"));
+			ctx.writeAndFlush(
+					new CommandParam(SID.ERROR.value(), "illegal cid"));
         }
 
 
@@ -51,7 +52,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
     private void handleAnswer(ChannelHandlerContext ctx, String body) {
         String answer = body;
         if (StrUtil.isEmpty(answer) || answer.length() != 4) {
-            ctx.writeAndFlush(new Command(SID.ERROR.value(), "word length illegal"));
+			ctx.writeAndFlush(
+					new CommandParam(SID.ERROR.value(), "word length illegal"));
             return;
         }
         boolean correct = IdiomManager.correct(answer);
@@ -61,11 +63,13 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
         result.put("correct", correct);
         result.put("id", channelId);
         result.put("word", answer);
-        GroupManager.getChannelGroup().writeAndFlush(new Command(SID.USER_ANSWER.value(), result.toJSONString()));
+		GroupManager.getChannelGroup().writeAndFlush(new CommandParam(
+				SID.USER_ANSWER.value(), result.toJSONString()));
         if (correct) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("word", IdiomManager.current());
-            GroupManager.getChannelGroup().writeAndFlush(new Command(SID.NEW_WORD.value(), jsonObject.toJSONString()));
+			GroupManager.getChannelGroup().writeAndFlush(new CommandParam(
+					SID.NEW_WORD.value(), jsonObject.toJSONString()));
         }
 
     }
@@ -76,7 +80,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
         jsonObject.put("ids", channelIds);
         jsonObject.put("id", ctx.channel().hashCode());
         jsonObject.put("word", IdiomManager.current());
-        ctx.writeAndFlush(new Command(SID.HOMEPAGE_INFO.value(), jsonObject.toJSONString()));
+		ctx.writeAndFlush(new CommandParam(SID.HOMEPAGE_INFO.value(),
+				jsonObject.toJSONString()));
     }
 
     @Override
@@ -85,7 +90,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
         //推送人员增加
         JSONObject result = new JSONObject();
         result.put("id", ctx.channel().hashCode());
-        GroupManager.getChannelGroup().writeAndFlush(new Command(SID.NEW_USER_CONNECT.value(), result.toJSONString()));
+		GroupManager.getChannelGroup().writeAndFlush(new CommandParam(
+				SID.NEW_USER_CONNECT.value(), result.toJSONString()));
         // 推送当前所有人,词语
 
 
@@ -101,7 +107,8 @@ public class BusinessHandler extends SimpleChannelInboundHandler<Command> {
         GroupManager.getChannelGroup().remove(ctx.channel());
         JSONObject result = new JSONObject();
         result.put("id", ctx.channel().hashCode());
-        GroupManager.getChannelGroup().writeAndFlush(new Command(SID.USER_DISCONNECT.value(), result.toJSONString()));
+		GroupManager.getChannelGroup().writeAndFlush(new CommandParam(
+				SID.USER_DISCONNECT.value(), result.toJSONString()));
     }
 
     @Override
