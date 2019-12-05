@@ -1,26 +1,22 @@
-.users {
-    width: 60%;
-    margin: auto;
-    margin-top: 20px;
+
+.el-container {
+    height: 618px;
 }
 
-.word {
-    width: 60%;
-    margin: auto;
+.el-aside {
+    background-color: #D3DCE6;
+    color: #333;
     text-align: center;
-    color: #DB8E71;
-    margin-top: 20px;
+    line-height: 200px;
 }
 
-.input {
-    display: block;
-    width: 30%;
-    margin: auto;
-    margin-top: 20px;
+.el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
 }
 
-.btn {
-    display: block;
-    margin: auto;
-    margin-top: 20px;
+body > .el-container {
+    margin-bottom: 40px;
 }

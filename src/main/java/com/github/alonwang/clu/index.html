@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<html>
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
@@ -7,15 +8,24 @@
 <body>
 
 <div id="clu">
-    <el-card shadow="always" class="users">
-        <el-button v-for="user in users" type="primary">{{user.userId}} vs {{user.word}}</el-button>
-    </el-card>
+    <el-container>
+        <el-aside>
+            <div v-for="user in users">
+                <el-avatar icon="el-icon-user-solid"/>
+                {{user.word}}
+            </div>
 
-    <el-card class="word">{{word}}</el-card>
-    <div id="me">
-        <el-input v-model="input_word" class="input"></el-input>
-        <el-button type="primary" v-on:click="submit_answer" round class="btn">抢答</el-button>
-    </div>
+        </el-aside>
+        <el-container>
+            <el-main>
+                <el-card>{{word}}</el-card>
+                <el-input v-model=" input_word
+            " class="input"></el-input>
+                <el-button type="primary" v-on:click="submit_answer" round class="btn">抢答</el-button>
+            </el-main>
+
+        </el-container>
+    </el-container>
 </div>
 
 <style>
