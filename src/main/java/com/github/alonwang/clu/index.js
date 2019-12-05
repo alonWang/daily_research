@@ -23,7 +23,7 @@ var vm = new Vue({
 
         },
         methods: {
-            submit_answer: function (event) {
+            submit_answer: function () {
                 ws.send(JSON.stringify({'cid': CID.ANSWER, 'body': this.input_word}))
             },
             notifyResult: function (correct) {
@@ -42,7 +42,6 @@ var vm = new Vue({
         }
     }
 )
-var data = vm.$data;
 // 打开一个 web socket
 var ws = new WebSocket("ws://localhost:8080");
 ws.onopen = function () {
@@ -61,41 +60,41 @@ ws.onmessage = function (evt) {
     var body = result.body;
     switch (sid) {
         case SID.USER_CONNECT:
-            if (body.userId !== data.userId) {
-                data.users.push({userId: body.userId, word: ""})
-                data.users.sort()
+            if (body.userId !== vm.userId) {
+                vm.users.push({userId: body.userId, word: ""})
+                vm.users.sort()
             }
             break;
         case SID.HOMEPAGE:
-            data.userId = body.userId;
-            data.word = body.curIdiom;
+            vm.userId = body.userId;
+            vm.word = body.curIdiom;
             body.userIds.sort();
             body.userIds.forEach((uid, idx) => {
-                if (uid !== data.userId) {
-                    data.users.push({userId: uid, word: ""})
+                if (uid !== vm.userId) {
+                    vm.users.push({userId: uid, word: ""})
                 }
             });
             break;
         case SID.USER_ANSWER:
-            user = data.users.find((user) => user.userId === body.userId)
+            user = vm.users.find((user) => user.userId === body.userId)
             if (user !== undefined) {
                 console.log(user)
                 user.word = body.word;
             }
-            if (body.userId === data.userId) {
+            if (body.userId === vm.userId) {
                 vm.notifyResult(body.correct)
             }
 
             break;
         case SID.NEW_WORD:
-            data.word = body;
+            vm.word = body;
             break;
         case SID.USER_DISCONNECT:
-            var index = data.users.findIndex((val, idx) => {
+            var index = vm.users.findIndex((val, idx) => {
                 return val.userId === body;
             })
             if (index !== undefined && index >= 0) {
-                data.users.splice(index, 1)
+                vm.users.splice(index, 1)
             }
             break;
 

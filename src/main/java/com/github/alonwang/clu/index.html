@@ -11,7 +11,9 @@
     <el-container>
         <el-aside>
             <div v-for="user in users">
-                <el-avatar icon="el-icon-user-solid"/>
+                <el-badge value="hahaha" class="item">
+                    <el-avatar icon="el-icon-user-solid"/>
+                </el-badge>
                 {{user.word}}
             </div>
 
@@ -19,9 +21,8 @@
         <el-container>
             <el-main>
                 <el-card>{{word}}</el-card>
-                <el-input v-model=" input_word
-            " class="input"></el-input>
-                <el-button type="primary" v-on:click="submit_answer" round class="btn">抢答</el-button>
+                {{input_word}}
+                <el-input v-model="input_word" v-on:keyup.space="submit_answer"/>
             </el-main>
 
         </el-container>
