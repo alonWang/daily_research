@@ -22,19 +22,33 @@
 </div>
 
 <script type="text/javascript">
-
+    const SID = {
+        SYSTEM_ERROR: 0,
+        BUSINESS_EXCEPTION: 1,
+        USER_CONNECT: 100,
+        HOMEPAGE: 101,
+        USER_ANSWER: 102,
+        NEW_WORD: 103,
+        USER_DISCONNECT: 104,
+    }
+    const CID = {
+        HOMEPAGE: 100,
+        ANSWER: 101,
+    }
+    Object.freeze(SID)
+    Object.freeze(CID)
     var vm = new Vue({
-            el: '#clu',
-            data: {
-                word: "",
-                input_word: "",
-                id: 0,
-                users: []
+        el: '#clu',
+        data: {
+            word: "",
+            input_word: "",
+            userId: 0,
+            users: []
 
-            },
-            methods: {
+        },
+        methods: {
                 submit_answer: function (event) {
-                    ws.send(JSON.stringify({'id': 2, 'body': this.input_word}))
+                    ws.send(JSON.stringify({'cid': 101, 'body': this.input_word}))
                 },
                 notifyResult: function (correct) {
                     if (correct) {
@@ -57,52 +71,52 @@
     var ws = new WebSocket("ws://localhost:8080");
     ws.onopen = function () {
         // Web Socket 已连接上，使用 send() 方法发送数据
-        ws.send(JSON.stringify({'id': 1, 'body': ''}))
+        ws.send(JSON.stringify({'cid': 100, 'body': ''}))
     };
     ws.onmessage = function (evt) {
         var received_msg = evt.data;
         console.log(received_msg);
         result = JSON.parse(received_msg);
-        sid = result['id'];
-        if (sid === 0) {
+        sid = result['sid'];
+        if (sid === SID.SYSTEM_ERROR || sid === SID.BUSINESS_EXCEPTION) {
             vm.$message(received_msg);
             return;
         }
-        var body = JSON.parse(result['body']);
+        var body = result.body;
         switch (sid) {
-            case 100:
-                if (body['id'] !== data.id) {
-                    data.users.push({id: body['id'], word: ""})
+            case SID.USER_CONNECT:
+                if (body.userId !== data.userId) {
+                    data.users.push({id: body.userId, word: ""})
                     data.users.sort()
                 }
                 break;
-            case 101:
-                data.id = body['id'];
-                data.word = body['word'];
-                body['ids'].sort();
-                body['ids'].forEach((id, idx) => {
-                    if (id !== data.id) {
-                        data.users.push({id: id, word: ""})
+            case SID.HOMEPAGE:
+                data.userId = body.userId;
+                data.word = body.curIdiom;
+                body.userIds.sort();
+                body.userIds.forEach((uid, idx) => {
+                    if (uid !== data.userId) {
+                        data.users.push({id: uid, word: ""})
                     }
                 });
                 break;
-            case 102:
+            case SID.NEW_WORD:
                 user = data.users.find((user) => user.id === body['id'])
                 if (user !== undefined) {
                     console.log(user)
                     user.word = body['word'];
                 }
-                if (body['id'] === data.id) {
+                if (body['id'] === data.userId) {
                     vm.notifyResult(body['correct'])
                 }
 
                 break;
-            case 103:
+            case SID.USER_DISCONNECT:
                 data.word = body['word'];
                 break;
             case 104:
                 var index = data.users.findIndex((val, idx) => {
-                    return val.id === body['id'];
+                    return val.userId === body['id'];
                 })
                 if (index !== undefined && index >= 0) {
                     data.users.splice(index, 1)

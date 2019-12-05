@@ -12,7 +12,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 public class GroupManager {
     private final static ChannelGroup CHANNEL_GROUP = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
-    public static ChannelGroup getChannelGroup() {
+    public static ChannelGroup channelGroup() {
         return CHANNEL_GROUP;
     }
 }

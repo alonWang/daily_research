@@ -2,11 +2,14 @@ package com.github.alonwang.clu;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.alonwang.clu.command.CommandParam;
-import com.github.alonwang.clu.command.SID;
+import com.github.alonwang.clu.emum.SID;
 import com.github.alonwang.clu.group.GroupManager;
 import com.github.alonwang.clu.handler.BusinessHandler;
-import com.github.alonwang.clu.handler.CommandCodec;
+import com.github.alonwang.clu.handler.CommandEncoder;
+import com.github.alonwang.clu.handler.CommandHandler;
+import com.github.alonwang.clu.handler.ExceptionHandler;
 import com.github.alonwang.clu.idiom.IdiomManager;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,9 +21,10 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import lombok.extern.java.Log;
 
 import java.util.concurrent.TimeUnit;
+
+import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -46,11 +50,11 @@ public class CluServerStarter {
                                 IdiomManager.next(IdiomManager.current());
                                 JSONObject jsonObject = new JSONObject();
                                 jsonObject.put("word", IdiomManager.current());
-										GroupManager.getChannelGroup()
-												.writeAndFlush(new CommandParam(
-														SID.NEW_WORD.value(),
-														jsonObject
-																.toJSONString()));
+                                GroupManager.channelGroup()
+                                        .writeAndFlush(new CommandParam(
+                                                SID.NEW_WORD.value(),
+                                                jsonObject
+                                                        .toJSONString()));
                             }
                             IdiomManager.resetIdle();
 								}, 60, 60, TimeUnit.SECONDS);
@@ -69,12 +73,14 @@ public class CluServerStarter {
             @Override
             protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                 nioSocketChannel.pipeline().addLast(
+                        new IdleStateHandler(5, 0, 0),
                         new HttpServerCodec(),
                         new HttpObjectAggregator(65536),
                         new WebSocketServerProtocolHandler("/"),
-                        new CommandCodec(),
-                        new IdleStateHandler(5, 0, 0),
-                        new BusinessHandler()
+                        new CommandEncoder(),
+                        new CommandHandler(),
+                        new BusinessHandler(),
+                        new ExceptionHandler()
 
                 );
             }

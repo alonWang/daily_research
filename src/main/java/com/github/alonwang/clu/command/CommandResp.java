@@ -7,7 +7,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CommandResp {
+public class CommandResp<T> {
 	private int sid;
-	private String body;
+	private T body;
+
+	public static <T> CommandResp<T> newInstance(int sid, T body) {
+		return new CommandResp<>(sid, body);
+	}
 }

@@ -1,4 +1,4 @@
-package com.github.alonwang.clu.command;
+package com.github.alonwang.clu.emum;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
  **/
 
 public enum CID {
-    CONNECT(1), ANSWER(2);
+    CONNECT(1), DISCONNECT(2), HOMEPAGE(100), ANSWER(101);
     private int value;
 
     CID(int value) {
