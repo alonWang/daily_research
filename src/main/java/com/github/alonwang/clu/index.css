@@ -1,0 +1,26 @@
+.users {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.word {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    color: #DB8E71;
+    margin-top: 20px;
+}
+
+.input {
+    display: block;
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.btn {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}

@@ -9,7 +9,6 @@ import com.github.alonwang.clu.handler.CommandEncoder;
 import com.github.alonwang.clu.handler.CommandHandler;
 import com.github.alonwang.clu.handler.ExceptionHandler;
 import com.github.alonwang.clu.idiom.IdiomManager;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,10 +20,11 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-
-import java.util.concurrent.TimeUnit;
-
 import lombok.extern.java.Log;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description:
@@ -33,6 +33,8 @@ import lombok.extern.java.Log;
  **/
 @Log
 public class CluServerStarter {
+	private static final ScheduledExecutorService executorService = Executors
+			.newSingleThreadScheduledExecutor();
     public static void main(String[] args) {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(10);
@@ -45,7 +47,7 @@ public class CluServerStarter {
                         log.info(channelHandlerContext.name() + " handler add");
                         IdiomManager.init();
                         //定期更换成语
-                        channelHandlerContext.channel().eventLoop().scheduleAtFixedRate(() -> {
+						executorService.scheduleAtFixedRate(() -> {
                             if (IdiomManager.idle()) {
                                 IdiomManager.next(IdiomManager.current());
                                 JSONObject jsonObject = new JSONObject();
