@@ -1,7 +1,8 @@
 package com.github.alonwang.log;
 
+import org.apache.logging.slf4j.Log4jLoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.impl.Log4jLoggerFactory;
+
 
 public class LoggerManager {
     private static final Log4jLoggerFactory log4jLogFactory = new Log4jLoggerFactory();

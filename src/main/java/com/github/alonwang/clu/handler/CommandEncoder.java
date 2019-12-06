@@ -10,14 +10,12 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import java.util.List;
 
-import lombok.extern.java.Log;
-
 /**
  * @description:
  * @author: alonwang
  * @create: 2019-11-26 15:39
  **/
-@Log
+
 @ChannelHandler.Sharable
 public class CommandEncoder
         extends MessageToMessageEncoder<CommandResp> {

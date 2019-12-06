@@ -13,14 +13,14 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleStateEvent;
 
 import cn.hutool.core.util.StrUtil;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @description:
  * @author: alonwang
  * @create: 2019-11-15 14:31
  **/
-@Log
+@Slf4j
 @ChannelHandler.Sharable
 public class CommandHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 

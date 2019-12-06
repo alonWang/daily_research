@@ -1,0 +1,13 @@
+Configuration:
+  status: info
+
+  appenders:
+    Console:
+      name: Console
+      PatternLayout:
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C{1}.%M(%F:%L)] - %msg%n"
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console

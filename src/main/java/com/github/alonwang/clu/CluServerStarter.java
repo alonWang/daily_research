@@ -26,18 +26,17 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import cn.hutool.core.lang.Singleton;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @description:
  * @author: alonwang
  * @create: 2019-11-15 08:47
  **/
-@Log
+@Slf4j
 public class CluServerStarter {
     private static final ScheduledExecutorService executorService = Executors
             .newSingleThreadScheduledExecutor();
-
     public static void main(String[] args) {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(10);
