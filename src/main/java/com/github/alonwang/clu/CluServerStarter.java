@@ -1,7 +1,6 @@
 package com.github.alonwang.clu;
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.alonwang.clu.command.CommandParam;
+import com.github.alonwang.clu.command.CommandResp;
 import com.github.alonwang.clu.emum.SID;
 import com.github.alonwang.clu.group.GroupManager;
 import com.github.alonwang.clu.handler.BusinessHandler;
@@ -48,19 +47,15 @@ public class CluServerStarter {
                 .handler(new ChannelHandler() {
                     @Override
                     public void handlerAdded(ChannelHandlerContext channelHandlerContext) throws Exception {
-                        log.info(channelHandlerContext.name() + " handler add");
                         IdiomManager.init();
                         //定期更换成语
 						executorService.scheduleAtFixedRate(() -> {
                             if (IdiomManager.idle()) {
                                 IdiomManager.next(IdiomManager.current());
-                                JSONObject jsonObject = new JSONObject();
-                                jsonObject.put("word", IdiomManager.current());
                                 GroupManager.channelGroup()
-                                        .writeAndFlush(new CommandParam(
+                                        .writeAndFlush(CommandResp.newInstance(
                                                 SID.NEW_WORD.value(),
-                                                jsonObject
-                                                        .toJSONString()));
+                                                IdiomManager.current()));
                             }
                             IdiomManager.resetIdle();
                         }, 30, 30, TimeUnit.SECONDS);
