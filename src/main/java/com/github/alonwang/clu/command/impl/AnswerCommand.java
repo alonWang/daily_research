@@ -27,7 +27,7 @@ public class AnswerCommand implements Command {
     @Override
     public void execute(ChannelHandlerContext ctx) {
         if (StrUtil.isEmpty(answer) || answer.length() != 4) {
-            throw new BusinessException("word length illegal");
+            throw new BusinessException("只能是四字成语哦~");
         }
         boolean correct = IdiomManager.correct(answer);
         int channelId = ctx.channel().hashCode();

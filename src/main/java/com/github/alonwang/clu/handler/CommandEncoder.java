@@ -3,6 +3,7 @@ package com.github.alonwang.clu.handler;
 import com.alibaba.fastjson.JSON;
 import com.github.alonwang.clu.command.CommandResp;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -17,6 +18,7 @@ import lombok.extern.java.Log;
  * @create: 2019-11-26 15:39
  **/
 @Log
+@ChannelHandler.Sharable
 public class CommandEncoder
         extends MessageToMessageEncoder<CommandResp> {
     @Override

@@ -9,6 +9,7 @@ import com.github.alonwang.clu.handler.CommandEncoder;
 import com.github.alonwang.clu.handler.CommandHandler;
 import com.github.alonwang.clu.handler.ExceptionHandler;
 import com.github.alonwang.clu.idiom.IdiomManager;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -20,11 +21,13 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import lombok.extern.java.Log;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import cn.hutool.core.lang.Singleton;
+import lombok.extern.java.Log;
 
 /**
  * @description:
@@ -33,8 +36,9 @@ import java.util.concurrent.TimeUnit;
  **/
 @Log
 public class CluServerStarter {
-	private static final ScheduledExecutorService executorService = Executors
-			.newSingleThreadScheduledExecutor();
+    private static final ScheduledExecutorService executorService = Executors
+            .newSingleThreadScheduledExecutor();
+
     public static void main(String[] args) {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(10);
@@ -59,7 +63,7 @@ public class CluServerStarter {
                                                         .toJSONString()));
                             }
                             IdiomManager.resetIdle();
-								}, 60, 60, TimeUnit.SECONDS);
+                        }, 30, 30, TimeUnit.SECONDS);
                     }
 
                     @Override
@@ -79,11 +83,10 @@ public class CluServerStarter {
                         new HttpServerCodec(),
                         new HttpObjectAggregator(65536),
                         new WebSocketServerProtocolHandler("/"),
-                        new CommandEncoder(),
-                        new CommandHandler(),
-                        new BusinessHandler(),
-                        new ExceptionHandler()
-
+                        Singleton.get(CommandEncoder.class),
+                        Singleton.get(CommandHandler.class),
+                        Singleton.get(BusinessHandler.class),
+                        Singleton.get(ExceptionHandler.class)
                 );
             }
         });

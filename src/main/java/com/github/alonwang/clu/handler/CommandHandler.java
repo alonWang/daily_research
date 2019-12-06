@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.alonwang.clu.emum.CID;
 import com.github.alonwang.clu.factory.CommandFactory;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
@@ -20,6 +21,7 @@ import lombok.extern.java.Log;
  * @create: 2019-11-15 14:31
  **/
 @Log
+@ChannelHandler.Sharable
 public class CommandHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
 
@@ -29,7 +31,7 @@ public class CommandHandler extends SimpleChannelInboundHandler<TextWebSocketFra
         String text = msg.text();
 
         if (StrUtil.isEmpty(text)) {
-            throw new IllegalArgumentException("no parameter");
+            throw new IllegalArgumentException("parameter error");
         }
         JSONObject jsonObject = JSON.parseObject(text);
         Integer cid = jsonObject.getInteger("cid");
