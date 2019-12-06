@@ -17,13 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ChannelHandler.Sharable
 public class ExceptionHandler extends ChannelInboundHandlerAdapter {
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.info(cause.toString());
-        if (cause instanceof BusinessException) {
-            ExceptionUtil.throwException(ctx, cause.toString());
-        } else {
-            ExceptionUtil.throwException(ctx, cause.toString());
-        }
-    }
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+
+		if (cause instanceof BusinessException) {
+			log.info("client {}  exception: {}", ctx.channel().hashCode(),
+					cause);
+			ExceptionUtil.throwException(ctx, cause.toString());
+		} else {
+			log.error("client {}  exception: {}", ctx.channel().hashCode(),
+					cause);
+			ExceptionUtil.throwException(ctx, cause.toString());
+		}
+	}
 }
