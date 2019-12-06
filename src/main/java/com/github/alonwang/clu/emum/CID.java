@@ -9,7 +9,7 @@ import java.util.Arrays;
  **/
 
 public enum CID {
-    CONNECT(1), DISCONNECT(2), HOMEPAGE(100), ANSWER(101);
+    CONNECT(1), DISCONNECT(2), HOMEPAGE(100), ANSWER(101), INPUT_CHANGE(102);
     private int value;
 
     CID(int value) {

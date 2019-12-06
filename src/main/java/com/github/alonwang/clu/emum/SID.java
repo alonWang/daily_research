@@ -8,7 +8,7 @@ package com.github.alonwang.clu.emum;
 
 public enum SID {
     SYSTEM_ERROR(0), BUSINESS_EXCEPTION(1), USER_CONNECT(100), HOMEPAGE(101), USER_ANSWER(
-            102), NEW_WORD(103), USER_DISCONNECT(104);
+            102), NEW_WORD(103), USER_DISCONNECT(104), USER_INPUT_CHANGE(105);
     private int value;
 
     SID(int value) {

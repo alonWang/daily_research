@@ -6,10 +6,12 @@ const SID = {
     USER_ANSWER: 102,
     NEW_WORD: 103,
     USER_DISCONNECT: 104,
+    USER_INPUT_CHANGE: 105,
 }
 const CID = {
     HOMEPAGE: 100,
     ANSWER: 101,
+    INPUT_CHANGE: 102,
 }
 Object.freeze(SID)
 Object.freeze(CID)
@@ -23,9 +25,7 @@ var vm = new Vue({
 
         },
         methods: {
-            submit_answer: function () {
-                ws.send(JSON.stringify({'cid': CID.ANSWER, 'body': this.input_word}))
-            },
+
             notifyResult: function (correct) {
                 if (correct) {
                     this.$message({
@@ -37,6 +37,14 @@ var vm = new Vue({
                         message: '回答错误',
                         type: 'warning'
                     })
+                }
+            }
+        },
+        watch: {
+            input_word: function (new_word, old_word) {
+                ws.send(JSON.stringify({cid: CID.INPUT_CHANGE, body: new_word}))
+                if (new_word.length == 4) {
+                    ws.send(JSON.stringify({'cid': CID.ANSWER, 'body': new_word}))
                 }
             }
         }
@@ -97,6 +105,12 @@ ws.onmessage = function (evt) {
                 vm.users.splice(index, 1)
             }
             break;
+        case SID.USER_INPUT_CHANGE:
+            user = vm.users.find((user) => user.userId === body.userId)
+            if (user !== undefined) {
+                user.word = body.word;
+            }
+
 
     }
 
