@@ -1,6 +1,6 @@
 package com.github.alonwang.clu
 
-import com.github.alonwang.clu.idiom.IdiomManager
+import com.github.alonwang.clu.manager.IdiomManager
 import spock.lang.Specification
 
 /**

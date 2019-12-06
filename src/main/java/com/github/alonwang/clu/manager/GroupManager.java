@@ -1,4 +1,4 @@
-package com.github.alonwang.clu.group;
+package com.github.alonwang.clu.manager;
 
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;

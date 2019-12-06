@@ -3,8 +3,8 @@ package com.github.alonwang.clu.command.impl;
 import com.github.alonwang.clu.command.Command;
 import com.github.alonwang.clu.command.CommandResp;
 import com.github.alonwang.clu.emum.SID;
-import com.github.alonwang.clu.group.GroupManager;
-import com.github.alonwang.clu.idiom.IdiomManager;
+import com.github.alonwang.clu.manager.GroupManager;
+import com.github.alonwang.clu.manager.IdiomManager;
 import com.github.alonwang.clu.resp.HomepageResp;
 
 import io.netty.channel.ChannelHandlerContext;
