@@ -38,6 +38,9 @@ var vm = new Vue({
                         type: 'warning'
                     })
                 }
+            },
+            reset_input: function () {
+                this.input_word = ''
             }
         },
         watch: {
@@ -86,11 +89,15 @@ ws.onmessage = function (evt) {
         case SID.USER_ANSWER:
             user = vm.users.find((user) => user.userId === body.userId)
             if (user !== undefined) {
-                console.log(user)
                 user.word = body.word;
+
             }
             if (body.userId === vm.userId) {
                 vm.notifyResult(body.correct)
+                if (body.correct) {
+                    vm.reset_input()
+                }
+
             }
 
             break;

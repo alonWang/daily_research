@@ -14,15 +14,13 @@
                 <el-badge v-model="user.word" class="item">
                     <el-avatar icon="el-icon-user-solid"/>
                 </el-badge>
-                {{user.word}}
             </div>
 
         </el-aside>
         <el-container>
             <el-main>
                 <el-card>{{word}}</el-card>
-                {{input_word}}
-                <input v-model="input_word"/>
+                <el-input v-model="input_word"/>
             </el-main>
 
         </el-container>
