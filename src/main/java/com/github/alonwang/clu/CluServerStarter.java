@@ -1,12 +1,12 @@
 package com.github.alonwang.clu;
 
+import cn.hutool.core.lang.Singleton;
 import com.github.alonwang.clu.handler.BusinessHandler;
 import com.github.alonwang.clu.handler.CommandEncoder;
 import com.github.alonwang.clu.handler.CommandHandler;
 import com.github.alonwang.clu.handler.ExceptionHandler;
 import com.github.alonwang.clu.manager.IdiomManager;
 import com.github.alonwang.clu.manager.IdleManager;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -16,8 +16,6 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-
-import cn.hutool.core.lang.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -55,6 +53,7 @@ public class CluServerStarter {
 			if (future.isSuccess()) {
 				IdiomManager.init();
 				IdleManager.init();
+				log.info("server start...");
 			}
 		});
 	}

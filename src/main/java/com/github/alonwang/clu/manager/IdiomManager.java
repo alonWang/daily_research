@@ -1,5 +1,8 @@
 package com.github.alonwang.clu.manager;
 
+import cn.hutool.core.collection.ConcurrentHashSet;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.promeg.pinyinhelper.Pinyin;
 
 import java.util.Arrays;
@@ -9,10 +12,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
-
-import cn.hutool.core.collection.ConcurrentHashSet;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 
 /**
  * @description:
@@ -30,7 +29,8 @@ public class IdiomManager {
 	public static void init() {
 		// 解析文件,获取所有四字成语
 		byte[] raws = FileUtil.readBytes("idiom.txt");
-		idioms = Arrays.stream(new String(raws).split("\r\n")).parallel()
+		idioms = Arrays.stream(new String(raws).split(System.lineSeparator()))
+				.parallel()
 				.filter(w -> w.length() == 4)
 				.collect(Collectors.toCollection(ConcurrentHashSet::new));
 		headPinyins = idioms.parallelStream()
