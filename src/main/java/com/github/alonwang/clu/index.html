@@ -11,15 +11,16 @@
     <el-container>
         <el-aside>
             <div v-for="user in users">
-                <el-badge v-model="user.word" class="item">
-                    <el-avatar icon="el-icon-user-solid"/>
-                </el-badge>
+                <el-avatar :src="circleUrl"></el-avatar>
+                <el-badge v-model="user.word" class="item"></el-badge>
+                <el-badge v-model="user.userId" class="item"></el-badge>
             </div>
 
         </el-aside>
         <el-container>
             <el-main>
                 <el-card>{{word}}</el-card>
+                <el-card>{{me.word}}</el-card>
                 <el-input v-model="input_word"/>
             </el-main>
 

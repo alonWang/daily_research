@@ -20,12 +20,13 @@ var vm = new Vue({
         data: {
             word: "",
             input_word: "",
-            userId: 0,
-            users: []
-
+            me: {userId: 0, word: '', avatar: ''},
+            users: [],
+            circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         },
-        methods: {
-
+    computed: {},
+    methods:
+        {
             notifyResult: function (correct) {
                 if (correct) {
                     this.$message({
@@ -38,13 +39,16 @@ var vm = new Vue({
                         type: 'warning'
                     })
                 }
-            },
+            }
+            ,
             reset_input: function () {
                 this.input_word = ''
             }
-        },
+        }
+    ,
         watch: {
             input_word: function (new_word, old_word) {
+                this.me.word = new_word;
                 ws.send(JSON.stringify({cid: CID.INPUT_CHANGE, body: new_word}))
                 if (new_word.length == 4) {
                     ws.send(JSON.stringify({'cid': CID.ANSWER, 'body': new_word}))
@@ -71,17 +75,17 @@ ws.onmessage = function (evt) {
     var body = result.body;
     switch (sid) {
         case SID.USER_CONNECT:
-            if (body.userId !== vm.userId) {
+            if (body.userId !== vm.me.userId) {
                 vm.users.push({userId: body.userId, word: ""})
                 vm.users.sort()
             }
             break;
         case SID.HOMEPAGE:
-            vm.userId = body.userId;
+            vm.me.userId = body.userId;
             vm.word = body.curIdiom;
             body.userIds.sort();
             body.userIds.forEach((uid, idx) => {
-                if (uid !== vm.userId) {
+                if (uid !== vm.me.userId) {
                     vm.users.push({userId: uid, word: ""})
                 }
             });
@@ -92,7 +96,7 @@ ws.onmessage = function (evt) {
                 user.word = body.word;
 
             }
-            if (body.userId === vm.userId) {
+            if (body.userId === vm.me.userId) {
                 vm.notifyResult(body.correct)
                 if (body.correct) {
                     vm.reset_input()
