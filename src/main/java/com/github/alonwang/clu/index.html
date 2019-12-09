@@ -9,19 +9,21 @@
 
 <div id="clu">
     <el-container>
-        <el-aside>
-            <div v-for="user in users">
-                <el-avatar :src="circleUrl"></el-avatar>
-                <el-badge v-model="user.word" class="item"></el-badge>
-                <el-badge v-model="user.userId" class="item"></el-badge>
-            </div>
-
-        </el-aside>
+        <el-header>Header</el-header>
         <el-container>
+            <el-aside>
+                <div class="user" v-for="user in users">
+                    <el-avatar :src="circleUrl"></el-avatar>
+                    <el-badge v-model="user.word" class="item"></el-badge>
+                    <el-badge v-model="user.userId" class="item"></el-badge>
+                </div>
+            </el-aside>
             <el-main>
-                <el-card>{{word}}</el-card>
-                <el-card>{{me.word}}</el-card>
-                <el-input v-model="input_word"/>
+                <el-card class="word">{{word}}</el-card>
+                <div class="me-input">
+                    <el-input v-model="input_word"/>
+                </div>
+
             </el-main>
 
         </el-container>
