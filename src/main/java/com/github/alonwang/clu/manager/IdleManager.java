@@ -36,7 +36,7 @@ public class IdleManager {
 	}
 
 	public static void active() {
-		idle = true;
+		idle = false;
 	}
 
 	public static void idle() {
