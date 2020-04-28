@@ -3,10 +3,11 @@ package com.github.alonwang.util.holder;
 import com.google.common.base.Preconditions;
 
 /**
+ * ValueChangeHolder默认实现
+ *
  * @author alonwang
  * @date 2020/4/28 18:37
- * @description
- * @detail
+ * @detail 允许子类通过实现validateXXX增加验证
  */
 public class DefaultValueChangeHolder implements ValueChangeHolder {
     protected Number oldValue;
@@ -74,7 +75,17 @@ public class DefaultValueChangeHolder implements ValueChangeHolder {
 
 
     private void allowModifyOrDie() {
-        Preconditions.checkArgument(calculated, "Can't set after freeze");
+        Preconditions.checkArgument(!calculated, "Can't set after freeze");
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "oldValue=" + oldValue +
+                ", changeValue=" + changeValue +
+                ", newValue=" + newValue +
+                ", calculated=" + calculated +
+                '}';
     }
 
     private void calculate() {

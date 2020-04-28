@@ -3,6 +3,7 @@ package com.github.alonwang.util.holder;
 import com.google.common.base.Preconditions;
 
 /**
+ * 添加了变化值必须小于等于0的限制
  * @author alonwang
  * @date 2020/4/28 19:45
  * @description

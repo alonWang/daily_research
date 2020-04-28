@@ -19,5 +19,22 @@ public class ValueChangeHolderFactory {
         return new NegativeValueChangeHolder();
     }
 
+    public static void main(String[] args) {
+        ValueChangeHolder defaultHolder=create();
+        defaultHolder.setNew(1000);
+        defaultHolder.setOld(500);
+        defaultHolder.freeze();
+        System.out.println("defaultHolder: "+defaultHolder);
+        ValueChangeHolder positiveHolder=createPositiveHolder();
+        positiveHolder.setOld(1000);
+        positiveHolder.setChange(10);
+        positiveHolder.freeze();
+        System.out.println("positiveHolder: "+positiveHolder);
+        ValueChangeHolder negativeHolder=createNegativeHolder();
+        negativeHolder.setNew(1000);
+        negativeHolder.setChange(-10);
+        negativeHolder.freeze();
+        System.out.println("negativeHolder: "+negativeHolder);
 
+    }
 }
