@@ -1,1 +1,1 @@
-digging
+record daily research,interesting things.
