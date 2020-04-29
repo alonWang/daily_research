@@ -20,4 +20,6 @@ public interface ValueChangeHolder {
     void setNew(Number newValue);
 
     void freeze();
+
+    boolean isDifferent();
 }

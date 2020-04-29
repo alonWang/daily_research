@@ -62,6 +62,12 @@ public class DefaultValueChangeHolder implements ValueChangeHolder {
         }
     }
 
+    @Override
+    public boolean isDifferent() {
+        freeze();
+        return changeValue.doubleValue() != 0;
+    }
+
     protected void validateOld(Number oldValue) {
     }
 
