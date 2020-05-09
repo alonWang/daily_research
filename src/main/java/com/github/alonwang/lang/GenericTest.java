@@ -32,7 +32,7 @@ public class GenericTest implements Supplier<Integer> {
         System.out.println("GenericParameterTypes:-----------------------------------");
         Type[] types = method.getGenericParameterTypes();
         for (Type type : types) {
-            System.out.println(type.getClass() + ": " + type);
+            System.out.println(type.getClass() + ": " + type + " inner: " + (ParameterizedType.class.isInstance(type) ? (((ParameterizedType) type).getActualTypeArguments()[0].getClass()) + " " + ((ParameterizedType) type).getActualTypeArguments()[0] : "null"));
         }
         System.out.println("GenericParameterTypes actualTypeArguments:-------------------");
         for (Type type : types) {
