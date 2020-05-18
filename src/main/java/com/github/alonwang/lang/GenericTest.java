@@ -18,9 +18,6 @@ import java.util.function.Supplier;
 public class GenericTest implements Supplier<Integer> {
 
     public static void main(String[] args) throws NoSuchMethodException {
-        Type it = GenericTest.class.getGenericInterfaces()[0];
-        ParameterizedType pit = (ParameterizedType) it;
-        System.out.println(((ParameterizedType) it).getActualTypeArguments()[0]);
 
         System.out.println("method:###########################################################");
         Method method = GenericTest.class.getMethod("testType", List.class, List.class, List.class, List.class, List.class, List.class, List.class, List.class, Map.class);
