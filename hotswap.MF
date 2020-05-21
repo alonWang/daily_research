@@ -1,0 +1,5 @@
+Premain-Class: com.github.alonwang.lang.instrumentation.HotSwapAgent
+Agent-Class: com.github.alonwang.lang.instrumentation.HotSwapAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Can-Set-Native-Method-Prefix: true
