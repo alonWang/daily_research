@@ -59,4 +59,6 @@ public interface ValueChangeHolder {
      * 冻结,冻结后不允许修改
      */
     void freeze();
+
+    boolean isDifferent();
 }
