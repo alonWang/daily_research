@@ -26,16 +26,25 @@ public class Q347 {
         }
 
         int[] result = new int[k + 1];
-        int n = k + 1;
         int pos = 1;
-        //构造维护一个小顶堆
+        //构造一个堆
         for (Integer key : counts.keySet()) {
-            if (pos < n + 1) {
-                result[pos++] = key;
+            if (pos < result.length) {
+                result[pos] = key;
+                heapify(result,pos);
+                        pos++;
             } else {
-
+                if (counts.get(key).compareTo(counts.get(result[1]))>0){
+                    result[result.length-1]=key;
+                    heapify(result,result.length-1);
+                }
             }
         }
-        return Arrays.copyOfRange(result, 1, n);
+
+        return Arrays.copyOfRange(result, 1, result.length);
+    }
+    //小顶堆化
+    private void heapify(int[] result, int i) {
+
     }
 }
