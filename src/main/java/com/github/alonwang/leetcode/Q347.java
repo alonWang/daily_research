@@ -80,16 +80,17 @@ public class Q347 {
      */
     private void heapify(int[] result, int n, int i, Map<Integer, Integer> counts) {
         int value = result[i];
-        while (i < n) {
-            int leafPos = i;
+        while (i * 2 < n) {
+            int leafPos = i * 2;
             //找出最小的子节点
-            if (i * 2 < n && counts.get(result[leafPos]) > counts.get(result[i * 2])) leafPos = i * 2;
-            if (i * 2 + 1 < n && counts.get(result[leafPos]) > counts.get(result[i * 2 + 1])) leafPos = i * 2 + 1;
-            if (leafPos == i) break;
-            //父节点比子节点大,要交换
-            swap(result, i, leafPos);
-            i = leafPos;
+            if (i * 2 + 1 < n && counts.get(result[i * 2]) > counts.get(result[i * 2 + 1])) leafPos = i * 2 + 1;
+            if (counts.get(value) > counts.get(result[leafPos])) {
+                result[i] = result[leafPos];
+                i = leafPos;
+            } else {
+                break;
+            }
         }
-
+        result[i] = value;
     }
 }
