@@ -48,10 +48,10 @@ public class Q692 {
         int j = i;
         while (j > 0) {
             int maxChildPos = j * 2;
-            if (j * 2 + 1 < n && (counts.get(words[j + 1]) > counts.get(words[j]) || counts.get(words[j + 1]).equals(counts.get(words[j])) && words[j + 1].compareTo(words[j]) > 0)) {
+            if (j * 2 + 1 < n && (counts.get(words[j * 2 + 1]) > counts.get(words[j * 2]) || (counts.get(words[j * 2 + 1]).equals(counts.get(words[j * 2])) && words[j * 2 + 1].compareTo(words[j * 2]) < 0))) {
                 maxChildPos = j * 2 + 1;
             }
-            if ((counts.get(words[maxChildPos]) > counts.get(words[j]) || counts.get(words[maxChildPos]).equals(counts.get(words[j])) && words[maxChildPos].compareTo(words[j]) > 0)) {
+            if ((counts.get(words[maxChildPos]) > counts.get(words[j]) || (counts.get(words[maxChildPos]).equals(counts.get(words[j])) && words[maxChildPos].compareTo(words[j]) < 0))) {
                 String temp = words[j];
                 words[j] = words[maxChildPos];
                 words[maxChildPos] = temp;
