@@ -19,12 +19,12 @@ public class Q451 {
         s.chars().forEach((val) -> counts.put(val, counts.getOrDefault(val, 0) + 1));
         Iterator<Integer> iter = counts.keySet().iterator();
         int[] result = new int[counts.size() + 1];
-        for (int i = 1; i < result.length; i++) {
-          result[i]=iter.next();
+        for (int i = 1; i <= counts.size(); i++) {
+            result[i] = iter.next();
         }
         buildHeap(result, counts);
         StringBuilder sb = new StringBuilder();
-        int i = result.length - 1;
+        int i = counts.size();
         while (i > 0) {
             int value = result[1];
             int count = counts.get(value);
@@ -40,21 +40,23 @@ public class Q451 {
     }
 
     private void heapify(int[] result, int i, int n, Map<Integer, Integer> counts) {
-        int value = result[i];
-        while (i * 2 < n) {
-            int leafPos = i * 2;
-            if (i * 2 + 1 < n && counts.get(result[i * 2 + 1]) > counts.get(result[leafPos])) leafPos = i * 2 + 1;
-            if (counts.get(value) >= counts.get(result[leafPos])) {
+        int j = i;
+        int value = result[j];
+        while (j * 2 < n) {
+            int leafPos = j * 2;
+            if (j * 2 + 1 < n && counts.get(result[j * 2 + 1]) > counts.get(result[leafPos])) leafPos = j * 2 + 1;
+            if (counts.get(result[leafPos]) > counts.get(value)) {
+                result[j] = result[leafPos];
+                j = leafPos;
+            } else {
                 break;
             }
-            result[leafPos] = result[i];
-            i = leafPos;
         }
-        result[i] = value;
+        result[j] = value;
     }
 
     private void buildHeap(int[] result, Map<Integer, Integer> counts) {
-        for (int i = (result.length-1) / 2; i > 0; i--) {
+        for (int i = counts.size() / 2; i > 0; i--) {
             heapify(result, i, result.length, counts);
         }
     }
