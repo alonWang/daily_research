@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.alonwang</groupId>
-    <artifactId>algorithm-collection</artifactId>
+    <artifactId>daily_research</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
