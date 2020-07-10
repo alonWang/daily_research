@@ -4,3 +4,5 @@ course/*
 .idea/*
 target/*
 *.iml
+.gradle/*
+build/
