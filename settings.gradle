@@ -3,3 +3,5 @@
  */
 
 rootProject.name = 'daily_research'
+include "daily"
+//include("transport")
