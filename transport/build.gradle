@@ -1,13 +1,21 @@
 apply plugin: 'com.google.protobuf'
+dependencies{
+    implementation 'com.google.protobuf:protobuf-java:3.12.2'
+}
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
+
     }
 }
 
 protobuf {
-    generatedFilesBaseDir = "$projectDir/src/main/java/"
+    generatedFilesBaseDir = "$projectDir/src/"
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.12.2'  //注意 这里版本号需要与 protobuf-java lib 一致
+    }
+
 }
