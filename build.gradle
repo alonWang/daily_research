@@ -7,8 +7,8 @@ subprojects {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
-    apply plugin: 'groovy'
     apply plugin: 'java'
+    apply plugin: 'groovy'
     apply plugin: 'idea'
     sourceCompatibility = 13
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'

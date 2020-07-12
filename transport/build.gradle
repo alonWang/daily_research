@@ -1,0 +1,13 @@
+apply plugin: 'com.google.protobuf'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
+    }
+}
+
+protobuf {
+    generatedFilesBaseDir = "$projectDir/src/main/java/"
+}

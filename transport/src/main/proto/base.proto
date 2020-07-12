@@ -1,0 +1,33 @@
+syntax = "proto3";
+option java_package = "com.github.alonwang.transport.protobuf";
+/**
+请求头
+ */
+message RequestHeader{
+  int32 commandId = 1;//命令id
+  int64 timestamp = 2;//请求时间戳
+  //TODO 待拓展
+
+}
+/**
+请求
+ */
+message Request{
+  RequestHeader header = 1;
+  bytes body = 2;
+}
+/**
+响应头
+ */
+message ResponseHeader{
+  int32 commandId = 1; //命令id
+  int64 timestamp = 2; //响应时间戳
+  int32 errorCode = 3; //0表示正常 其他表示错误码
+}
+/**
+响应
+ */
+message Response{
+  ResponseHeader header = 1;
+  bytes body = 2;
+}
