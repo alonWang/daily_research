@@ -1,11 +1,9 @@
 package com.github.alonwang.transport.core.protocol;
 
 /**
- * 响应
- *
  * @author alonwang
- * @date 2020/7/13 17:23
+ * @date 2020/7/13 21:16
  * @detail
  */
-public interface Response<T> extends Message<T> {
+public interface RequestHeader extends MessageHeader{
 }

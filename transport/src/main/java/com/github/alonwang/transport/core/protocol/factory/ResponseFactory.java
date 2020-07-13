@@ -5,5 +5,6 @@ package com.github.alonwang.transport.core.protocol.factory;
  * @date 2020/7/13 17:28
  * @detail
  */
-public class ResponseFactory {
+public interface ResponseFactory extends MessageFactory {
+
 }

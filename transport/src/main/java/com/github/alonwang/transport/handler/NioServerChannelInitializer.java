@@ -32,6 +32,7 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
         //protobuf decode固定格式
         pipeline.addLast(new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
         pipeline.addLast(protobufDecoder);
+        pipeline.addLast(requestWrapper);
         pipeline.addLast(requestDispatcher);
         //protobuuf encode固定格式
         pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));

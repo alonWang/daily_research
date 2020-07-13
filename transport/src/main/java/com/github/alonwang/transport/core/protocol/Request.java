@@ -7,14 +7,10 @@ package com.github.alonwang.transport.core.protocol;
  * @date 2020/7/13 17:15
  * @detail
  */
-public interface Request<T> {
+public interface Request<T> extends Message<T>{
 
 
-    /**
-     * 请求时间
-     * @return
-     */
-    long reqTimestamp();
+
 
 
 }
