@@ -21,7 +21,7 @@ message Request{
  */
 message ResponseHeader{
   int32 commandId = 1; //命令id
-  int64 timestamp = 2; //响应时间戳
+  int64 respTimestamp = 2; //响应时间戳
   int32 errorCode = 3; //0表示正常 其他表示错误码
 }
 /**
