@@ -22,7 +22,7 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
     private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Request.getDefaultInstance());
     private static final ChannelInboundHandler requestDispatcher = new RequestDispatcher();
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
-    private static final ChannelInboundHandler requestWrapper = new ProtobufRequestDecoder();
+    private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
@@ -32,7 +32,7 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
         //protobuf decode固定格式
         pipeline.addLast(new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
         pipeline.addLast(protobufDecoder);
-        pipeline.addLast(requestWrapper);
+        pipeline.addLast(protobufRequestDecoder);
         pipeline.addLast(requestDispatcher);
         //protobuuf encode固定格式
         pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));

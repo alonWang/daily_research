@@ -7,6 +7,6 @@ import com.github.alonwang.transport.core.protocol.Message;
  * @date 2020/7/13 21:29
  * @detail
  */
-public interface MessageFactory {
-    Message create(int messageId);
+public interface MessageFactory<T extends Message<T>> {
+   T create(int messageId);
 }

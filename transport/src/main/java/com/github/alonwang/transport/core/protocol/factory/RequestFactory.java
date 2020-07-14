@@ -7,5 +7,6 @@ import com.github.alonwang.transport.core.protocol.Request;
  * @date 2020/7/13 17:26
  * @detail
  */
-public interface RequestFactory extends MessageFactory{
+public interface RequestFactory<T> extends MessageFactory<Request<T>> {
+
 }
