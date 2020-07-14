@@ -6,6 +6,7 @@ package com.github.alonwang.transport.core.protocol;
  * @detail
  */
 public interface Message<T> {
+
     MessageHeader header();
 
     T body();
