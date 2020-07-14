@@ -1,6 +1,5 @@
 package com.github.alonwang.transport.core.protocol;
 
-import com.github.alonwang.transport.protobuf.Base;
 import com.google.protobuf.MessageLite;
 
 /**
@@ -9,10 +8,9 @@ import com.google.protobuf.MessageLite;
  * @detail
  */
 public class ProtobufRequest implements Request<MessageLite> {
-    private Base.Request request;
 
     @Override
-    public MessageHeader header() {
+    public RequestHeader header() {
         return null;
     }
 

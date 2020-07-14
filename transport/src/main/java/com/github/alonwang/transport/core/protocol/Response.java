@@ -8,4 +8,5 @@ package com.github.alonwang.transport.core.protocol;
  * @detail
  */
 public interface Response<T> extends Message<T> {
+    ResponseHeader header();
 }

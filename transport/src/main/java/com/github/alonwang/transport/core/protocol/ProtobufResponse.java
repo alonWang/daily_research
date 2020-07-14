@@ -10,7 +10,7 @@ import com.google.protobuf.MessageLite;
 public class ProtobufResponse<T> implements Response<MessageLite> {
 
     @Override
-    public MessageHeader header() {
+    public ResponseHeader header() {
         //TODO
         return null;
     }

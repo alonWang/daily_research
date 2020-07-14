@@ -1,4 +1,4 @@
-package com.github.alonwang.transport;
+package com.github.alonwang.transport.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
