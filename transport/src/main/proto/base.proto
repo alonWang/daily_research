@@ -5,8 +5,9 @@ option java_package = "com.github.alonwang.transport.protobuf";
 请求头
  */
 message RequestHeader  {
-  int32  messageId = 1;//命令id
-  int64 createTime= 2;//请求时间戳
+  int32 moduleId = 1;//模块id
+  int32  messageId = 2;//命令id
+  int64 createTime = 3;//时间戳
   //TODO 待拓展
 }
 /**
@@ -20,9 +21,10 @@ message Request{
 响应头
  */
 message ResponseHeader{
-  int32 messageId = 1;//命令id
-  int64 createTime = 2;//请求时间戳
-  int32 errorCode = 3; //0表示正常 其他表示错误码
+  int32 moduleId = 1;//模块id
+  int32 messageId = 2;//命令id
+  int64 createTime = 3;//时间戳
+  int32 errorCode = 4; //0表示正常 其他表示错误码
 }
 /**
 响应

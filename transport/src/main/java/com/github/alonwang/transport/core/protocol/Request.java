@@ -7,7 +7,7 @@ package com.github.alonwang.transport.core.protocol;
  * @date 2020/7/13 17:15
  * @detail
  */
-public interface Request<T> extends Message<T> {
+public interface Request extends Message {
 
     RequestHeader header();
 

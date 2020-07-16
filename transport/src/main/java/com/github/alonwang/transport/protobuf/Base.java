@@ -20,20 +20,30 @@ public final class Base {
 
     /**
      * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
+     */
+    int getModuleId();
+
+    /**
+     * <pre>
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 1;</code>
+     * <code>int32 messageId = 2;</code>
      * @return The messageId.
      */
     int getMessageId();
 
     /**
      * <pre>
-     *请求时间戳
+     *时间戳
      * </pre>
      *
-     * <code>int64 createTime = 2;</code>
+     * <code>int64 createTime = 3;</code>
      * @return The createTime.
      */
     long getCreateTime();
@@ -90,10 +100,15 @@ public final class Base {
               break;
             case 8: {
 
-              messageId_ = input.readInt32();
+              moduleId_ = input.readInt32();
               break;
             }
             case 16: {
+
+              messageId_ = input.readInt32();
+              break;
+            }
+            case 24: {
 
               createTime_ = input.readInt64();
               break;
@@ -130,14 +145,29 @@ public final class Base {
               com.github.alonwang.transport.protobuf.Base.RequestHeader.class, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder.class);
     }
 
-    public static final int MESSAGEID_FIELD_NUMBER = 1;
+    public static final int MODULEID_FIELD_NUMBER = 1;
+    private int moduleId_;
+    /**
+     * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
+     */
+    @java.lang.Override
+    public int getModuleId() {
+      return moduleId_;
+    }
+
+    public static final int MESSAGEID_FIELD_NUMBER = 2;
     private int messageId_;
     /**
      * <pre>
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 1;</code>
+     * <code>int32 messageId = 2;</code>
      * @return The messageId.
      */
     @java.lang.Override
@@ -145,14 +175,14 @@ public final class Base {
       return messageId_;
     }
 
-    public static final int CREATETIME_FIELD_NUMBER = 2;
+    public static final int CREATETIME_FIELD_NUMBER = 3;
     private long createTime_;
     /**
      * <pre>
-     *请求时间戳
+     *时间戳
      * </pre>
      *
-     * <code>int64 createTime = 2;</code>
+     * <code>int64 createTime = 3;</code>
      * @return The createTime.
      */
     @java.lang.Override
@@ -174,11 +204,14 @@ public final class Base {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (moduleId_ != 0) {
+        output.writeInt32(1, moduleId_);
+      }
       if (messageId_ != 0) {
-        output.writeInt32(1, messageId_);
+        output.writeInt32(2, messageId_);
       }
       if (createTime_ != 0L) {
-        output.writeInt64(2, createTime_);
+        output.writeInt64(3, createTime_);
       }
       unknownFields.writeTo(output);
     }
@@ -189,13 +222,17 @@ public final class Base {
       if (size != -1) return size;
 
       size = 0;
+      if (moduleId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, moduleId_);
+      }
       if (messageId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, messageId_);
+          .computeInt32Size(2, messageId_);
       }
       if (createTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, createTime_);
+          .computeInt64Size(3, createTime_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -212,6 +249,8 @@ public final class Base {
       }
       com.github.alonwang.transport.protobuf.Base.RequestHeader other = (com.github.alonwang.transport.protobuf.Base.RequestHeader) obj;
 
+      if (getModuleId()
+          != other.getModuleId()) return false;
       if (getMessageId()
           != other.getMessageId()) return false;
       if (getCreateTime()
@@ -227,6 +266,8 @@ public final class Base {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
+      hash = (53 * hash) + getModuleId();
       hash = (37 * hash) + MESSAGEID_FIELD_NUMBER;
       hash = (53 * hash) + getMessageId();
       hash = (37 * hash) + CREATETIME_FIELD_NUMBER;
@@ -370,6 +411,8 @@ public final class Base {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        moduleId_ = 0;
+
         messageId_ = 0;
 
         createTime_ = 0L;
@@ -400,6 +443,7 @@ public final class Base {
       @java.lang.Override
       public com.github.alonwang.transport.protobuf.Base.RequestHeader buildPartial() {
         com.github.alonwang.transport.protobuf.Base.RequestHeader result = new com.github.alonwang.transport.protobuf.Base.RequestHeader(this);
+        result.moduleId_ = moduleId_;
         result.messageId_ = messageId_;
         result.createTime_ = createTime_;
         onBuilt();
@@ -450,6 +494,9 @@ public final class Base {
 
       public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.RequestHeader other) {
         if (other == com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance()) return this;
+        if (other.getModuleId() != 0) {
+          setModuleId(other.getModuleId());
+        }
         if (other.getMessageId() != 0) {
           setMessageId(other.getMessageId());
         }
@@ -485,13 +532,56 @@ public final class Base {
         return this;
       }
 
+      private int moduleId_ ;
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return The moduleId.
+       */
+      @java.lang.Override
+      public int getModuleId() {
+        return moduleId_;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @param value The moduleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setModuleId(int value) {
+        
+        moduleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearModuleId() {
+        
+        moduleId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int messageId_ ;
       /**
        * <pre>
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @return The messageId.
        */
       @java.lang.Override
@@ -503,7 +593,7 @@ public final class Base {
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @param value The messageId to set.
        * @return This builder for chaining.
        */
@@ -518,7 +608,7 @@ public final class Base {
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearMessageId() {
@@ -531,10 +621,10 @@ public final class Base {
       private long createTime_ ;
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @return The createTime.
        */
       @java.lang.Override
@@ -543,10 +633,10 @@ public final class Base {
       }
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @param value The createTime to set.
        * @return This builder for chaining.
        */
@@ -558,10 +648,10 @@ public final class Base {
       }
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCreateTime() {
@@ -1334,20 +1424,30 @@ public final class Base {
 
     /**
      * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
+     */
+    int getModuleId();
+
+    /**
+     * <pre>
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 1;</code>
+     * <code>int32 messageId = 2;</code>
      * @return The messageId.
      */
     int getMessageId();
 
     /**
      * <pre>
-     *请求时间戳
+     *时间戳
      * </pre>
      *
-     * <code>int64 createTime = 2;</code>
+     * <code>int64 createTime = 3;</code>
      * @return The createTime.
      */
     long getCreateTime();
@@ -1357,7 +1457,7 @@ public final class Base {
      *0表示正常 其他表示错误码
      * </pre>
      *
-     * <code>int32 errorCode = 3;</code>
+     * <code>int32 errorCode = 4;</code>
      * @return The errorCode.
      */
     int getErrorCode();
@@ -1414,15 +1514,20 @@ public final class Base {
               break;
             case 8: {
 
-              messageId_ = input.readInt32();
+              moduleId_ = input.readInt32();
               break;
             }
             case 16: {
 
-              createTime_ = input.readInt64();
+              messageId_ = input.readInt32();
               break;
             }
             case 24: {
+
+              createTime_ = input.readInt64();
+              break;
+            }
+            case 32: {
 
               errorCode_ = input.readInt32();
               break;
@@ -1459,14 +1564,29 @@ public final class Base {
               com.github.alonwang.transport.protobuf.Base.ResponseHeader.class, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder.class);
     }
 
-    public static final int MESSAGEID_FIELD_NUMBER = 1;
+    public static final int MODULEID_FIELD_NUMBER = 1;
+    private int moduleId_;
+    /**
+     * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
+     */
+    @java.lang.Override
+    public int getModuleId() {
+      return moduleId_;
+    }
+
+    public static final int MESSAGEID_FIELD_NUMBER = 2;
     private int messageId_;
     /**
      * <pre>
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 1;</code>
+     * <code>int32 messageId = 2;</code>
      * @return The messageId.
      */
     @java.lang.Override
@@ -1474,14 +1594,14 @@ public final class Base {
       return messageId_;
     }
 
-    public static final int CREATETIME_FIELD_NUMBER = 2;
+    public static final int CREATETIME_FIELD_NUMBER = 3;
     private long createTime_;
     /**
      * <pre>
-     *请求时间戳
+     *时间戳
      * </pre>
      *
-     * <code>int64 createTime = 2;</code>
+     * <code>int64 createTime = 3;</code>
      * @return The createTime.
      */
     @java.lang.Override
@@ -1489,14 +1609,14 @@ public final class Base {
       return createTime_;
     }
 
-    public static final int ERRORCODE_FIELD_NUMBER = 3;
+    public static final int ERRORCODE_FIELD_NUMBER = 4;
     private int errorCode_;
     /**
      * <pre>
      *0表示正常 其他表示错误码
      * </pre>
      *
-     * <code>int32 errorCode = 3;</code>
+     * <code>int32 errorCode = 4;</code>
      * @return The errorCode.
      */
     @java.lang.Override
@@ -1518,14 +1638,17 @@ public final class Base {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (moduleId_ != 0) {
+        output.writeInt32(1, moduleId_);
+      }
       if (messageId_ != 0) {
-        output.writeInt32(1, messageId_);
+        output.writeInt32(2, messageId_);
       }
       if (createTime_ != 0L) {
-        output.writeInt64(2, createTime_);
+        output.writeInt64(3, createTime_);
       }
       if (errorCode_ != 0) {
-        output.writeInt32(3, errorCode_);
+        output.writeInt32(4, errorCode_);
       }
       unknownFields.writeTo(output);
     }
@@ -1536,17 +1659,21 @@ public final class Base {
       if (size != -1) return size;
 
       size = 0;
+      if (moduleId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, moduleId_);
+      }
       if (messageId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, messageId_);
+          .computeInt32Size(2, messageId_);
       }
       if (createTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, createTime_);
+          .computeInt64Size(3, createTime_);
       }
       if (errorCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, errorCode_);
+          .computeInt32Size(4, errorCode_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1563,6 +1690,8 @@ public final class Base {
       }
       com.github.alonwang.transport.protobuf.Base.ResponseHeader other = (com.github.alonwang.transport.protobuf.Base.ResponseHeader) obj;
 
+      if (getModuleId()
+          != other.getModuleId()) return false;
       if (getMessageId()
           != other.getMessageId()) return false;
       if (getCreateTime()
@@ -1580,6 +1709,8 @@ public final class Base {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
+      hash = (53 * hash) + getModuleId();
       hash = (37 * hash) + MESSAGEID_FIELD_NUMBER;
       hash = (53 * hash) + getMessageId();
       hash = (37 * hash) + CREATETIME_FIELD_NUMBER;
@@ -1725,6 +1856,8 @@ public final class Base {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        moduleId_ = 0;
+
         messageId_ = 0;
 
         createTime_ = 0L;
@@ -1757,6 +1890,7 @@ public final class Base {
       @java.lang.Override
       public com.github.alonwang.transport.protobuf.Base.ResponseHeader buildPartial() {
         com.github.alonwang.transport.protobuf.Base.ResponseHeader result = new com.github.alonwang.transport.protobuf.Base.ResponseHeader(this);
+        result.moduleId_ = moduleId_;
         result.messageId_ = messageId_;
         result.createTime_ = createTime_;
         result.errorCode_ = errorCode_;
@@ -1808,6 +1942,9 @@ public final class Base {
 
       public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.ResponseHeader other) {
         if (other == com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance()) return this;
+        if (other.getModuleId() != 0) {
+          setModuleId(other.getModuleId());
+        }
         if (other.getMessageId() != 0) {
           setMessageId(other.getMessageId());
         }
@@ -1846,13 +1983,56 @@ public final class Base {
         return this;
       }
 
+      private int moduleId_ ;
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return The moduleId.
+       */
+      @java.lang.Override
+      public int getModuleId() {
+        return moduleId_;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @param value The moduleId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setModuleId(int value) {
+        
+        moduleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearModuleId() {
+        
+        moduleId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int messageId_ ;
       /**
        * <pre>
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @return The messageId.
        */
       @java.lang.Override
@@ -1864,7 +2044,7 @@ public final class Base {
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @param value The messageId to set.
        * @return This builder for chaining.
        */
@@ -1879,7 +2059,7 @@ public final class Base {
        *命令id
        * </pre>
        *
-       * <code>int32 messageId = 1;</code>
+       * <code>int32 messageId = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearMessageId() {
@@ -1892,10 +2072,10 @@ public final class Base {
       private long createTime_ ;
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @return The createTime.
        */
       @java.lang.Override
@@ -1904,10 +2084,10 @@ public final class Base {
       }
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @param value The createTime to set.
        * @return This builder for chaining.
        */
@@ -1919,10 +2099,10 @@ public final class Base {
       }
       /**
        * <pre>
-       *请求时间戳
+       *时间戳
        * </pre>
        *
-       * <code>int64 createTime = 2;</code>
+       * <code>int64 createTime = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCreateTime() {
@@ -1938,7 +2118,7 @@ public final class Base {
        *0表示正常 其他表示错误码
        * </pre>
        *
-       * <code>int32 errorCode = 3;</code>
+       * <code>int32 errorCode = 4;</code>
        * @return The errorCode.
        */
       @java.lang.Override
@@ -1950,7 +2130,7 @@ public final class Base {
        *0表示正常 其他表示错误码
        * </pre>
        *
-       * <code>int32 errorCode = 3;</code>
+       * <code>int32 errorCode = 4;</code>
        * @param value The errorCode to set.
        * @return This builder for chaining.
        */
@@ -1965,7 +2145,7 @@ public final class Base {
        *0表示正常 其他表示错误码
        * </pre>
        *
-       * <code>int32 errorCode = 3;</code>
+       * <code>int32 errorCode = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearErrorCode() {
@@ -2761,14 +2941,15 @@ public final class Base {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nbase.proto\"6\n\rRequestHeader\022\021\n\tmessage" +
-      "Id\030\001 \001(\005\022\022\n\ncreateTime\030\002 \001(\003\"7\n\007Request\022" +
-      "\036\n\006header\030\001 \001(\0132\016.RequestHeader\022\014\n\004body\030" +
-      "\002 \001(\014\"J\n\016ResponseHeader\022\021\n\tmessageId\030\001 \001" +
-      "(\005\022\022\n\ncreateTime\030\002 \001(\003\022\021\n\terrorCode\030\003 \001(" +
-      "\005\"9\n\010Response\022\037\n\006header\030\001 \001(\0132\017.Response" +
-      "Header\022\014\n\004body\030\002 \001(\014B(\n&com.github.alonw" +
-      "ang.transport.protobufb\006proto3"
+      "\n\nbase.proto\"H\n\rRequestHeader\022\020\n\010moduleI" +
+      "d\030\001 \001(\005\022\021\n\tmessageId\030\002 \001(\005\022\022\n\ncreateTime" +
+      "\030\003 \001(\003\"7\n\007Request\022\036\n\006header\030\001 \001(\0132\016.Requ" +
+      "estHeader\022\014\n\004body\030\002 \001(\014\"\\\n\016ResponseHeade" +
+      "r\022\020\n\010moduleId\030\001 \001(\005\022\021\n\tmessageId\030\002 \001(\005\022\022" +
+      "\n\ncreateTime\030\003 \001(\003\022\021\n\terrorCode\030\004 \001(\005\"9\n" +
+      "\010Response\022\037\n\006header\030\001 \001(\0132\017.ResponseHead" +
+      "er\022\014\n\004body\030\002 \001(\014B(\n&com.github.alonwang." +
+      "transport.protobufb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2779,7 +2960,7 @@ public final class Base {
     internal_static_RequestHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RequestHeader_descriptor,
-        new java.lang.String[] { "MessageId", "CreateTime", });
+        new java.lang.String[] { "ModuleId", "MessageId", "CreateTime", });
     internal_static_Request_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Request_fieldAccessorTable = new
@@ -2791,7 +2972,7 @@ public final class Base {
     internal_static_ResponseHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ResponseHeader_descriptor,
-        new java.lang.String[] { "MessageId", "CreateTime", "ErrorCode", });
+        new java.lang.String[] { "ModuleId", "MessageId", "CreateTime", "ErrorCode", });
     internal_static_Response_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_Response_fieldAccessorTable = new

@@ -6,8 +6,9 @@ package com.github.alonwang.transport.core.protocol;
  * @detail
  */
 public interface MessageHeader {
+    int moduleId();
+
     int messageId();
 
     long createTime();
-
 }

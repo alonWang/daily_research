@@ -2,9 +2,13 @@ package com.github.alonwang.transport.handler;
 
 
 import com.github.alonwang.transport.core.protocol.Request;
+import com.google.common.collect.BiMap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Request分发器,将Request分发到业务线程池中
@@ -15,7 +19,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 @ChannelHandler.Sharable
 public class RequestDispatcher extends SimpleChannelInboundHandler<Request> {
-
+    //消息分发线程池
+    ExecutorService executorService= Executors.newFixedThreadPool(1);
+    
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Request msg) throws Exception {
 

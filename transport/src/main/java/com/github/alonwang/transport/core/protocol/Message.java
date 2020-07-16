@@ -5,10 +5,10 @@ package com.github.alonwang.transport.core.protocol;
  * @date 2020/7/13 17:56
  * @detail
  */
-public interface Message<T> {
+public interface Message {
 
     MessageHeader header();
 
-    T body();
+    Object body();
 
 }
