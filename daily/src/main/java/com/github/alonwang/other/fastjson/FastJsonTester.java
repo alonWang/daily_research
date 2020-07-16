@@ -1,6 +1,7 @@
 package com.github.alonwang.other.fastjson;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -12,6 +13,18 @@ import java.util.concurrent.ThreadLocalRandom;
  * @detail
  */
 public class FastJsonTester {
+    public static void main(String[] args) {
+        //配置此特性后,aB不会被序列化到字符串中.
+        JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.IgnoreNonFieldGetter.getMask();
+        Pojo p = new Pojo();
+        p.setA(Lists.newArrayList(1, 2, 3));
+        p.setB(3);
+        String str = JSON.toJSONString(p);
+        Pojo p2 = JSON.parseObject(str, Pojo.class);
+
+        System.out.println(p2);
+    }
+
     static class Pojo {
         List<Integer> a;
         int b;
@@ -47,15 +60,5 @@ public class FastJsonTester {
         }
 
 
-    }
-
-    public static void main(String[] args) {
-        Pojo p = new Pojo();
-        p.setA(Lists.newArrayList(1, 2, 3));
-        p.setB(3);
-        String str = JSON.toJSONString(p);
-        Pojo p2 = JSON.parseObject(str, Pojo.class);
-
-        System.out.println(p2);
     }
 }
