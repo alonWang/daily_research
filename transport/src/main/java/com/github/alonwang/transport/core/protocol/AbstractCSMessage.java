@@ -10,12 +10,12 @@ package com.github.alonwang.transport.core.protocol;
 public abstract class AbstractCSMessage<T> implements Message {
     private final int moduleId;
     private final int commandId;
-    private final T message;
+    private MessageHeader header;
+    private T data;
 
-    public AbstractCSMessage(int moduleId, int commandId, T message) {
+    public AbstractCSMessage(int moduleId, int commandId) {
         this.moduleId = moduleId;
         this.commandId = commandId;
-        this.message = message;
     }
 
     public int moduleId() {
@@ -26,5 +26,8 @@ public abstract class AbstractCSMessage<T> implements Message {
         return commandId;
     }
 
+    public MessageHeader header() {
+        return header;
+    }
 
 }
