@@ -6,7 +6,7 @@ option java_package = "com.github.alonwang.transport.protobuf";
  */
 message Request {
     int32 moduleId = 1; //模块id
-    int32 messageId = 2; //命令id
+    int32  commandId= 2; //命令id
     bytes data = 3;
     //TODO 待拓展
 }
@@ -15,7 +15,7 @@ message Request {
  */
 message Response {
     int32 moduleId = 1; //模块id
-    int32 messageId = 2; //命令id
+    int32 commandId = 2; //命令id
     int32 errorCode = 3; //0表示正常 其他表示错误码
     bytes data = 4;
     //TODO 待拓展

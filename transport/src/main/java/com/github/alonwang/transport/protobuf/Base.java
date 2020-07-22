@@ -14,8 +14,8 @@ public final class Base {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface RequestHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RequestHeader)
+  public interface RequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Request)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -33,710 +33,20 @@ public final class Base {
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 2;</code>
-     * @return The messageId.
+     * <code>int32 commandId = 2;</code>
+     * @return The commandId.
      */
-    int getMessageId();
+    int getCommandId();
 
     /**
      * <pre>
-     *时间戳
+     *TODO 待拓展
      * </pre>
      *
-     * <code>int64 createTime = 3;</code>
-     * @return The createTime.
+     * <code>bytes data = 3;</code>
+     * @return The data.
      */
-    long getCreateTime();
-  }
-  /**
-   * <pre>
-   **
-   *请求头
-   * </pre>
-   *
-   * Protobuf type {@code RequestHeader}
-   */
-  public static final class RequestHeader extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:RequestHeader)
-      RequestHeaderOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RequestHeader.newBuilder() to construct.
-    private RequestHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RequestHeader() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RequestHeader();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RequestHeader(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              moduleId_ = input.readInt32();
-              break;
-            }
-            case 16: {
-
-              messageId_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              createTime_ = input.readInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.github.alonwang.transport.protobuf.Base.internal_static_RequestHeader_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.github.alonwang.transport.protobuf.Base.internal_static_RequestHeader_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.github.alonwang.transport.protobuf.Base.RequestHeader.class, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder.class);
-    }
-
-    public static final int MODULEID_FIELD_NUMBER = 1;
-    private int moduleId_;
-    /**
-     * <pre>
-     *模块id
-     * </pre>
-     *
-     * <code>int32 moduleId = 1;</code>
-     * @return The moduleId.
-     */
-    @java.lang.Override
-    public int getModuleId() {
-      return moduleId_;
-    }
-
-    public static final int MESSAGEID_FIELD_NUMBER = 2;
-    private int messageId_;
-    /**
-     * <pre>
-     *命令id
-     * </pre>
-     *
-     * <code>int32 messageId = 2;</code>
-     * @return The messageId.
-     */
-    @java.lang.Override
-    public int getMessageId() {
-      return messageId_;
-    }
-
-    public static final int CREATETIME_FIELD_NUMBER = 3;
-    private long createTime_;
-    /**
-     * <pre>
-     *时间戳
-     * </pre>
-     *
-     * <code>int64 createTime = 3;</code>
-     * @return The createTime.
-     */
-    @java.lang.Override
-    public long getCreateTime() {
-      return createTime_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (moduleId_ != 0) {
-        output.writeInt32(1, moduleId_);
-      }
-      if (messageId_ != 0) {
-        output.writeInt32(2, messageId_);
-      }
-      if (createTime_ != 0L) {
-        output.writeInt64(3, createTime_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (moduleId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, moduleId_);
-      }
-      if (messageId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, messageId_);
-      }
-      if (createTime_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, createTime_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.github.alonwang.transport.protobuf.Base.RequestHeader)) {
-        return super.equals(obj);
-      }
-      com.github.alonwang.transport.protobuf.Base.RequestHeader other = (com.github.alonwang.transport.protobuf.Base.RequestHeader) obj;
-
-      if (getModuleId()
-          != other.getModuleId()) return false;
-      if (getMessageId()
-          != other.getMessageId()) return false;
-      if (getCreateTime()
-          != other.getCreateTime()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
-      hash = (53 * hash) + getModuleId();
-      hash = (37 * hash) + MESSAGEID_FIELD_NUMBER;
-      hash = (53 * hash) + getMessageId();
-      hash = (37 * hash) + CREATETIME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getCreateTime());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.alonwang.transport.protobuf.Base.RequestHeader prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *请求头
-     * </pre>
-     *
-     * Protobuf type {@code RequestHeader}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RequestHeader)
-        com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_RequestHeader_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_RequestHeader_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.alonwang.transport.protobuf.Base.RequestHeader.class, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder.class);
-      }
-
-      // Construct using com.github.alonwang.transport.protobuf.Base.RequestHeader.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        moduleId_ = 0;
-
-        messageId_ = 0;
-
-        createTime_ = 0L;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_RequestHeader_descriptor;
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.RequestHeader getDefaultInstanceForType() {
-        return com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.RequestHeader build() {
-        com.github.alonwang.transport.protobuf.Base.RequestHeader result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.RequestHeader buildPartial() {
-        com.github.alonwang.transport.protobuf.Base.RequestHeader result = new com.github.alonwang.transport.protobuf.Base.RequestHeader(this);
-        result.moduleId_ = moduleId_;
-        result.messageId_ = messageId_;
-        result.createTime_ = createTime_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.alonwang.transport.protobuf.Base.RequestHeader) {
-          return mergeFrom((com.github.alonwang.transport.protobuf.Base.RequestHeader)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.RequestHeader other) {
-        if (other == com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance()) return this;
-        if (other.getModuleId() != 0) {
-          setModuleId(other.getModuleId());
-        }
-        if (other.getMessageId() != 0) {
-          setMessageId(other.getMessageId());
-        }
-        if (other.getCreateTime() != 0L) {
-          setCreateTime(other.getCreateTime());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.github.alonwang.transport.protobuf.Base.RequestHeader parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.github.alonwang.transport.protobuf.Base.RequestHeader) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int moduleId_ ;
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @return The moduleId.
-       */
-      @java.lang.Override
-      public int getModuleId() {
-        return moduleId_;
-      }
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @param value The moduleId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setModuleId(int value) {
-        
-        moduleId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearModuleId() {
-        
-        moduleId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int messageId_ ;
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @return The messageId.
-       */
-      @java.lang.Override
-      public int getMessageId() {
-        return messageId_;
-      }
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @param value The messageId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMessageId(int value) {
-        
-        messageId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMessageId() {
-        
-        messageId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private long createTime_ ;
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @return The createTime.
-       */
-      @java.lang.Override
-      public long getCreateTime() {
-        return createTime_;
-      }
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @param value The createTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreateTime(long value) {
-        
-        createTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreateTime() {
-        
-        createTime_ = 0L;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:RequestHeader)
-    }
-
-    // @@protoc_insertion_point(class_scope:RequestHeader)
-    private static final com.github.alonwang.transport.protobuf.Base.RequestHeader DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.github.alonwang.transport.protobuf.Base.RequestHeader();
-    }
-
-    public static com.github.alonwang.transport.protobuf.Base.RequestHeader getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RequestHeader>
-        PARSER = new com.google.protobuf.AbstractParser<RequestHeader>() {
-      @java.lang.Override
-      public RequestHeader parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RequestHeader(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RequestHeader> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RequestHeader> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.RequestHeader getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Request)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.RequestHeader header = 1;</code>
-     * @return Whether the header field is set.
-     */
-    boolean hasHeader();
-    /**
-     * <code>.RequestHeader header = 1;</code>
-     * @return The header.
-     */
-    com.github.alonwang.transport.protobuf.Base.RequestHeader getHeader();
-    /**
-     * <code>.RequestHeader header = 1;</code>
-     */
-    com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder getHeaderOrBuilder();
-
-    /**
-     * <code>bytes body = 2;</code>
-     * @return The body.
-     */
-    com.google.protobuf.ByteString getBody();
+    com.google.protobuf.ByteString getData();
   }
   /**
    * <pre>
@@ -756,7 +66,7 @@ public final class Base {
       super(builder);
     }
     private Request() {
-      body_ = com.google.protobuf.ByteString.EMPTY;
+      data_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -789,22 +99,19 @@ public final class Base {
             case 0:
               done = true;
               break;
-            case 10: {
-              com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(com.github.alonwang.transport.protobuf.Base.RequestHeader.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
+            case 8: {
 
+              moduleId_ = input.readInt32();
               break;
             }
-            case 18: {
+            case 16: {
 
-              body_ = input.readBytes();
+              commandId_ = input.readInt32();
+              break;
+            }
+            case 26: {
+
+              data_ = input.readBytes();
               break;
             }
             default: {
@@ -839,41 +146,49 @@ public final class Base {
               com.github.alonwang.transport.protobuf.Base.Request.class, com.github.alonwang.transport.protobuf.Base.Request.Builder.class);
     }
 
-    public static final int HEADER_FIELD_NUMBER = 1;
-    private com.github.alonwang.transport.protobuf.Base.RequestHeader header_;
+    public static final int MODULEID_FIELD_NUMBER = 1;
+    private int moduleId_;
     /**
-     * <code>.RequestHeader header = 1;</code>
-     * @return Whether the header field is set.
+     * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
      */
     @java.lang.Override
-    public boolean hasHeader() {
-      return header_ != null;
-    }
-    /**
-     * <code>.RequestHeader header = 1;</code>
-     * @return The header.
-     */
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.RequestHeader getHeader() {
-      return header_ == null ? com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance() : header_;
-    }
-    /**
-     * <code>.RequestHeader header = 1;</code>
-     */
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
+    public int getModuleId() {
+      return moduleId_;
     }
 
-    public static final int BODY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString body_;
+    public static final int COMMANDID_FIELD_NUMBER = 2;
+    private int commandId_;
     /**
-     * <code>bytes body = 2;</code>
-     * @return The body.
+     * <pre>
+     *命令id
+     * </pre>
+     *
+     * <code>int32 commandId = 2;</code>
+     * @return The commandId.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getBody() {
-      return body_;
+    public int getCommandId() {
+      return commandId_;
+    }
+
+    public static final int DATA_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString data_;
+    /**
+     * <pre>
+     *TODO 待拓展
+     * </pre>
+     *
+     * <code>bytes data = 3;</code>
+     * @return The data.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getData() {
+      return data_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -890,11 +205,14 @@ public final class Base {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (header_ != null) {
-        output.writeMessage(1, getHeader());
+      if (moduleId_ != 0) {
+        output.writeInt32(1, moduleId_);
       }
-      if (!body_.isEmpty()) {
-        output.writeBytes(2, body_);
+      if (commandId_ != 0) {
+        output.writeInt32(2, commandId_);
+      }
+      if (!data_.isEmpty()) {
+        output.writeBytes(3, data_);
       }
       unknownFields.writeTo(output);
     }
@@ -905,13 +223,17 @@ public final class Base {
       if (size != -1) return size;
 
       size = 0;
-      if (header_ != null) {
+      if (moduleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getHeader());
+          .computeInt32Size(1, moduleId_);
       }
-      if (!body_.isEmpty()) {
+      if (commandId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, body_);
+          .computeInt32Size(2, commandId_);
+      }
+      if (!data_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, data_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -928,13 +250,12 @@ public final class Base {
       }
       com.github.alonwang.transport.protobuf.Base.Request other = (com.github.alonwang.transport.protobuf.Base.Request) obj;
 
-      if (hasHeader() != other.hasHeader()) return false;
-      if (hasHeader()) {
-        if (!getHeader()
-            .equals(other.getHeader())) return false;
-      }
-      if (!getBody()
-          .equals(other.getBody())) return false;
+      if (getModuleId()
+          != other.getModuleId()) return false;
+      if (getCommandId()
+          != other.getCommandId()) return false;
+      if (!getData()
+          .equals(other.getData())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -946,12 +267,12 @@ public final class Base {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasHeader()) {
-        hash = (37 * hash) + HEADER_FIELD_NUMBER;
-        hash = (53 * hash) + getHeader().hashCode();
-      }
-      hash = (37 * hash) + BODY_FIELD_NUMBER;
-      hash = (53 * hash) + getBody().hashCode();
+      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
+      hash = (53 * hash) + getModuleId();
+      hash = (37 * hash) + COMMANDID_FIELD_NUMBER;
+      hash = (53 * hash) + getCommandId();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1090,13 +411,11 @@ public final class Base {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
-        }
-        body_ = com.google.protobuf.ByteString.EMPTY;
+        moduleId_ = 0;
+
+        commandId_ = 0;
+
+        data_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
       }
@@ -1124,12 +443,9 @@ public final class Base {
       @java.lang.Override
       public com.github.alonwang.transport.protobuf.Base.Request buildPartial() {
         com.github.alonwang.transport.protobuf.Base.Request result = new com.github.alonwang.transport.protobuf.Base.Request(this);
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
-        result.body_ = body_;
+        result.moduleId_ = moduleId_;
+        result.commandId_ = commandId_;
+        result.data_ = data_;
         onBuilt();
         return result;
       }
@@ -1178,11 +494,14 @@ public final class Base {
 
       public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.Request other) {
         if (other == com.github.alonwang.transport.protobuf.Base.Request.getDefaultInstance()) return this;
-        if (other.hasHeader()) {
-          mergeHeader(other.getHeader());
+        if (other.getModuleId() != 0) {
+          setModuleId(other.getModuleId());
         }
-        if (other.getBody() != com.google.protobuf.ByteString.EMPTY) {
-          setBody(other.getBody());
+        if (other.getCommandId() != 0) {
+          setCommandId(other.getCommandId());
+        }
+        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
+          setData(other.getData());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1213,155 +532,134 @@ public final class Base {
         return this;
       }
 
-      private com.github.alonwang.transport.protobuf.Base.RequestHeader header_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.github.alonwang.transport.protobuf.Base.RequestHeader, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder, com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder> headerBuilder_;
+      private int moduleId_ ;
       /**
-       * <code>.RequestHeader header = 1;</code>
-       * @return Whether the header field is set.
-       */
-      public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       * @return The header.
-       */
-      public com.github.alonwang.transport.protobuf.Base.RequestHeader getHeader() {
-        if (headerBuilder_ == null) {
-          return header_ == null ? com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance() : header_;
-        } else {
-          return headerBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public Builder setHeader(com.github.alonwang.transport.protobuf.Base.RequestHeader value) {
-        if (headerBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          header_ = value;
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public Builder setHeader(
-          com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder builderForValue) {
-        if (headerBuilder_ == null) {
-          header_ = builderForValue.build();
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public Builder mergeHeader(com.github.alonwang.transport.protobuf.Base.RequestHeader value) {
-        if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              com.github.alonwang.transport.protobuf.Base.RequestHeader.newBuilder(header_).mergeFrom(value).buildPartial();
-          } else {
-            header_ = value;
-          }
-          onChanged();
-        } else {
-          headerBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder getHeaderBuilder() {
-        
-        onChanged();
-        return getHeaderFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      public com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder getHeaderOrBuilder() {
-        if (headerBuilder_ != null) {
-          return headerBuilder_.getMessageOrBuilder();
-        } else {
-          return header_ == null ?
-              com.github.alonwang.transport.protobuf.Base.RequestHeader.getDefaultInstance() : header_;
-        }
-      }
-      /**
-       * <code>.RequestHeader header = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.github.alonwang.transport.protobuf.Base.RequestHeader, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder, com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder> 
-          getHeaderFieldBuilder() {
-        if (headerBuilder_ == null) {
-          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.github.alonwang.transport.protobuf.Base.RequestHeader, com.github.alonwang.transport.protobuf.Base.RequestHeader.Builder, com.github.alonwang.transport.protobuf.Base.RequestHeaderOrBuilder>(
-                  getHeader(),
-                  getParentForChildren(),
-                  isClean());
-          header_ = null;
-        }
-        return headerBuilder_;
-      }
-
-      private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes body = 2;</code>
-       * @return The body.
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return The moduleId.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getBody() {
-        return body_;
+      public int getModuleId() {
+        return moduleId_;
       }
       /**
-       * <code>bytes body = 2;</code>
-       * @param value The body to set.
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @param value The moduleId to set.
        * @return This builder for chaining.
        */
-      public Builder setBody(com.google.protobuf.ByteString value) {
+      public Builder setModuleId(int value) {
+        
+        moduleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearModuleId() {
+        
+        moduleId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int commandId_ ;
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @return The commandId.
+       */
+      @java.lang.Override
+      public int getCommandId() {
+        return commandId_;
+      }
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @param value The commandId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCommandId(int value) {
+        
+        commandId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCommandId() {
+        
+        commandId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 3;</code>
+       * @return The data.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getData() {
+        return data_;
+      }
+      /**
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 3;</code>
+       * @param value The data to set.
+       * @return This builder for chaining.
+       */
+      public Builder setData(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        body_ = value;
+        data_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes body = 2;</code>
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearBody() {
+      public Builder clearData() {
         
-        body_ = getDefaultInstance().getBody();
+        data_ = getDefaultInstance().getData();
         onChanged();
         return this;
       }
@@ -1418,8 +716,8 @@ public final class Base {
 
   }
 
-  public interface ResponseHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ResponseHeader)
+  public interface ResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Response)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1437,800 +735,30 @@ public final class Base {
      *命令id
      * </pre>
      *
-     * <code>int32 messageId = 2;</code>
-     * @return The messageId.
+     * <code>int32 commandId = 2;</code>
+     * @return The commandId.
      */
-    int getMessageId();
-
-    /**
-     * <pre>
-     *时间戳
-     * </pre>
-     *
-     * <code>int64 createTime = 3;</code>
-     * @return The createTime.
-     */
-    long getCreateTime();
+    int getCommandId();
 
     /**
      * <pre>
      *0表示正常 其他表示错误码
      * </pre>
      *
-     * <code>int32 errorCode = 4;</code>
+     * <code>int32 errorCode = 3;</code>
      * @return The errorCode.
      */
     int getErrorCode();
-  }
-  /**
-   * <pre>
-   **
-   *响应头
-   * </pre>
-   *
-   * Protobuf type {@code ResponseHeader}
-   */
-  public static final class ResponseHeader extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:ResponseHeader)
-      ResponseHeaderOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ResponseHeader.newBuilder() to construct.
-    private ResponseHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ResponseHeader() {
-    }
 
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ResponseHeader();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ResponseHeader(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              moduleId_ = input.readInt32();
-              break;
-            }
-            case 16: {
-
-              messageId_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              createTime_ = input.readInt64();
-              break;
-            }
-            case 32: {
-
-              errorCode_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.github.alonwang.transport.protobuf.Base.internal_static_ResponseHeader_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.github.alonwang.transport.protobuf.Base.internal_static_ResponseHeader_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.github.alonwang.transport.protobuf.Base.ResponseHeader.class, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder.class);
-    }
-
-    public static final int MODULEID_FIELD_NUMBER = 1;
-    private int moduleId_;
     /**
      * <pre>
-     *模块id
+     *TODO 待拓展
      * </pre>
      *
-     * <code>int32 moduleId = 1;</code>
-     * @return The moduleId.
+     * <code>bytes data = 4;</code>
+     * @return The data.
      */
-    @java.lang.Override
-    public int getModuleId() {
-      return moduleId_;
-    }
-
-    public static final int MESSAGEID_FIELD_NUMBER = 2;
-    private int messageId_;
-    /**
-     * <pre>
-     *命令id
-     * </pre>
-     *
-     * <code>int32 messageId = 2;</code>
-     * @return The messageId.
-     */
-    @java.lang.Override
-    public int getMessageId() {
-      return messageId_;
-    }
-
-    public static final int CREATETIME_FIELD_NUMBER = 3;
-    private long createTime_;
-    /**
-     * <pre>
-     *时间戳
-     * </pre>
-     *
-     * <code>int64 createTime = 3;</code>
-     * @return The createTime.
-     */
-    @java.lang.Override
-    public long getCreateTime() {
-      return createTime_;
-    }
-
-    public static final int ERRORCODE_FIELD_NUMBER = 4;
-    private int errorCode_;
-    /**
-     * <pre>
-     *0表示正常 其他表示错误码
-     * </pre>
-     *
-     * <code>int32 errorCode = 4;</code>
-     * @return The errorCode.
-     */
-    @java.lang.Override
-    public int getErrorCode() {
-      return errorCode_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (moduleId_ != 0) {
-        output.writeInt32(1, moduleId_);
-      }
-      if (messageId_ != 0) {
-        output.writeInt32(2, messageId_);
-      }
-      if (createTime_ != 0L) {
-        output.writeInt64(3, createTime_);
-      }
-      if (errorCode_ != 0) {
-        output.writeInt32(4, errorCode_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (moduleId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, moduleId_);
-      }
-      if (messageId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, messageId_);
-      }
-      if (createTime_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, createTime_);
-      }
-      if (errorCode_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, errorCode_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.github.alonwang.transport.protobuf.Base.ResponseHeader)) {
-        return super.equals(obj);
-      }
-      com.github.alonwang.transport.protobuf.Base.ResponseHeader other = (com.github.alonwang.transport.protobuf.Base.ResponseHeader) obj;
-
-      if (getModuleId()
-          != other.getModuleId()) return false;
-      if (getMessageId()
-          != other.getMessageId()) return false;
-      if (getCreateTime()
-          != other.getCreateTime()) return false;
-      if (getErrorCode()
-          != other.getErrorCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
-      hash = (53 * hash) + getModuleId();
-      hash = (37 * hash) + MESSAGEID_FIELD_NUMBER;
-      hash = (53 * hash) + getMessageId();
-      hash = (37 * hash) + CREATETIME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getCreateTime());
-      hash = (37 * hash) + ERRORCODE_FIELD_NUMBER;
-      hash = (53 * hash) + getErrorCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.alonwang.transport.protobuf.Base.ResponseHeader prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *响应头
-     * </pre>
-     *
-     * Protobuf type {@code ResponseHeader}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ResponseHeader)
-        com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_ResponseHeader_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_ResponseHeader_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.alonwang.transport.protobuf.Base.ResponseHeader.class, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder.class);
-      }
-
-      // Construct using com.github.alonwang.transport.protobuf.Base.ResponseHeader.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        moduleId_ = 0;
-
-        messageId_ = 0;
-
-        createTime_ = 0L;
-
-        errorCode_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.github.alonwang.transport.protobuf.Base.internal_static_ResponseHeader_descriptor;
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeader getDefaultInstanceForType() {
-        return com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeader build() {
-        com.github.alonwang.transport.protobuf.Base.ResponseHeader result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeader buildPartial() {
-        com.github.alonwang.transport.protobuf.Base.ResponseHeader result = new com.github.alonwang.transport.protobuf.Base.ResponseHeader(this);
-        result.moduleId_ = moduleId_;
-        result.messageId_ = messageId_;
-        result.createTime_ = createTime_;
-        result.errorCode_ = errorCode_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.alonwang.transport.protobuf.Base.ResponseHeader) {
-          return mergeFrom((com.github.alonwang.transport.protobuf.Base.ResponseHeader)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.ResponseHeader other) {
-        if (other == com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance()) return this;
-        if (other.getModuleId() != 0) {
-          setModuleId(other.getModuleId());
-        }
-        if (other.getMessageId() != 0) {
-          setMessageId(other.getMessageId());
-        }
-        if (other.getCreateTime() != 0L) {
-          setCreateTime(other.getCreateTime());
-        }
-        if (other.getErrorCode() != 0) {
-          setErrorCode(other.getErrorCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.github.alonwang.transport.protobuf.Base.ResponseHeader parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.github.alonwang.transport.protobuf.Base.ResponseHeader) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int moduleId_ ;
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @return The moduleId.
-       */
-      @java.lang.Override
-      public int getModuleId() {
-        return moduleId_;
-      }
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @param value The moduleId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setModuleId(int value) {
-        
-        moduleId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *模块id
-       * </pre>
-       *
-       * <code>int32 moduleId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearModuleId() {
-        
-        moduleId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int messageId_ ;
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @return The messageId.
-       */
-      @java.lang.Override
-      public int getMessageId() {
-        return messageId_;
-      }
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @param value The messageId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMessageId(int value) {
-        
-        messageId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *命令id
-       * </pre>
-       *
-       * <code>int32 messageId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMessageId() {
-        
-        messageId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private long createTime_ ;
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @return The createTime.
-       */
-      @java.lang.Override
-      public long getCreateTime() {
-        return createTime_;
-      }
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @param value The createTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreateTime(long value) {
-        
-        createTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *时间戳
-       * </pre>
-       *
-       * <code>int64 createTime = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreateTime() {
-        
-        createTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int errorCode_ ;
-      /**
-       * <pre>
-       *0表示正常 其他表示错误码
-       * </pre>
-       *
-       * <code>int32 errorCode = 4;</code>
-       * @return The errorCode.
-       */
-      @java.lang.Override
-      public int getErrorCode() {
-        return errorCode_;
-      }
-      /**
-       * <pre>
-       *0表示正常 其他表示错误码
-       * </pre>
-       *
-       * <code>int32 errorCode = 4;</code>
-       * @param value The errorCode to set.
-       * @return This builder for chaining.
-       */
-      public Builder setErrorCode(int value) {
-        
-        errorCode_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *0表示正常 其他表示错误码
-       * </pre>
-       *
-       * <code>int32 errorCode = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearErrorCode() {
-        
-        errorCode_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:ResponseHeader)
-    }
-
-    // @@protoc_insertion_point(class_scope:ResponseHeader)
-    private static final com.github.alonwang.transport.protobuf.Base.ResponseHeader DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.github.alonwang.transport.protobuf.Base.ResponseHeader();
-    }
-
-    public static com.github.alonwang.transport.protobuf.Base.ResponseHeader getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ResponseHeader>
-        PARSER = new com.google.protobuf.AbstractParser<ResponseHeader>() {
-      @java.lang.Override
-      public ResponseHeader parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ResponseHeader(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ResponseHeader> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ResponseHeader> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.ResponseHeader getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Response)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.ResponseHeader header = 1;</code>
-     * @return Whether the header field is set.
-     */
-    boolean hasHeader();
-    /**
-     * <code>.ResponseHeader header = 1;</code>
-     * @return The header.
-     */
-    com.github.alonwang.transport.protobuf.Base.ResponseHeader getHeader();
-    /**
-     * <code>.ResponseHeader header = 1;</code>
-     */
-    com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder getHeaderOrBuilder();
-
-    /**
-     * <code>bytes body = 2;</code>
-     * @return The body.
-     */
-    com.google.protobuf.ByteString getBody();
+    com.google.protobuf.ByteString getData();
   }
   /**
    * <pre>
@@ -2250,7 +778,7 @@ public final class Base {
       super(builder);
     }
     private Response() {
-      body_ = com.google.protobuf.ByteString.EMPTY;
+      data_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -2283,22 +811,24 @@ public final class Base {
             case 0:
               done = true;
               break;
-            case 10: {
-              com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(com.github.alonwang.transport.protobuf.Base.ResponseHeader.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
+            case 8: {
 
+              moduleId_ = input.readInt32();
               break;
             }
-            case 18: {
+            case 16: {
 
-              body_ = input.readBytes();
+              commandId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              errorCode_ = input.readInt32();
+              break;
+            }
+            case 34: {
+
+              data_ = input.readBytes();
               break;
             }
             default: {
@@ -2333,41 +863,64 @@ public final class Base {
               com.github.alonwang.transport.protobuf.Base.Response.class, com.github.alonwang.transport.protobuf.Base.Response.Builder.class);
     }
 
-    public static final int HEADER_FIELD_NUMBER = 1;
-    private com.github.alonwang.transport.protobuf.Base.ResponseHeader header_;
+    public static final int MODULEID_FIELD_NUMBER = 1;
+    private int moduleId_;
     /**
-     * <code>.ResponseHeader header = 1;</code>
-     * @return Whether the header field is set.
+     * <pre>
+     *模块id
+     * </pre>
+     *
+     * <code>int32 moduleId = 1;</code>
+     * @return The moduleId.
      */
     @java.lang.Override
-    public boolean hasHeader() {
-      return header_ != null;
-    }
-    /**
-     * <code>.ResponseHeader header = 1;</code>
-     * @return The header.
-     */
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.ResponseHeader getHeader() {
-      return header_ == null ? com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance() : header_;
-    }
-    /**
-     * <code>.ResponseHeader header = 1;</code>
-     */
-    @java.lang.Override
-    public com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
+    public int getModuleId() {
+      return moduleId_;
     }
 
-    public static final int BODY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString body_;
+    public static final int COMMANDID_FIELD_NUMBER = 2;
+    private int commandId_;
     /**
-     * <code>bytes body = 2;</code>
-     * @return The body.
+     * <pre>
+     *命令id
+     * </pre>
+     *
+     * <code>int32 commandId = 2;</code>
+     * @return The commandId.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getBody() {
-      return body_;
+    public int getCommandId() {
+      return commandId_;
+    }
+
+    public static final int ERRORCODE_FIELD_NUMBER = 3;
+    private int errorCode_;
+    /**
+     * <pre>
+     *0表示正常 其他表示错误码
+     * </pre>
+     *
+     * <code>int32 errorCode = 3;</code>
+     * @return The errorCode.
+     */
+    @java.lang.Override
+    public int getErrorCode() {
+      return errorCode_;
+    }
+
+    public static final int DATA_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString data_;
+    /**
+     * <pre>
+     *TODO 待拓展
+     * </pre>
+     *
+     * <code>bytes data = 4;</code>
+     * @return The data.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getData() {
+      return data_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2384,11 +937,17 @@ public final class Base {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (header_ != null) {
-        output.writeMessage(1, getHeader());
+      if (moduleId_ != 0) {
+        output.writeInt32(1, moduleId_);
       }
-      if (!body_.isEmpty()) {
-        output.writeBytes(2, body_);
+      if (commandId_ != 0) {
+        output.writeInt32(2, commandId_);
+      }
+      if (errorCode_ != 0) {
+        output.writeInt32(3, errorCode_);
+      }
+      if (!data_.isEmpty()) {
+        output.writeBytes(4, data_);
       }
       unknownFields.writeTo(output);
     }
@@ -2399,13 +958,21 @@ public final class Base {
       if (size != -1) return size;
 
       size = 0;
-      if (header_ != null) {
+      if (moduleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getHeader());
+          .computeInt32Size(1, moduleId_);
       }
-      if (!body_.isEmpty()) {
+      if (commandId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, body_);
+          .computeInt32Size(2, commandId_);
+      }
+      if (errorCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, errorCode_);
+      }
+      if (!data_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, data_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2422,13 +989,14 @@ public final class Base {
       }
       com.github.alonwang.transport.protobuf.Base.Response other = (com.github.alonwang.transport.protobuf.Base.Response) obj;
 
-      if (hasHeader() != other.hasHeader()) return false;
-      if (hasHeader()) {
-        if (!getHeader()
-            .equals(other.getHeader())) return false;
-      }
-      if (!getBody()
-          .equals(other.getBody())) return false;
+      if (getModuleId()
+          != other.getModuleId()) return false;
+      if (getCommandId()
+          != other.getCommandId()) return false;
+      if (getErrorCode()
+          != other.getErrorCode()) return false;
+      if (!getData()
+          .equals(other.getData())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2440,12 +1008,14 @@ public final class Base {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasHeader()) {
-        hash = (37 * hash) + HEADER_FIELD_NUMBER;
-        hash = (53 * hash) + getHeader().hashCode();
-      }
-      hash = (37 * hash) + BODY_FIELD_NUMBER;
-      hash = (53 * hash) + getBody().hashCode();
+      hash = (37 * hash) + MODULEID_FIELD_NUMBER;
+      hash = (53 * hash) + getModuleId();
+      hash = (37 * hash) + COMMANDID_FIELD_NUMBER;
+      hash = (53 * hash) + getCommandId();
+      hash = (37 * hash) + ERRORCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getErrorCode();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2584,13 +1154,13 @@ public final class Base {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
-        }
-        body_ = com.google.protobuf.ByteString.EMPTY;
+        moduleId_ = 0;
+
+        commandId_ = 0;
+
+        errorCode_ = 0;
+
+        data_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
       }
@@ -2618,12 +1188,10 @@ public final class Base {
       @java.lang.Override
       public com.github.alonwang.transport.protobuf.Base.Response buildPartial() {
         com.github.alonwang.transport.protobuf.Base.Response result = new com.github.alonwang.transport.protobuf.Base.Response(this);
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
-        result.body_ = body_;
+        result.moduleId_ = moduleId_;
+        result.commandId_ = commandId_;
+        result.errorCode_ = errorCode_;
+        result.data_ = data_;
         onBuilt();
         return result;
       }
@@ -2672,11 +1240,17 @@ public final class Base {
 
       public Builder mergeFrom(com.github.alonwang.transport.protobuf.Base.Response other) {
         if (other == com.github.alonwang.transport.protobuf.Base.Response.getDefaultInstance()) return this;
-        if (other.hasHeader()) {
-          mergeHeader(other.getHeader());
+        if (other.getModuleId() != 0) {
+          setModuleId(other.getModuleId());
         }
-        if (other.getBody() != com.google.protobuf.ByteString.EMPTY) {
-          setBody(other.getBody());
+        if (other.getCommandId() != 0) {
+          setCommandId(other.getCommandId());
+        }
+        if (other.getErrorCode() != 0) {
+          setErrorCode(other.getErrorCode());
+        }
+        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
+          setData(other.getData());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2707,155 +1281,177 @@ public final class Base {
         return this;
       }
 
-      private com.github.alonwang.transport.protobuf.Base.ResponseHeader header_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.github.alonwang.transport.protobuf.Base.ResponseHeader, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder, com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder> headerBuilder_;
+      private int moduleId_ ;
       /**
-       * <code>.ResponseHeader header = 1;</code>
-       * @return Whether the header field is set.
-       */
-      public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       * @return The header.
-       */
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeader getHeader() {
-        if (headerBuilder_ == null) {
-          return header_ == null ? com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance() : header_;
-        } else {
-          return headerBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public Builder setHeader(com.github.alonwang.transport.protobuf.Base.ResponseHeader value) {
-        if (headerBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          header_ = value;
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public Builder setHeader(
-          com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder builderForValue) {
-        if (headerBuilder_ == null) {
-          header_ = builderForValue.build();
-          onChanged();
-        } else {
-          headerBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public Builder mergeHeader(com.github.alonwang.transport.protobuf.Base.ResponseHeader value) {
-        if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              com.github.alonwang.transport.protobuf.Base.ResponseHeader.newBuilder(header_).mergeFrom(value).buildPartial();
-          } else {
-            header_ = value;
-          }
-          onChanged();
-        } else {
-          headerBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
-          headerBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder getHeaderBuilder() {
-        
-        onChanged();
-        return getHeaderFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      public com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder getHeaderOrBuilder() {
-        if (headerBuilder_ != null) {
-          return headerBuilder_.getMessageOrBuilder();
-        } else {
-          return header_ == null ?
-              com.github.alonwang.transport.protobuf.Base.ResponseHeader.getDefaultInstance() : header_;
-        }
-      }
-      /**
-       * <code>.ResponseHeader header = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.github.alonwang.transport.protobuf.Base.ResponseHeader, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder, com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder> 
-          getHeaderFieldBuilder() {
-        if (headerBuilder_ == null) {
-          headerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.github.alonwang.transport.protobuf.Base.ResponseHeader, com.github.alonwang.transport.protobuf.Base.ResponseHeader.Builder, com.github.alonwang.transport.protobuf.Base.ResponseHeaderOrBuilder>(
-                  getHeader(),
-                  getParentForChildren(),
-                  isClean());
-          header_ = null;
-        }
-        return headerBuilder_;
-      }
-
-      private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes body = 2;</code>
-       * @return The body.
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return The moduleId.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getBody() {
-        return body_;
+      public int getModuleId() {
+        return moduleId_;
       }
       /**
-       * <code>bytes body = 2;</code>
-       * @param value The body to set.
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @param value The moduleId to set.
        * @return This builder for chaining.
        */
-      public Builder setBody(com.google.protobuf.ByteString value) {
+      public Builder setModuleId(int value) {
+        
+        moduleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *模块id
+       * </pre>
+       *
+       * <code>int32 moduleId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearModuleId() {
+        
+        moduleId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int commandId_ ;
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @return The commandId.
+       */
+      @java.lang.Override
+      public int getCommandId() {
+        return commandId_;
+      }
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @param value The commandId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCommandId(int value) {
+        
+        commandId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *命令id
+       * </pre>
+       *
+       * <code>int32 commandId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCommandId() {
+        
+        commandId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int errorCode_ ;
+      /**
+       * <pre>
+       *0表示正常 其他表示错误码
+       * </pre>
+       *
+       * <code>int32 errorCode = 3;</code>
+       * @return The errorCode.
+       */
+      @java.lang.Override
+      public int getErrorCode() {
+        return errorCode_;
+      }
+      /**
+       * <pre>
+       *0表示正常 其他表示错误码
+       * </pre>
+       *
+       * <code>int32 errorCode = 3;</code>
+       * @param value The errorCode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setErrorCode(int value) {
+        
+        errorCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *0表示正常 其他表示错误码
+       * </pre>
+       *
+       * <code>int32 errorCode = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearErrorCode() {
+        
+        errorCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 4;</code>
+       * @return The data.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getData() {
+        return data_;
+      }
+      /**
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 4;</code>
+       * @param value The data to set.
+       * @return This builder for chaining.
+       */
+      public Builder setData(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        body_ = value;
+        data_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes body = 2;</code>
+       * <pre>
+       *TODO 待拓展
+       * </pre>
+       *
+       * <code>bytes data = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearBody() {
+      public Builder clearData() {
         
-        body_ = getDefaultInstance().getBody();
+        data_ = getDefaultInstance().getData();
         onChanged();
         return this;
       }
@@ -2913,20 +1509,10 @@ public final class Base {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_RequestHeader_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_RequestHeader_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Request_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Request_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ResponseHeader_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ResponseHeader_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Response_descriptor;
   private static final 
@@ -2941,44 +1527,29 @@ public final class Base {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nbase.proto\"H\n\rRequestHeader\022\020\n\010moduleI" +
-      "d\030\001 \001(\005\022\021\n\tmessageId\030\002 \001(\005\022\022\n\ncreateTime" +
-      "\030\003 \001(\003\"7\n\007Request\022\036\n\006header\030\001 \001(\0132\016.Requ" +
-      "estHeader\022\014\n\004body\030\002 \001(\014\"\\\n\016ResponseHeade" +
-      "r\022\020\n\010moduleId\030\001 \001(\005\022\021\n\tmessageId\030\002 \001(\005\022\022" +
-      "\n\ncreateTime\030\003 \001(\003\022\021\n\terrorCode\030\004 \001(\005\"9\n" +
-      "\010Response\022\037\n\006header\030\001 \001(\0132\017.ResponseHead" +
-      "er\022\014\n\004body\030\002 \001(\014B(\n&com.github.alonwang." +
-      "transport.protobufb\006proto3"
+      "\n\nbase.proto\"<\n\007Request\022\020\n\010moduleId\030\001 \001(" +
+      "\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\"P\n\010Re" +
+      "sponse\022\020\n\010moduleId\030\001 \001(\005\022\021\n\tcommandId\030\002 " +
+      "\001(\005\022\021\n\terrorCode\030\003 \001(\005\022\014\n\004data\030\004 \001(\014B(\n&" +
+      "com.github.alonwang.transport.protobufb\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_RequestHeader_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_RequestHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_RequestHeader_descriptor,
-        new java.lang.String[] { "ModuleId", "MessageId", "CreateTime", });
     internal_static_Request_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Request_descriptor,
-        new java.lang.String[] { "Header", "Body", });
-    internal_static_ResponseHeader_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_ResponseHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ResponseHeader_descriptor,
-        new java.lang.String[] { "ModuleId", "MessageId", "CreateTime", "ErrorCode", });
+        new java.lang.String[] { "ModuleId", "CommandId", "Data", });
     internal_static_Response_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_Response_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Response_descriptor,
-        new java.lang.String[] { "Header", "Body", });
+        new java.lang.String[] { "ModuleId", "CommandId", "ErrorCode", "Data", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

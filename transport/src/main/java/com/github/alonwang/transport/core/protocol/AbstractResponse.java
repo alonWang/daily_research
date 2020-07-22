@@ -1,26 +1,22 @@
 package com.github.alonwang.transport.core.protocol;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.MessageLite;
 
 /**
+ * 响应
+ *
  * @author alonwang
- * @date 2020/7/13 21:24
+ * @date 2020/7/13 17:23
  * @detail
  */
-public class ProtobufResponse implements Response{
-
+public abstract class AbstractResponse extends AbstractCSMessage {
     @Override
     public ResponseHeader header() {
-        //TODO
-        return null;
+        return (ResponseHeader) super.header();
     }
 
     @Override
     public ByteString body() {
-        //TODO
-        return null;
+        return (ByteString) super.body();
     }
-
-
 }

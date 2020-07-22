@@ -2,8 +2,12 @@ package com.github.alonwang.transport.core.protocol;
 
 /**
  * @author alonwang
- * @date 2020/7/13 21:16
+ * @date 2020/7/22 16:49
  * @detail
  */
-public interface RequestHeader extends MessageHeader{
+
+public class RequestHeader extends AbstractCSMessageHeader{
+    public RequestHeader(int moduleId, int commandId) {
+        super(moduleId, commandId);
+    }
 }

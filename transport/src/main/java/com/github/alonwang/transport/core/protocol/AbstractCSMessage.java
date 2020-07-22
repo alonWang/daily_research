@@ -1,33 +1,32 @@
 package com.github.alonwang.transport.core.protocol;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+
 /**
- * 请求抽象
- *
  * @author alonwang
  * @date 2020/7/13 17:15
  * @detail
  */
-public abstract class AbstractCSMessage<T> implements Message {
-    private final int moduleId;
-    private final int commandId;
-    private MessageHeader header;
-    private T data;
+public abstract class AbstractCSMessage {
+    private AbstractCSMessageHeader header;
+    private Object body;
 
-    public AbstractCSMessage(int moduleId, int commandId) {
-        this.moduleId = moduleId;
-        this.commandId = commandId;
-    }
-
-    public int moduleId() {
-        return moduleId;
-    }
-
-    public int commandId() {
-        return commandId;
-    }
-
-    public MessageHeader header() {
+    public AbstractCSMessageHeader header() {
         return header;
     }
 
+    public Object body() {
+        return body;
+    }
+    public abstract void decode() throws InvalidProtocolBufferException;
+
+    public abstract void encode();
+
+    public void setHeader(AbstractCSMessageHeader header) {
+        this.header = header;
+    }
+
+    public void setBody(Object body) {
+        this.body = body;
+    }
 }

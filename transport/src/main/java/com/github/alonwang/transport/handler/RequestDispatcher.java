@@ -1,7 +1,6 @@
 package com.github.alonwang.transport.handler;
 
 
-import com.github.alonwang.transport.core.protocol.Request;
 import com.google.common.collect.BiMap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,12 +17,12 @@ import java.util.concurrent.Executors;
  * @detail
  */
 @ChannelHandler.Sharable
-public class RequestDispatcher extends SimpleChannelInboundHandler<Request> {
+public class RequestDispatcher extends SimpleChannelInboundHandler<Object> {
     //消息分发线程池
     ExecutorService executorService= Executors.newFixedThreadPool(1);
     
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Request msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 
 
     }

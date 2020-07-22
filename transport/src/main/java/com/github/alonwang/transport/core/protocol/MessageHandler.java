@@ -4,12 +4,11 @@ import java.lang.annotation.*;
 
 /**
  * @author alonwang
- * @date 2020/7/16 17:41
+ * @date 2020/7/22 18:23
  * @detail
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)
 @Documented
 public @interface MessageHandler {
-    int value();
 }

@@ -1,12 +1,15 @@
 package com.github.alonwang.transport.core.protocol.factory;
 
-import com.github.alonwang.transport.core.protocol.Message;
+import com.github.alonwang.transport.core.protocol.AbstractRequest;
+import com.google.protobuf.AbstractMessage;
 
 /**
  * @author alonwang
- * @date 2020/7/13 21:29
+ * @date 2020/7/22 17:43
  * @detail
  */
-public interface MessageFactory<T extends Message<T>> {
-   T create(int messageId);
+public class MessageFactory {
+    public  AbstractRequest createRequest(int moduleId, int messageId) {
+        return null;
+    }
 }
