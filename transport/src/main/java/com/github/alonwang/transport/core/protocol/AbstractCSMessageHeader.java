@@ -14,11 +14,11 @@ public abstract class AbstractCSMessageHeader {
         this.commandId = commandId;
     }
 
-    public int moduleId() {
+    public int getModuleId() {
         return moduleId;
     }
 
-    public int commandId() {
+    public int getCommandId() {
         return commandId;
     }
 }

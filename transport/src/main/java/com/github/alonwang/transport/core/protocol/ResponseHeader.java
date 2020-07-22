@@ -16,4 +16,8 @@ public class ResponseHeader extends AbstractCSMessageHeader {
     public int errorCode() {
         return errorCode;
     }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
 }

@@ -11,7 +11,7 @@ import lombok.Data;
  * @date 2020/7/22 17:48
  * @detail
  */
-@Data
+
 @MessageWrapper(moduleId = 1, commandId = 1)
 public class HelloRequest extends AbstractRequest {
     private Hello.HelloMessage helloMessage;
@@ -24,5 +24,13 @@ public class HelloRequest extends AbstractRequest {
     @Override
     public void encode() {
         setBody(helloMessage.toByteString());
+    }
+
+    public Hello.HelloMessage getHelloMessage() {
+        return helloMessage;
+    }
+
+    public void setHelloMessage(Hello.HelloMessage helloMessage) {
+        this.helloMessage = helloMessage;
     }
 }
