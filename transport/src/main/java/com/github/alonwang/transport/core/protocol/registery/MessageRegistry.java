@@ -3,6 +3,7 @@ package com.github.alonwang.transport.core.protocol.registery;
 import cn.hutool.core.util.ClassUtil;
 import com.github.alonwang.transport.TransportStarter;
 import com.github.alonwang.transport.core.TransportConstant;
+import com.github.alonwang.transport.core.context.Context;
 import com.github.alonwang.transport.core.protocol.AbstractCSMessage;
 import com.github.alonwang.transport.core.protocol.AbstractRequest;
 import com.github.alonwang.transport.core.protocol.MessageHandler;
@@ -59,6 +60,8 @@ public class MessageRegistry implements InitializingBean {
         Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal,@MessageHandler annotated class must be interface");
+            Object bean = Context.getApplicationContext().getBean(handlerClazz);
+            Preconditions.checkNotNull(bean, "{} annotated with @MessageHandler but no instance");
             var methods = handlerClazz.getDeclaredMethods();
             for (Method method : methods) {
                 var parameterTypes = method.getParameterTypes();
@@ -66,11 +69,11 @@ public class MessageRegistry implements InitializingBean {
                 if (satisfyParameters.isEmpty()) {
                     continue;
                 }
-                if (satisfyParameters.size() != 1) {
-                    log.warn("method {} signature illegal,parameters should only contain exactly one AbstractCSMessage", method);
-                    continue;
-                }
-
+                Preconditions.checkArgument(satisfyParameters.size() != 1, "method {} signature illegal,parameters should only contain exactly one AbstractCSMessage", method);
+                Class<? extends AbstractCSMessage> messageClazz = (Class<? extends AbstractCSMessage>) satisfyParameters.get(0);
+                Preconditions.checkArgument(!messageMethods.containsKey(messageClazz), "parameter illegal,{} appear in different methods", messageClazz);
+                MethodWrapper methodWrapper = new MethodWrapper(method, bean);
+                messageMethods.put(messageClazz, methodWrapper);
             }
         }
 
