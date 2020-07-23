@@ -18,11 +18,13 @@ subprojects {
         implementation 'org.slf4j:slf4j-api:1.7.25'
         implementation 'com.google.guava:guava:28.1-jre'
         implementation 'cn.hutool:hutool-all:4.6.8'
+        implementation 'org.reflections:reflections:0.9.12'
         testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
         compileOnly 'org.projectlombok:lombok:1.18.12'
         annotationProcessor 'org.projectlombok:lombok:1.18.12'
         testCompileOnly 'org.projectlombok:lombok:1.18.12'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
     }
 }
 
