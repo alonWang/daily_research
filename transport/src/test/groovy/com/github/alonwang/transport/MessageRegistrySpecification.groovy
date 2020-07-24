@@ -1,6 +1,6 @@
 package com.github.alonwang.transport
 
-import com.github.alonwang.transport.core.protocol.registery.MessageRegistry
+import com.github.alonwang.transport.core.MessageRegistry
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -13,11 +13,12 @@ import spock.lang.Specification
 class MessageRegistrySpecification extends Specification {
     @Autowired
     MessageRegistry messageRegistry;
+
     def "test messages"() {
         expect:
         def clazz = messageRegistry.getMessage(1, 1)
         assert clazz != null
         def wrapper = messageRegistry.getWrapper(clazz)
-       assert  wrapper != null
+        assert wrapper != null
     }
 }

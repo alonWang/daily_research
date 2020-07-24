@@ -1,7 +1,7 @@
 package com.github.alonwang.transport.hello.message;
 
-import com.github.alonwang.transport.core.protocol.AbstractResponse;
-import com.github.alonwang.transport.core.protocol.MessageWrapper;
+import com.github.alonwang.transport.protocol.AbstractResponse;
+import com.github.alonwang.transport.protocol.MessageWrapper;
 import com.github.alonwang.transport.protobuf.Hello;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package com.github.alonwang.transport.core.protocol;
+package com.github.alonwang.transport.protocol;
 
 /**
  * @author alonwang
@@ -6,7 +6,7 @@ package com.github.alonwang.transport.core.protocol;
  * @detail
  */
 
-public class RequestHeader extends AbstractCSMessageHeader{
+public class RequestHeader extends CSMessageHeader {
     public RequestHeader(int moduleId, int commandId) {
         super(moduleId, commandId);
     }

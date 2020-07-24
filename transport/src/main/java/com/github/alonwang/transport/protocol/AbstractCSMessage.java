@@ -1,4 +1,4 @@
-package com.github.alonwang.transport.core.protocol;
+package com.github.alonwang.transport.protocol;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -8,10 +8,10 @@ import com.google.protobuf.InvalidProtocolBufferException;
  * @detail
  */
 public abstract class AbstractCSMessage {
-    private AbstractCSMessageHeader header;
+    private CSMessageHeader header;
     private Object body;
 
-    public AbstractCSMessageHeader header() {
+    public CSMessageHeader header() {
         return header;
     }
 
@@ -22,7 +22,7 @@ public abstract class AbstractCSMessage {
 
     public abstract void encode();
 
-    public void setHeader(AbstractCSMessageHeader header) {
+    public void setHeader(CSMessageHeader header) {
         this.header = header;
     }
 

@@ -20,7 +20,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 public class NioServerChannelInitializer extends ChannelInitializer<SocketChannel> {
     private static final ChannelHandler idleEventHandler = new IdleStateEventHandler();
     private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Request.getDefaultInstance());
-    private static final ChannelInboundHandler requestDispatcher = new RequestDispatcher();
+    private static final ChannelInboundHandler requestDispatchHandler = new RequestDispatchHandler();
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
     private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
 
@@ -33,7 +33,7 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
         pipeline.addLast(new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
         pipeline.addLast(protobufDecoder);
         pipeline.addLast(protobufRequestDecoder);
-        pipeline.addLast(requestDispatcher);
+        pipeline.addLast(requestDispatchHandler);
         //protobuuf encode固定格式
         pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
         pipeline.addLast(protobufEncoder);

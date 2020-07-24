@@ -1,4 +1,4 @@
-package com.github.alonwang.transport.core.protocol;
+package com.github.alonwang.transport.protocol;
 
 import com.google.protobuf.ByteString;
 

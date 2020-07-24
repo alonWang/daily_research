@@ -1,14 +1,12 @@
 package com.github.alonwang.transport.handler;
 
 
-import com.github.alonwang.transport.core.protocol.AbstractRequest;
-import com.google.common.collect.BiMap;
+import com.github.alonwang.transport.core.Context;
+import com.github.alonwang.transport.core.Session;
+import com.github.alonwang.transport.protocol.AbstractRequest;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Request分发器,将Request分发到业务线程池中
@@ -18,13 +16,10 @@ import java.util.concurrent.Executors;
  * @detail
  */
 @ChannelHandler.Sharable
-public class RequestDispatcher extends SimpleChannelInboundHandler<AbstractRequest> {
-    //消息分发线程池
-    ExecutorService executorService= Executors.newFixedThreadPool(1);
-    
+public class RequestDispatchHandler extends SimpleChannelInboundHandler<AbstractRequest> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, AbstractRequest msg) throws Exception {
-
-
+        Session session = new Session();
+        Context.getRequestDispatchService().dispatch(session, msg);
     }
 }

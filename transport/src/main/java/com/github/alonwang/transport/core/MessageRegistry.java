@@ -1,30 +1,24 @@
-package com.github.alonwang.transport.core.protocol.registery;
+package com.github.alonwang.transport.core;
 
-import cn.hutool.core.util.ClassUtil;
 import com.github.alonwang.transport.TransportStarter;
-import com.github.alonwang.transport.core.TransportConstant;
-import com.github.alonwang.transport.core.context.Context;
-import com.github.alonwang.transport.core.protocol.AbstractCSMessage;
-import com.github.alonwang.transport.core.protocol.AbstractRequest;
-import com.github.alonwang.transport.core.protocol.MessageHandler;
-import com.github.alonwang.transport.core.protocol.MessageWrapper;
+import com.github.alonwang.transport.protocol.AbstractCSMessage;
+import com.github.alonwang.transport.protocol.MessageHandler;
+import com.github.alonwang.transport.protocol.MessageWrapper;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableBiMap;
 import lombok.extern.slf4j.Slf4j;
-import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
+ * 管理@MessageWrapper,@MessageHandler的映射
+ * TODO 更清楚的解析
+ *
  * @author alonwang
  * @date 2020/7/22 18:28
  * @detail
@@ -60,7 +54,7 @@ public class MessageRegistry implements InitializingBean {
         Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class, true);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal,@MessageHandler annotated class must be interface");
-            Object bean = Context.getApplicationContext().getBean(handlerClazz);
+            Object bean = Context.applicationContext().getBean(handlerClazz);
             Preconditions.checkNotNull(bean, "{} annotated with @MessageHandler but no instance");
             var methods = handlerClazz.getDeclaredMethods();
             for (Method method : methods) {
