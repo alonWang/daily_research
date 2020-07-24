@@ -43,7 +43,7 @@ public class MessageRegistry implements InitializingBean {
         Set<Class<?>> wrappersClasses = reflections.getTypesAnnotatedWith(MessageWrapper.class);
         for (Class<?> wrapperClazz : wrappersClasses) {
             Preconditions.checkArgument(!Modifier.isAbstract(wrapperClazz.getModifiers()), "{} illegal,@MessageWrapper annotated class can't be abstract", wrapperClazz.getSimpleName());
-            Preconditions.checkArgument(wrapperClazz.isAssignableFrom(AbstractCSMessage.class), "{} illegal,@MessageWrapper annotated class must be sub type of AbstractCSMessage", wrapperClazz.getSimpleName());
+            Preconditions.checkArgument(AbstractCSMessage.class.isAssignableFrom(wrapperClazz), "{} illegal,@MessageWrapper annotated class must be sub type of AbstractCSMessage", wrapperClazz.getSimpleName());
             MessageWrapper wrapperAnnotation = wrapperClazz.getAnnotation(MessageWrapper.class);
             Preconditions.checkArgument(wrapperAnnotation.moduleId() > 0 && wrapperAnnotation.commandId() > 0);
             String key = getKey(wrapperAnnotation.moduleId(), wrapperAnnotation.commandId());
@@ -57,7 +57,7 @@ public class MessageRegistry implements InitializingBean {
 
         //解析所有message对应的方法
         Map<Class<? extends AbstractCSMessage>, MethodWrapper> tempMethodWrappers = new HashMap<>();
-        Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class);
+        Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class, true);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal,@MessageHandler annotated class must be interface");
             Object bean = Context.getApplicationContext().getBean(handlerClazz);
@@ -65,23 +65,32 @@ public class MessageRegistry implements InitializingBean {
             var methods = handlerClazz.getDeclaredMethods();
             for (Method method : methods) {
                 var parameterTypes = method.getParameterTypes();
-                List<Class<?>> satisfyParameters = Arrays.stream(parameterTypes).filter(type -> type.isAssignableFrom(AbstractCSMessage.class)).filter(type -> messages.containsValue(type)).collect(Collectors.toList());
+                List<Class<?>> satisfyParameters = Arrays.stream(parameterTypes).filter(AbstractCSMessage.class::isAssignableFrom).filter(type -> messages.containsValue(type)).collect(Collectors.toList());
                 if (satisfyParameters.isEmpty()) {
                     continue;
                 }
-                Preconditions.checkArgument(satisfyParameters.size() != 1, "method {} signature illegal,parameters should only contain exactly one AbstractCSMessage", method);
+                Preconditions.checkArgument(satisfyParameters.size() == 1, "method {} signature illegal,parameters should only contain exactly one AbstractCSMessage", method);
                 Class<? extends AbstractCSMessage> messageClazz = (Class<? extends AbstractCSMessage>) satisfyParameters.get(0);
-                Preconditions.checkArgument(!messageMethods.containsKey(messageClazz), "parameter illegal,{} appear in different methods", messageClazz);
+                Preconditions.checkArgument(!tempMethodWrappers.containsKey(messageClazz), "parameter illegal,{} appear in different methods", messageClazz);
                 MethodWrapper methodWrapper = new MethodWrapper(method, bean);
-                messageMethods.put(messageClazz, methodWrapper);
+                tempMethodWrappers.put(messageClazz, methodWrapper);
             }
         }
+        messageMethods = Collections.unmodifiableMap(tempMethodWrappers);
 
 
     }
 
     private String getKey(int moduleId, int commandId) {
         return moduleId + "_" + commandId;
+    }
+
+    public Class<? extends AbstractCSMessage> getMessage(int moduleId, int commandId) {
+        return messages.get(getKey(moduleId, commandId));
+    }
+
+    public MethodWrapper getWrapper(Class<? extends AbstractCSMessage> clazz) {
+        return messageMethods.get(clazz);
     }
 
 

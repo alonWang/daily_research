@@ -1,6 +1,7 @@
 package com.github.alonwang.transport.hello;
 
 import com.github.alonwang.transport.core.protocol.MessageHandler;
+import com.github.alonwang.transport.hello.message.HelloRequest;
 import com.github.alonwang.transport.protobuf.Hello.HelloMessage;
 
 /**
@@ -10,5 +11,5 @@ import com.github.alonwang.transport.protobuf.Hello.HelloMessage;
  */
 @MessageHandler
 public interface HelloService {
-    void hello(HelloMessage request);
+    void hello(HelloRequest request);
 }

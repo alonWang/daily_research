@@ -5,8 +5,15 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter:2.3.1.RELEASE') {
         exclude group: 'ch.qos.logback'
     }
+    testCompile ('org.springframework.boot:spring-boot-starter-test:2.3.1.RELEASE'){
+        exclude group: 'ch.qos.logback'
+    }
+    testCompile 'org.spockframework:spock-spring:2.0-M3-groovy-3.0'
 
 
+}
+test {
+    useJUnitPlatform()
 }
 buildscript {
     repositories {
