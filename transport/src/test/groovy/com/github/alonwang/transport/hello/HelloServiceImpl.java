@@ -1,5 +1,6 @@
 package com.github.alonwang.transport.hello;
 
+import com.github.alonwang.transport.core.Session;
 import com.github.alonwang.transport.hello.message.HelloRequest;
 import com.github.alonwang.transport.protobuf.Hello;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Service;
  * @detail
  */
 @Service
-public class HelloServiceImpl implements HelloService{
+public class HelloServiceImpl implements HelloService {
     @Override
-    public void hello(HelloRequest request) {
-
+    public void hello(Session session, HelloRequest request) {
+        System.out.println(request.getHelloMessage().getMsg());
     }
 }

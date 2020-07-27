@@ -87,5 +87,8 @@ public class MessageRegistry implements InitializingBean {
         return messageMethods.get(clazz);
     }
 
+    public MethodWrapper getWrapper(int moduleId, int commandId) {
+        return getWrapper(getMessage(moduleId, commandId));
+    }
 
 }

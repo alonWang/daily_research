@@ -23,7 +23,7 @@ public class MessageFactory {
     @Autowired
     private MessageRegistry messageRegistry;
 
-    public AbstractRequest createRequest(int moduleId, int commandId) {
+    public AbstractRequest createRequest(int moduleId, int commandId, Object body) {
         Class<? extends AbstractCSMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
         try {
@@ -32,6 +32,8 @@ public class MessageFactory {
             AbstractRequest abstractRequest = (AbstractRequest) abstractCSMessage;
             CSMessageHeader header = new RequestHeader(moduleId, commandId);
             abstractRequest.setHeader(header);
+            abstractRequest.setBody(body);
+            abstractRequest.decode();
             return abstractRequest;
         } catch (Exception e) {
             log.error("create request error", e);

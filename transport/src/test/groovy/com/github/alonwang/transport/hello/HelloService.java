@@ -1,5 +1,6 @@
 package com.github.alonwang.transport.hello;
 
+import com.github.alonwang.transport.core.Session;
 import com.github.alonwang.transport.protocol.MessageHandler;
 import com.github.alonwang.transport.hello.message.HelloRequest;
 
@@ -10,5 +11,5 @@ import com.github.alonwang.transport.hello.message.HelloRequest;
  */
 @MessageHandler
 public interface HelloService {
-    void hello(HelloRequest request);
+    void hello(Session session,HelloRequest request);
 }
