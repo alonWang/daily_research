@@ -7,9 +7,13 @@ import com.github.alonwang.transport.protocol.MessageWrapper;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -25,11 +29,12 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class MessageRegistry implements InitializingBean {
+public class MessageRegistry implements ApplicationContextAware {
+    private ApplicationContext applicationContext;
     private Map<String, Class<? extends AbstractCSMessage>> messages;
     private Map<Class<? extends AbstractCSMessage>, MethodWrapper> messageMethods;
 
-    @Override
+    @PostConstruct
     public void afterPropertiesSet() throws Exception {
         Reflections reflections = new Reflections(TransportStarter.class.getPackage().getName());
         //记录所有的Message
@@ -54,7 +59,7 @@ public class MessageRegistry implements InitializingBean {
         Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class, true);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal,@MessageHandler annotated class must be interface");
-            Object bean = Context.applicationContext().getBean(handlerClazz);
+            Object bean = applicationContext.getBean(handlerClazz);
             Preconditions.checkNotNull(bean, "{} annotated with @MessageHandler but no instance");
             var methods = handlerClazz.getDeclaredMethods();
             for (Method method : methods) {
@@ -91,4 +96,8 @@ public class MessageRegistry implements InitializingBean {
         return getWrapper(getMessage(moduleId, commandId));
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext=applicationContext;
+    }
 }

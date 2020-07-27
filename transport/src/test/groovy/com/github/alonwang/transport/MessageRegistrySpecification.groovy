@@ -1,6 +1,9 @@
 package com.github.alonwang.transport
 
+import com.github.alonwang.transport.core.Context
 import com.github.alonwang.transport.core.MessageRegistry
+import com.github.alonwang.transport.protobuf.Hello
+import com.github.alonwang.transport.protocol.AbstractRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -20,5 +23,15 @@ class MessageRegistrySpecification extends Specification {
         assert clazz != null
         def wrapper = messageRegistry.getWrapper(clazz)
         assert wrapper != null
+    }
+
+    def "test send message"() {
+        expect:
+        NettyClient nettyClient = new NettyClient();
+        nettyClient.start();
+        Hello.HelloMessage msg = Hello.HelloMessage.newBuilder().setMsg("123").build();
+        AbstractRequest abstractRequest = Context.getMessageFactory().createRequest(1, 1, msg.toByteString());
+        nettyClient.sendMessage(abstractRequest);
+
     }
 }

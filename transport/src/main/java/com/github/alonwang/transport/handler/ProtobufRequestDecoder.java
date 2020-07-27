@@ -25,7 +25,7 @@ public class ProtobufRequestDecoder extends MessageToMessageDecoder<Request> {
         int moduleId = msg.getModuleId();
         int commandId = msg.getCommandId();
 
-        AbstractRequest request = Context.messageFactory().createRequest(moduleId, commandId,msg.getData());
+        AbstractRequest request = Context.getMessageFactory().createRequest(moduleId, commandId,msg.getData());
 
         out.add(request);
     }

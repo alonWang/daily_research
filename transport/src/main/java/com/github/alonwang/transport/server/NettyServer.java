@@ -36,6 +36,7 @@ public class NettyServer {
             worker.shutdownGracefully();
             throw e;
         }
+        log.info("NettyServer start at {}",port);
 
     }
 }

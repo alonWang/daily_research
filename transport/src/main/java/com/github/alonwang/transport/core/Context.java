@@ -17,9 +17,7 @@ import org.springframework.stereotype.Component;
 public class Context implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
     private static RequestDispatchService requestDispatchService;
-    public static MessageFactory messageFactory() {
-        return null;
-    }
+    private static MessageFactory messageFactory;
 
     public static ApplicationContext applicationContext() {
         return applicationContext;
@@ -32,6 +30,15 @@ public class Context implements ApplicationContextAware {
     @Autowired
     public void setRequestDispatchService(RequestDispatchService requestDispatchService) {
         Context.requestDispatchService = requestDispatchService;
+    }
+
+    public static MessageFactory getMessageFactory() {
+        return messageFactory;
+    }
+
+    @Autowired
+    public void setMessageFactory(MessageFactory messageFactory) {
+        Context.messageFactory = messageFactory;
     }
 
     @Override
