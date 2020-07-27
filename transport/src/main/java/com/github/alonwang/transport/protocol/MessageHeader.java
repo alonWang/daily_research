@@ -5,11 +5,11 @@ package com.github.alonwang.transport.protocol;
  * @date 2020/7/13 21:14
  * @detail
  */
-public  class CSMessageHeader {
+public  class MessageHeader {
     private final int moduleId;
     private final int commandId;
 
-    public CSMessageHeader(int moduleId, int commandId) {
+    public MessageHeader(int moduleId, int commandId) {
         this.moduleId = moduleId;
         this.commandId = commandId;
     }

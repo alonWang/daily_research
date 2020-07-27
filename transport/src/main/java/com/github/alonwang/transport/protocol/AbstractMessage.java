@@ -7,11 +7,11 @@ import com.google.protobuf.InvalidProtocolBufferException;
  * @date 2020/7/13 17:15
  * @detail
  */
-public abstract class AbstractCSMessage {
-    private CSMessageHeader header;
+public abstract class AbstractMessage {
+    private MessageHeader header;
     private Object body;
 
-    public CSMessageHeader header() {
+    public MessageHeader header() {
         return header;
     }
 
@@ -22,7 +22,7 @@ public abstract class AbstractCSMessage {
 
     public abstract void encode();
 
-    public void setHeader(CSMessageHeader header) {
+    public void setHeader(MessageHeader header) {
         this.header = header;
     }
 

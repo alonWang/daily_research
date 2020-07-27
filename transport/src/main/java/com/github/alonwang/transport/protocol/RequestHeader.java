@@ -6,7 +6,7 @@ package com.github.alonwang.transport.protocol;
  * @detail
  */
 
-public class RequestHeader extends CSMessageHeader {
+public class RequestHeader extends MessageHeader {
     public RequestHeader(int moduleId, int commandId) {
         super(moduleId, commandId);
     }

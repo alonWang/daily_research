@@ -7,7 +7,7 @@ import com.google.protobuf.ByteString;
  * @date 2020/7/22 17:16
  * @detail
  */
-public abstract class AbstractRequest extends AbstractCSMessage {
+public abstract class AbstractRequest extends AbstractMessage {
     @Override
     public RequestHeader header() {
         return (RequestHeader) super.header();

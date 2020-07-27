@@ -1,7 +1,7 @@
 package com.github.alonwang.transport.protocol.factory;
 
-import com.github.alonwang.transport.protocol.AbstractCSMessage;
-import com.github.alonwang.transport.protocol.CSMessageHeader;
+import com.github.alonwang.transport.protocol.AbstractMessage;
+import com.github.alonwang.transport.protocol.MessageHeader;
 import com.github.alonwang.transport.protocol.AbstractRequest;
 import com.github.alonwang.transport.protocol.RequestHeader;
 import com.github.alonwang.transport.core.MessageRegistry;
@@ -24,13 +24,13 @@ public class MessageFactory {
     private MessageRegistry messageRegistry;
 
     public AbstractRequest createRequest(int moduleId, int commandId, Object body) {
-        Class<? extends AbstractCSMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
+        Class<? extends AbstractMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
         try {
-            Constructor<? extends AbstractCSMessage> constructor = messageClazz.getConstructor();
-            AbstractCSMessage abstractCSMessage = constructor.newInstance();
-            AbstractRequest abstractRequest = (AbstractRequest) abstractCSMessage;
-            CSMessageHeader header = new RequestHeader(moduleId, commandId);
+            Constructor<? extends AbstractMessage> constructor = messageClazz.getConstructor();
+            AbstractMessage abstractMessage = constructor.newInstance();
+            AbstractRequest abstractRequest = (AbstractRequest) abstractMessage;
+            MessageHeader header = new RequestHeader(moduleId, commandId);
             abstractRequest.setHeader(header);
             abstractRequest.setBody(body);
             abstractRequest.decode();

@@ -2,7 +2,6 @@ package com.github.alonwang.transport.hello;
 
 import com.github.alonwang.transport.core.Session;
 import com.github.alonwang.transport.hello.message.HelloRequest;
-import com.github.alonwang.transport.protobuf.Hello;
 import org.springframework.stereotype.Service;
 
 /**

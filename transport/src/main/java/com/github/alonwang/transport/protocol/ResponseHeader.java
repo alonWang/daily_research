@@ -5,7 +5,7 @@ package com.github.alonwang.transport.protocol;
  * @date 2020/7/22 16:51
  * @detail
  */
-public class ResponseHeader extends CSMessageHeader {
+public class ResponseHeader extends MessageHeader {
     private final int errorCode;
 
     public ResponseHeader(int moduleId, int commandId, int errorCode) {
