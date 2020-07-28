@@ -1,18 +1,29 @@
 package com.github.alonwang.transport.core;
 
+import com.github.alonwang.transport.protocol.AbstractRequest;
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 消息任务,
- *
  * @author alonwang
- * @date 2020/7/27 16:17
+ * @date 2020/7/28 11:11
  * @detail
  */
-@FunctionalInterface
-public interface MessageTask<T extends MessageTaskExecutor<?>> {
-    /**
-     * 执行任务
-     *
-     * @param t 主体对象
-     */
-    void execute(T t);
+@Slf4j
+public class MessageTask implements Task<User> {
+    private final MethodWrapper wrapper;
+    private final AbstractRequest request;
+
+    public MessageTask(MethodWrapper wrapper, AbstractRequest request) {
+        this.wrapper = wrapper;
+        this.request = request;
+    }
+
+    @Override
+    public void execute(User user) {
+        try {
+            wrapper.invoke(user, request);
+        } catch (Exception e) {
+            log.error("session task execute error", e);
+        }
+    }
 }

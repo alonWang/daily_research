@@ -2,7 +2,7 @@ package com.github.alonwang.transport.handler;
 
 
 import com.github.alonwang.transport.core.Context;
-import com.github.alonwang.transport.core.Session;
+import com.github.alonwang.transport.core.User;
 import com.github.alonwang.transport.protocol.AbstractRequest;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
@@ -21,21 +21,21 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @ChannelHandler.Sharable
 public class RequestDispatchHandler extends SimpleChannelInboundHandler<AbstractRequest> {
-    private static Map<Channel, Session> channel2SessionMap = new ConcurrentHashMap<>();
+    private static Map<Channel, User> channel2SessionMap = new ConcurrentHashMap<>();
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, AbstractRequest msg) throws Exception {
-        Session session = channel2SessionMap.compute(ctx.channel(), (c, s) -> {
+        User user = channel2SessionMap.compute(ctx.channel(), (c, s) -> {
             if (null == s) {
-                Session createSession = new Session();
-                createSession.setChannel(c);
-                return createSession;
+                User createUser = new User();
+                createUser.setChannel(c);
+                return createUser;
             } else {
                 return s;
             }
 
         });
 
-        Context.getRequestDispatchService().dispatch(session, msg);
+        Context.getRequestDispatchService().dispatch(user, msg);
     }
 }

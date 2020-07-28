@@ -5,11 +5,15 @@ import io.netty.channel.Channel;
 import java.util.Objects;
 
 /**
+ * 实体
+ *
  * @author alonwang
  * @date 2020/7/16 17:11
- * @detail
+ * @detail 它有两个作用
+ * * 唯一标识一个用户
+ * * 异步串行无锁化
  */
-public class Session extends DefaultMessageTaskExecutor<Session> {
+public class User extends DefaultTaskExecutor<User> {
     private volatile Channel channel;
 
     public Channel getChannel() {
@@ -24,8 +28,8 @@ public class Session extends DefaultMessageTaskExecutor<Session> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Session session = (Session) o;
-        return Objects.equals(channel, session.channel);
+        User user = (User) o;
+        return Objects.equals(channel, user.channel);
     }
 
     @Override
