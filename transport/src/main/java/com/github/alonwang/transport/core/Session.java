@@ -9,7 +9,7 @@ import java.util.Objects;
  * @date 2020/7/16 17:11
  * @detail
  */
-public class Session extends DefaultMessageQueueExecutor<Session> {
+public class Session extends DefaultMessageTaskExecutor<Session> {
     private volatile Channel channel;
 
     public Channel getChannel() {

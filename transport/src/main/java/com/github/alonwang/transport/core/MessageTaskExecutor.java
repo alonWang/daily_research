@@ -6,6 +6,6 @@ package com.github.alonwang.transport.core;
  * @detail
  */
 @FunctionalInterface
-public interface MessageQueueExecutor<M extends MessageQueueExecutor<?>> {
-    void addMessage(MessageTask<M> m);
+public interface MessageTaskExecutor<T extends MessageTaskExecutor<?>> {
+    void addTask(MessageTask<T> task);
 }

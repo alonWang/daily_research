@@ -1,8 +1,6 @@
 package com.github.alonwang.transport.core;
 
 import io.netty.util.internal.PlatformDependent;
-import io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 
@@ -17,20 +15,20 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @detail
  */
 @Slf4j
-public class DefaultMessageQueueExecutor<M extends MessageQueueExecutor<?>> implements Runnable, MessageQueueExecutor<M> {
-    private static ExecutorService DEFAULT_EXECUTOR_SERVICE = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2, new CustomizableThreadFactory("MessageQueue-Worker"));
+public class DefaultMessageTaskExecutor<T extends MessageTaskExecutor<?>> implements Runnable, MessageTaskExecutor<T> {
+    private static ExecutorService DEFAULT_EXECUTOR_SERVICE = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2, new CustomizableThreadFactory("MessageTask-Worker"));
     private volatile Thread current;
     private ExecutorService executorService;
-    private Queue<MessageTask<M>> tasks = PlatformDependent.newMpscQueue();
+    private Queue<MessageTask<T>> tasks = PlatformDependent.newMpscQueue();
     private AtomicInteger size = new AtomicInteger();
 
-    public DefaultMessageQueueExecutor() {
+    public DefaultMessageTaskExecutor() {
         executorService = DEFAULT_EXECUTOR_SERVICE;
     }
 
     @Override
-    public void addMessage(MessageTask<M> m) {
-        tasks.add(m);
+    public void addTask(MessageTask<T> task) {
+        tasks.add(task);
         int curSize = size.incrementAndGet();
         if (curSize == 1) {
             executorService.execute(this);
@@ -41,12 +39,13 @@ public class DefaultMessageQueueExecutor<M extends MessageQueueExecutor<?>> impl
     public void run() {
         this.current = Thread.currentThread();
         while (true) {
-            MessageTask<M> task = tasks.poll();
+            MessageTask<T> task = tasks.poll();
             if (task == null) {
                 break;
             }
             try {
-                task.execute((M) this);
+                //转型限制
+                task.execute((T) this);
             } catch (Exception e) {
                 log.error("task execute error", e);
             }
