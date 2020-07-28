@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
 public class HelloServiceImpl implements HelloService {
     @Override
     public void hello(User user, HelloRequest request) {
-        System.out.println(request.getHelloMessage().getMsg());
+        System.out.println(request.getBody().getMsg());
     }
 }

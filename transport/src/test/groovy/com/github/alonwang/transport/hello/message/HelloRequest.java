@@ -13,23 +13,23 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 @MessageWrapper(moduleId = 1, commandId = 1)
 public class HelloRequest extends AbstractRequest {
-    private Hello.HelloMessage helloMessage;
+    private Hello.HelloMessage body;
 
     @Override
     public void decode() throws InvalidProtocolBufferException {
-        helloMessage = Hello.HelloMessage.parseFrom(body());
+        body = Hello.HelloMessage.parseFrom(body());
     }
 
     @Override
     public void encode() {
-        setBody(helloMessage.toByteString());
+        setBody(body.toByteString());
     }
 
-    public Hello.HelloMessage getHelloMessage() {
-        return helloMessage;
+    public Hello.HelloMessage getBody() {
+        return body;
     }
 
-    public void setHelloMessage(Hello.HelloMessage helloMessage) {
-        this.helloMessage = helloMessage;
+    public void setBody(Hello.HelloMessage body) {
+        this.body = body;
     }
 }

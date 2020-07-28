@@ -12,25 +12,25 @@ import lombok.EqualsAndHashCode;
  * @detail
  */
 @EqualsAndHashCode(callSuper = true)
-@MessageWrapper(moduleId = 1, commandId =2)
+@MessageWrapper(moduleId = 1, commandId = 2)
 public class HelloResponse extends AbstractResponse {
-    private Hello.MeToMessage data;
+    private Hello.MeToMessage body;
 
     @Override
     public void decode() throws InvalidProtocolBufferException {
-        data = Hello.MeToMessage.parseFrom(body());
+        body = Hello.MeToMessage.parseFrom(body());
     }
 
     @Override
     public void encode() {
-        setBody(data.toByteString());
+        setBody(body.toByteString());
     }
 
-    public Hello.MeToMessage getData() {
-        return data;
+    public Hello.MeToMessage getBody() {
+        return body;
     }
 
-    public void setData(Hello.MeToMessage data) {
-        this.data = data;
+    public void setBody(Hello.MeToMessage body) {
+        this.body = body;
     }
 }
