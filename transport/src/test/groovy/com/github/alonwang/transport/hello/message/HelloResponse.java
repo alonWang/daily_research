@@ -1,8 +1,8 @@
 package com.github.alonwang.transport.hello.message;
 
+import com.github.alonwang.transport.protobuf.Hello;
 import com.github.alonwang.transport.protocol.AbstractResponse;
 import com.github.alonwang.transport.protocol.MessageWrapper;
-import com.github.alonwang.transport.protobuf.Hello;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.EqualsAndHashCode;
 
@@ -14,23 +14,23 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @MessageWrapper(moduleId = 1, commandId = 2)
 public class HelloResponse extends AbstractResponse {
-    private Hello.MeToMessage body;
+    private Hello.MeToMessage message;
 
     @Override
     public void decode() throws InvalidProtocolBufferException {
-        body = Hello.MeToMessage.parseFrom(body());
+        message = Hello.MeToMessage.parseFrom(body());
     }
 
     @Override
     public void encode() {
-        setBody(body.toByteString());
+        setBody(message.toByteString());
     }
 
-    public Hello.MeToMessage getBody() {
-        return body;
+    public Hello.MeToMessage getMessage() {
+        return message;
     }
 
-    public void setBody(Hello.MeToMessage body) {
-        this.body = body;
+    public void setMessage(Hello.MeToMessage message) {
+        this.message = message;
     }
 }
