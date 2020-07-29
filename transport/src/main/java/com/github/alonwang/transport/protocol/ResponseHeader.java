@@ -6,11 +6,10 @@ package com.github.alonwang.transport.protocol;
  * @detail
  */
 public class ResponseHeader extends MessageHeader {
-    private final int errorCode;
+    private  int errorCode;
 
-    public ResponseHeader(int moduleId, int commandId, int errorCode) {
+    public ResponseHeader(int moduleId, int commandId) {
         super(moduleId, commandId);
-        this.errorCode = errorCode;
     }
 
     public int errorCode() {
@@ -19,5 +18,9 @@ public class ResponseHeader extends MessageHeader {
 
     public int getErrorCode() {
         return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 }

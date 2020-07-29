@@ -1,9 +1,7 @@
 package com.github.alonwang.transport.protocol.factory;
 
-import com.github.alonwang.transport.protocol.AbstractMessage;
-import com.github.alonwang.transport.protocol.MessageHeader;
-import com.github.alonwang.transport.protocol.AbstractRequest;
-import com.github.alonwang.transport.protocol.RequestHeader;
+import com.github.alonwang.transport.core.Context;
+import com.github.alonwang.transport.protocol.*;
 import com.github.alonwang.transport.core.MessageRegistry;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +16,13 @@ import java.lang.reflect.Constructor;
  * @detail
  */
 @Slf4j
-@Component
 public class MessageFactory {
-    @Autowired
-    private MessageRegistry messageRegistry;
 
-    public AbstractRequest createRequest(int moduleId, int commandId, Object body) {
-        Class<? extends AbstractMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
+
+    public static <T extends AbstractRequest> T createRequest(int moduleId, int commandId, Object body) {
+        Class<? extends AbstractMessage> messageClazz = Context.getMessageRegistry().getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
+        Preconditions.checkArgument(AbstractRequest.class.isAssignableFrom(messageClazz));
         try {
             Constructor<? extends AbstractMessage> constructor = messageClazz.getConstructor();
             AbstractMessage abstractMessage = constructor.newInstance();
@@ -34,7 +31,24 @@ public class MessageFactory {
             abstractRequest.setHeader(header);
             abstractRequest.setBody(body);
             abstractRequest.decode();
-            return abstractRequest;
+            return (T) abstractRequest;
+        } catch (Exception e) {
+            log.error("create request error", e);
+        }
+        return null;
+    }
+
+    public static <T extends AbstractResponse> T createResponse(int moduleId, int commandId) {
+        Class<? extends AbstractMessage> messageClazz = Context.getMessageRegistry().getMessage(moduleId, commandId);
+        Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
+        Preconditions.checkArgument(AbstractResponse.class.isAssignableFrom(messageClazz));
+        try {
+            Constructor<? extends AbstractMessage> constructor = messageClazz.getConstructor();
+            AbstractMessage abstractMessage = constructor.newInstance();
+            AbstractResponse abstractResponse = (AbstractResponse) abstractMessage;
+            MessageHeader header = new ResponseHeader(moduleId, commandId);
+            abstractResponse.setHeader(header);
+            return (T) abstractResponse;
         } catch (Exception e) {
             log.error("create request error", e);
         }
