@@ -57,4 +57,8 @@ public class DefaultTaskExecutor<T extends TaskExecutor<?>> implements Runnable,
             }
         }
     }
+
+    public boolean inThread() {
+        return Thread.currentThread() == current;
+    }
 }

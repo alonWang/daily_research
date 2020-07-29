@@ -1,5 +1,6 @@
 package com.github.alonwang.transport.core;
 
+import com.github.alonwang.transport.protocol.AbstractMessage;
 import io.netty.channel.Channel;
 
 import java.util.Objects;
@@ -35,5 +36,16 @@ public class User extends DefaultTaskExecutor<User> {
     @Override
     public int hashCode() {
         return Objects.hash(channel);
+    }
+
+    public void sendMessage(AbstractMessage message) {
+        message.encode();
+        if (inThread()) {
+            channel.writeAndFlush(message);
+        } else {
+            execute((user -> {
+                channel.writeAndFlush(message);
+            }));
+        }
     }
 }
