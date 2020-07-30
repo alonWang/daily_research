@@ -12,4 +12,5 @@ import com.github.alonwang.transport.hello.message.HelloRequest;
 @MessageHandler
 public interface HelloService {
     void hello(User user, HelloRequest request);
+
 }

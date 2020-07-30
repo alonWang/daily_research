@@ -33,7 +33,7 @@ class MessageRegistrySpecification extends Specification {
         Hello.HelloMessage msg = Hello.HelloMessage.newBuilder().setMsg("123").build();
         AbstractRequest abstractRequest = MessageFactory.createRequest(1, 1, msg.toByteString());
         nettyClient.sendMessage(abstractRequest);
-
+        Thread.sleep(5000);
     }
 
 }

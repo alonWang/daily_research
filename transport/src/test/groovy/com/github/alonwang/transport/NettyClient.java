@@ -1,6 +1,8 @@
 package com.github.alonwang.transport;
 
 import com.github.alonwang.transport.handler.ProtobufRequestDecoder;
+import com.github.alonwang.transport.handler.ProtobufResponseDecoder;
+import com.github.alonwang.transport.handler.ResponseDispatchHandler;
 import com.github.alonwang.transport.protobuf.Base;
 import com.github.alonwang.transport.protocol.AbstractRequest;
 import io.netty.bootstrap.Bootstrap;
@@ -24,7 +26,8 @@ public class NettyClient {
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
     private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
     private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Request.getDefaultInstance());
-    private static final ChannelInboundHandler ResponseDecoder = new ResponseDecoder();
+    private static final ChannelInboundHandler protobufResponseDecoder=new ProtobufResponseDecoder();
+    private static final ChannelInboundHandler responseDispatchHandler=new ResponseDispatchHandler();
     private Channel channel;
 
     public static void main(String[] args) throws InterruptedException, UnknownHostException {
@@ -42,7 +45,8 @@ public class NettyClient {
                 //protobuf decode固定格式
                 pipeline.addLast(new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
                 pipeline.addLast(protobufDecoder);
-
+                pipeline.addLast(protobufResponseDecoder);
+                pipeline.addLast(responseDispatchHandler);
                 //protobuf encode 固定格式
                 pipeline.addLast(new LengthFieldPrepender(4));
                 pipeline.addLast(protobufEncoder);
@@ -52,7 +56,6 @@ public class NettyClient {
         channel = future.channel();
     }
 
-    //TODO 最简化
     public void sendMessage(AbstractRequest request) {
         request.encode();
         Base.Request protoRequest = Base.Request.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setData(request.body()).build();

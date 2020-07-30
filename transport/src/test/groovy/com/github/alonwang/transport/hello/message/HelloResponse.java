@@ -4,6 +4,7 @@ import com.github.alonwang.transport.protobuf.Hello;
 import com.github.alonwang.transport.protocol.AbstractResponse;
 import com.github.alonwang.transport.protocol.MessageWrapper;
 import com.google.protobuf.InvalidProtocolBufferException;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -12,6 +13,7 @@ import lombok.EqualsAndHashCode;
  * @detail
  */
 @EqualsAndHashCode(callSuper = true)
+@Data
 @MessageWrapper(moduleId = 1, commandId = 2)
 public class HelloResponse extends AbstractResponse {
     private Hello.MeToMessage message;

@@ -7,6 +7,8 @@ import com.github.alonwang.transport.protobuf.Hello;
 import com.github.alonwang.transport.protocol.factory.MessageFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.locks.LockSupport;
+
 /**
  * @author alonwang
  * @date 2020/7/24 11:47
@@ -18,7 +20,13 @@ public class HelloServiceImpl implements HelloService {
     public void hello(User user, HelloRequest request) {
         System.out.println(request.getBody().getMsg());
         HelloResponse response = MessageFactory.createResponse(1, 2);
-        response.setMessage(Hello.MeToMessage.newBuilder().setMsg(request.getBody().getMsg()).build());
+        Hello.MeToMessage me = Hello.MeToMessage.newBuilder().setMsg(request.getBody().getMsg()).build();
+        response.setMessage(me);
         user.sendMessage(response);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
