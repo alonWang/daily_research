@@ -1,6 +1,6 @@
 package com.github.alonwang.transport
 
-
+import com.github.alonwang.transport.client.NettyClient
 import com.github.alonwang.transport.core.MessageRegistry
 import com.github.alonwang.transport.protobuf.Hello
 import com.github.alonwang.transport.protocol.AbstractRequest

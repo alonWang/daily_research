@@ -1,4 +1,4 @@
-package com.github.alonwang.transport;
+package com.github.alonwang.transport.client;
 
 import com.github.alonwang.transport.handler.ProtobufRequestDecoder;
 import com.github.alonwang.transport.handler.ProtobufResponseDecoder;
@@ -35,7 +35,7 @@ public class NettyClient {
 
     }
 
-    public void start() throws UnknownHostException, InterruptedException {
+    public void start(int serverPort) throws UnknownHostException, InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(bossGroup).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true).handler(new ChannelInitializer<SocketChannel>() {
@@ -52,7 +52,7 @@ public class NettyClient {
                 pipeline.addLast(protobufEncoder);
             }
         });
-        ChannelFuture future = bootstrap.connect("localhost",80).sync();
+        ChannelFuture future = bootstrap.connect("localhost",serverPort).sync();
         channel = future.channel();
     }
 
