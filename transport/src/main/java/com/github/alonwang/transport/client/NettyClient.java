@@ -25,8 +25,8 @@ import java.net.UnknownHostException;
 public class NettyClient {
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
     private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
-    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Request.getDefaultInstance());
-    private static final ChannelInboundHandler protobufResponseDecoder=new ProtobufResponseDecoder();
+    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Response.getDefaultInstance());
+    private static final ChannelInboundHandler protobufResponseDecoder = new ProtobufResponseDecoder();
     private static final ChannelInboundHandler responseDispatchHandler=new ResponseDispatchHandler();
     private Channel channel;
 
@@ -47,7 +47,7 @@ public class NettyClient {
                 pipeline.addLast(protobufDecoder);
                 pipeline.addLast(protobufResponseDecoder);
                 pipeline.addLast(responseDispatchHandler);
-                //protobuf encode 固定格式
+                //protobuf encode固定格式
                 pipeline.addLast(new LengthFieldPrepender(4));
                 pipeline.addLast(protobufEncoder);
             }

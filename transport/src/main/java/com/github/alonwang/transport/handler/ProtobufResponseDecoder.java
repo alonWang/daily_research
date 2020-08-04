@@ -5,7 +5,6 @@ import com.github.alonwang.transport.protocol.factory.MessageFactory;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import io.netty.handler.codec.MessageToMessageEncoder;
 
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class ProtobufResponseDecoder extends MessageToMessageDecoder<Response> {
     @Override
     protected void decode(ChannelHandlerContext ctx, Response msg, List<Object> out) throws Exception {
         AbstractResponse abstractResponse = MessageFactory.createResponse(msg.getModuleId(), msg.getCommandId());
+        abstractResponse.setBody(msg.getData());
         abstractResponse.decode();
         out.add(abstractResponse);
     }

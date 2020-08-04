@@ -29,11 +29,13 @@ class MessageRegistrySpecification extends Specification {
     def "test client send message"() {
         expect:
         NettyClient nettyClient = new NettyClient();
-        nettyClient.start();
-        Hello.HelloMessage msg = Hello.HelloMessage.newBuilder().setMsg("123").build();
-        AbstractRequest abstractRequest = MessageFactory.createRequest(1, 1, msg.toByteString());
-        nettyClient.sendMessage(abstractRequest);
-        Thread.sleep(5000);
+        nettyClient.start(80);
+        while (true) {
+            Hello.HelloMessage msg = Hello.HelloMessage.newBuilder().setMsg("123").build();
+            AbstractRequest abstractRequest = MessageFactory.createRequest(1, 1, msg.toByteString());
+            nettyClient.sendMessage(abstractRequest);
+            Thread.sleep(1000);
+        }
     }
 
 }

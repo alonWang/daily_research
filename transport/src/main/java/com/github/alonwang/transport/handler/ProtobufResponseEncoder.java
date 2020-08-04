@@ -17,9 +17,10 @@ import java.util.List;
 public class ProtobufResponseEncoder extends MessageToMessageEncoder<AbstractResponse> {
     @Override
     protected void encode(ChannelHandlerContext ctx, AbstractResponse msg, List<Object> out) throws Exception {
+        msg.encode();
         Base.Response.Builder response = Base.Response.newBuilder();
         response.setModuleId(msg.header().getModuleId()).setCommandId(msg.header().getCommandId()).setErrorCode(msg.header().getErrorCode());
-        response.setData(response.getData());
+        response.setData(msg.body());
         out.add(response);
     }
 }
