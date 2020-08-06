@@ -1,9 +1,12 @@
 package com.github.alonwang.design_pattern.strategy;
 
+/**
+ * 商店，会计算购买商品需要多少钱
+ */
 public class Shopping {
-	ComputableStrategy strategy;
+	private DiscountStrategy strategy;
 
-	public void setStrategy(ComputableStrategy strategy) {
+	public void setStrategy(DiscountStrategy strategy) {
 		this.strategy = strategy;
 	}
 
