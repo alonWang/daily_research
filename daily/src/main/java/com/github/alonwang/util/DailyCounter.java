@@ -1,5 +1,8 @@
 package com.github.alonwang.util;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,13 +15,27 @@ import java.time.ZoneId;
  * @date 2020/8/7 5:18 下午
  * @detail
  */
-
+@Getter
+@Setter
 public class DailyCounter {
     private int count;
     private long timestamp;
 
     public int count() {
         return isSameDay() ? count : 0;
+    }
+
+    public DailyCounter() {
+        this.timestamp = System.currentTimeMillis();
+    }
+
+    public DailyCounter(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public DailyCounter(int count, long timestamp) {
+        this.count = count;
+        this.timestamp = timestamp;
     }
 
     public boolean incr(int limit) {
