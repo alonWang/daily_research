@@ -14,15 +14,15 @@ class DailyCounterSpecification extends Specification {
         given:
         DailyCounter counter = new DailyCounter(System.currentTimeMillis());
         expect:
-        true == counter.incr(2);
-        true == counter.incr(2);
-        false == counter.incr(2);
+        true == counter.incrOrFail(2);
+        true == counter.incrOrFail(2);
+        false == counter.incrOrFail(2);
     }
 
     def "test change day"() {
         given:
         DailyCounter counter = new DailyCounter(1, System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1));
         expect:
-        true == counter.incr(1)
+        true == counter.incrOrFail(1)
     }
 }
