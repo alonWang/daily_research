@@ -1,13 +1,10 @@
 package com.github.alonwang.transport;
 
-import com.github.alonwang.transport.handler.NioServerChannelInitializer;
 import com.github.alonwang.transport.server.NettyServer;
-import lombok.SneakyThrows;
+import com.github.alonwang.transport.server.handler.NioServerChannelInitializer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.event.ContextStartedEvent;
-import org.springframework.context.event.EventListener;
 
 /**
  * @author alonwang

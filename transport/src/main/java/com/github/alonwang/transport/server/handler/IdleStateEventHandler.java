@@ -1,4 +1,4 @@
-package com.github.alonwang.transport.handler;
+package com.github.alonwang.transport.server.handler;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,10 +1,10 @@
 package com.github.alonwang.transport.client;
 
-import com.github.alonwang.transport.handler.ProtobufRequestDecoder;
-import com.github.alonwang.transport.handler.ProtobufResponseDecoder;
-import com.github.alonwang.transport.handler.ResponseDispatchHandler;
+import com.github.alonwang.transport.client.handler.ProtobufResponseDecoder;
+import com.github.alonwang.transport.client.handler.ResponseDispatchHandler;
 import com.github.alonwang.transport.protobuf.Base;
 import com.github.alonwang.transport.protocol.AbstractRequest;
+import com.github.alonwang.transport.server.handler.ProtobufRequestDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

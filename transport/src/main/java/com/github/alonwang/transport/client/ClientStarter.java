@@ -1,15 +1,8 @@
-package com.github.alonwang.transport;
+package com.github.alonwang.transport.client;
 
-import com.github.alonwang.transport.client.NettyClient;
-import com.github.alonwang.transport.handler.NioServerChannelInitializer;
-import com.github.alonwang.transport.server.NettyServer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @author alonwang
