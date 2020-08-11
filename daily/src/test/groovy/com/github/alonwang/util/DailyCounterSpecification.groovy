@@ -25,4 +25,13 @@ class DailyCounterSpecification extends Specification {
         expect:
         true == counter.incrOrFail(1)
     }
+
+    def "test canIncr"() {
+        given:
+        DailyCounter counter = new DailyCounter(1, System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1))
+        expect:
+        true == counter.canIncr(1);
+        true == counter.incrOrFail(1);
+        false == counter.canIncr(1);
+    }
 }

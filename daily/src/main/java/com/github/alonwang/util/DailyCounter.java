@@ -16,8 +16,7 @@ public class DailyCounter {
     private int count;
     private long timestamp;
 
-    public DailyCounter() {
-    }
+
 
     public DailyCounter(long timestamp) {
         this.timestamp = timestamp;
@@ -69,6 +68,10 @@ public class DailyCounter {
             return true;
         }
         return false;
+    }
+
+    @Deprecated
+    public DailyCounter() {
     }
 
     public int getCount() {
