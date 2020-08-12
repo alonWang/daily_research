@@ -4,6 +4,7 @@ import com.github.alonwang.transport.TransportStarter;
 import com.github.alonwang.transport.protocol.AbstractMessage;
 import com.github.alonwang.transport.protocol.MessageHandler;
 import com.github.alonwang.transport.protocol.MessageWrapper;
+import com.github.alonwang.transport.server.task.MethodWrapper;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;

@@ -1,10 +1,10 @@
-package com.github.alonwang.transport.service;
+package com.github.alonwang.transport.server.service;
 
 import com.github.alonwang.transport.core.MessageRegistry;
-import com.github.alonwang.transport.core.MethodWrapper;
-import com.github.alonwang.transport.core.User;
-import com.github.alonwang.transport.core.MessageTask;
 import com.github.alonwang.transport.protocol.AbstractRequest;
+import com.github.alonwang.transport.server.task.MessageTask;
+import com.github.alonwang.transport.server.task.MethodWrapper;
+import com.github.alonwang.transport.server.task.User;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

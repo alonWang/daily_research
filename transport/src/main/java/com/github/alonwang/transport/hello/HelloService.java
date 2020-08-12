@@ -1,8 +1,8 @@
 package com.github.alonwang.transport.hello;
 
-import com.github.alonwang.transport.core.User;
-import com.github.alonwang.transport.protocol.MessageHandler;
 import com.github.alonwang.transport.hello.message.HelloRequest;
+import com.github.alonwang.transport.protocol.MessageHandler;
+import com.github.alonwang.transport.server.task.User;
 
 /**
  * @author alonwang

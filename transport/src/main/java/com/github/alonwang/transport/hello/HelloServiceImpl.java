@@ -1,13 +1,11 @@
 package com.github.alonwang.transport.hello;
 
-import com.github.alonwang.transport.core.User;
 import com.github.alonwang.transport.hello.message.HelloRequest;
 import com.github.alonwang.transport.hello.message.HelloResponse;
 import com.github.alonwang.transport.protobuf.Hello;
 import com.github.alonwang.transport.protocol.factory.MessageFactory;
+import com.github.alonwang.transport.server.task.User;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * @author alonwang

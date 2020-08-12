@@ -1,7 +1,6 @@
 package com.github.alonwang.transport.core;
 
-import com.github.alonwang.transport.protocol.factory.MessageFactory;
-import com.github.alonwang.transport.service.RequestDispatchService;
+import com.github.alonwang.transport.server.service.RequestDispatchService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

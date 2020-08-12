@@ -2,8 +2,8 @@ package com.github.alonwang.transport.server.handler;
 
 
 import com.github.alonwang.transport.core.Context;
-import com.github.alonwang.transport.core.User;
 import com.github.alonwang.transport.protocol.AbstractRequest;
+import com.github.alonwang.transport.server.task.User;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

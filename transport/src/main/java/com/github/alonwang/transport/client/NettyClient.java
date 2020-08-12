@@ -30,10 +30,6 @@ public class NettyClient {
     private static final ChannelInboundHandler responseDispatchHandler=new ResponseDispatchHandler();
     private Channel channel;
 
-    public static void main(String[] args) throws InterruptedException, UnknownHostException {
-
-
-    }
 
     public void start(int serverPort) throws UnknownHostException, InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
