@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Request分发器,将Request分发到业务线程池中
+ * 找到channel对应的User，并将消息分发到业务线程池
  *
  * @author alonwang
  * @date 2020/7/13 16:46

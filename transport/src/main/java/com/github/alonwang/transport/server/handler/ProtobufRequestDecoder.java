@@ -11,7 +11,7 @@ import java.util.List;
 import static com.github.alonwang.transport.protobuf.Base.Request;
 
 /**
- * 将protobuf转换为封装的request
+ * 将protobuf的request转换为封装的request
  *
  * @author alonwang
  * @date 2020/7/13 17:29
@@ -25,9 +25,7 @@ public class ProtobufRequestDecoder extends MessageToMessageDecoder<Request> {
     protected void decode(ChannelHandlerContext ctx, Request msg, List<Object> out) throws Exception {
         int moduleId = msg.getModuleId();
         int commandId = msg.getCommandId();
-
         AbstractRequest request = MessageFactory.createRequest(moduleId, commandId, msg.getData());
-
         out.add(request);
     }
 }

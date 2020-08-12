@@ -29,4 +29,12 @@ public abstract class AbstractMessage {
     public void setBody(Object body) {
         this.body = body;
     }
+
+    @Override
+    public String toString() {
+        return "AbstractMessage{" +
+                "header=" + header +
+                ", body=" + body +
+                '}';
+    }
 }

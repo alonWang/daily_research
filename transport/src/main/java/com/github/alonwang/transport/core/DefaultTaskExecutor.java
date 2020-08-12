@@ -12,7 +12,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 执行器的默认实现,主体可直接继承此类.
+ * 执行器的默认实现,异步串行无锁化的核心
+ * 为了拥有存储和串行执行任务的能力,所有的主体都需要实现此接口
  *
  * @author alonwang
  * @date 2020/7/27 16:25

@@ -6,6 +6,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 
 /**
+ * 处理空闲Channel
+ *
  * @author alonwang
  * @date 2020/7/13 15:27
  * @detail
@@ -20,7 +22,6 @@ public class IdleStateEventHandler extends ChannelInboundHandlerAdapter {
 
         IdleStateEvent event = (IdleStateEvent) evt;
         if (event == IdleStateEvent.READER_IDLE_STATE_EVENT || event == IdleStateEvent.WRITER_IDLE_STATE_EVENT) {
-            //TODO 发送关闭消息
             ctx.channel().close();
         }
     }
