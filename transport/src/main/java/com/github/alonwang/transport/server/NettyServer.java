@@ -24,14 +24,12 @@ public class NettyServer {
         try {
             serverBootstrap.group(boss, worker)
                     .channel(NioServerSocketChannel.class)
-                    //ChannelOption的含义
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .childHandler(initializer);
             serverBootstrap.bind(port).sync();
         } catch (Exception e) {
-            //为什么需要去关闭？ 它是什么时候被启动的
             boss.shutdownGracefully();
             worker.shutdownGracefully();
             throw e;

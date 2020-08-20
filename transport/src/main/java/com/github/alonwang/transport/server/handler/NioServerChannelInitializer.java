@@ -26,16 +26,21 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+        //闲置链接监听
         pipeline.addLast(new IdleStateHandler(60, 60, 0));
+        //闲置链接处理单元
         pipeline.addLast(idleEventHandler);
-        //protobuf decode固定格式
+        //1 protobuf解码单元
         pipeline.addLast(new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));
         pipeline.addLast(protobufDecoder);
+        //2 protobuf封装为自定义协议Request单元
         pipeline.addLast(protobufRequestDecoder);
+        //3 Request分发执行单元
         pipeline.addLast(requestDispatchHandler);
-        //protobuuf encode固定格式
+        //two protobuuf编码单元
         pipeline.addLast(new LengthFieldPrepender(4));
         pipeline.addLast(protobufEncoder);
+        //one Response转换为protobuf单元
         pipeline.addLast(responseEncoder);
     }
 }
