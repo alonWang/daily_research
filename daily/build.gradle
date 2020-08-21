@@ -1,5 +1,8 @@
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile('org.springframework.boot:spring-boot-starter:2.3.1.RELEASE') {
+        exclude group: 'ch.qos.logback'
+    }
     implementation 'org.reflections:reflections:0.9.12'
     implementation 'io.github.openfeign:feign-core:10.2.3'
     implementation 'io.github.openfeign:feign-gson:10.2.3'
