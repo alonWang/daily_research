@@ -1,6 +1,5 @@
 package com.github.alonwang.handler;
 
-import com.github.alonwang.register.HandlerRegister;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -9,7 +8,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * @author alonwang
@@ -20,12 +20,17 @@ import java.util.Map;
 public class HandlerRegisterManager implements ApplicationContextAware, ApplicationRunner, Ordered {
     private ApplicationContext applicationContext;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Map<String, HandlerRegister> registerMap = applicationContext.getBeansOfType(HandlerRegister.class);
-        for (HandlerRegister register : registerMap.values()) {
-            register.getClass().getGenericSuperclass();
-        }
+        applicationContext.getBeansOfType(HandlerRegister.class).values().forEach(register -> {
+            Type type = register.getClass().getGenericSuperclass();
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            Class<Handler<?>> handlerClazz = (Class<Handler<?>>) parameterizedType.getActualTypeArguments()[1];
+            applicationContext.getBeansOfType(handlerClazz).values().forEach(handler -> {
+                register.register(handler.id(), handler);
+            });
+        });
     }
 
     @Override

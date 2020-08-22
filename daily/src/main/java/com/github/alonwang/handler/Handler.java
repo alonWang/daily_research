@@ -7,6 +7,6 @@ package com.github.alonwang.handler;
  * @date 2020/8/20 7:50 下午
  * @detail
  */
-public interface Handler<T> {
-    T type();
+public interface Handler<I> {
+    I id();
 }

@@ -1,4 +1,4 @@
-package com.github.alonwang;
+package com.github.alonwang.lang.bytecode;
 
 /**
  * @author alonwang

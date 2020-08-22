@@ -1,4 +1,4 @@
-package com.github.alonwang.register;
+package com.github.alonwang.handler;
 
 import java.util.Map;
 
@@ -27,8 +27,7 @@ public interface HandlerRegister<I, H> {
      *
      * @param id
      * @param handler
-     * @return true 注册成功，false 注册失败
      */
-    boolean register(I id, H handler);
+    void register(I id, H handler);
 
 }
