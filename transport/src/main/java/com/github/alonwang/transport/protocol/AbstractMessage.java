@@ -1,7 +1,5 @@
 package com.github.alonwang.transport.protocol;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 /**
  * @author alonwang
  * @date 2020/7/13 17:15
@@ -18,7 +16,8 @@ public abstract class AbstractMessage {
     public Object body() {
         return body;
     }
-    public abstract void decode() throws InvalidProtocolBufferException;
+
+    public abstract void decode() throws Exception;
 
     public abstract void encode();
 

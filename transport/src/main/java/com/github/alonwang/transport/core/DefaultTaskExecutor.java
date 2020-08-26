@@ -56,6 +56,7 @@ public class DefaultTaskExecutor<T extends TaskExecutor<?>> implements Runnable,
             }
             int curSize = size.decrementAndGet();
             if (curSize <= 0) {
+                current = null;
                 break;
             }
         }
