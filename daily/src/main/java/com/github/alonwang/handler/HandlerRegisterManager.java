@@ -12,6 +12,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
+ * Handler注册管理器， 使用Spring自动完成注册。
+ *
  * @author alonwang
  * @date 2020/8/20 8:42 下午
  * @detail

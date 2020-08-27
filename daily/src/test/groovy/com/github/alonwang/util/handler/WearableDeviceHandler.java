@@ -3,6 +3,8 @@ package com.github.alonwang.util.handler;
 import com.github.alonwang.handler.Handler;
 
 /**
+ * 可穿戴设备handler
+ *
  * @author alonwang
  * @date 2020/8/22 3:55 下午
  * @detail

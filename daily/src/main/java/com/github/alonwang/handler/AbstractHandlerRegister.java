@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 注册器抽象实现
+ *
  * @author alonwang
  * @date 2020/8/20 7:51 下午
  * @detail

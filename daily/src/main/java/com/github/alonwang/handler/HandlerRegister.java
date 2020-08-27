@@ -3,6 +3,8 @@ package com.github.alonwang.handler;
 import java.util.Map;
 
 /**
+ * Handler注册器
+ *
  * @author alonwang
  * @date 2020/8/20 8:01 下午
  * @detail

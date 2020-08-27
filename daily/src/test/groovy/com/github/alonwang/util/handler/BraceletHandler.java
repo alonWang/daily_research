@@ -3,6 +3,8 @@ package com.github.alonwang.util.handler;
 import org.springframework.stereotype.Component;
 
 /**
+ * 手环handler
+ *
  * @author alonwang
  * @date 2020/8/22 4:03 下午
  * @detail
