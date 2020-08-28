@@ -1,19 +1,23 @@
 package com.github.alonwang.transport.protocol;
 
 /**
+ * 消息抽象
+ *
  * @author alonwang
  * @date 2020/7/13 17:15
- * @detail
+ * @detail 消息包含消息头和消息体两部分。
+ * 消息头容纳了 moduleId，commandId等元信息
+ * 消息体是具体的数据，需要根据moduleId和commandId解析
  */
-public abstract class AbstractMessage {
+public abstract class AbstractMessage<T> {
     private MessageHeader header;
-    private Object body;
+    private T body;
 
     public MessageHeader header() {
         return header;
     }
 
-    public Object body() {
+    public T body() {
         return body;
     }
 
@@ -25,7 +29,7 @@ public abstract class AbstractMessage {
         this.header = header;
     }
 
-    public void setBody(Object body) {
+    public void setBody(T body) {
         this.body = body;
     }
 

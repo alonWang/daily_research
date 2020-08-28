@@ -9,7 +9,7 @@ import com.google.protobuf.ByteString;
  * @date 2020/7/13 17:23
  * @detail
  */
-public abstract class AbstractResponse extends AbstractMessage {
+public abstract class AbstractResponse extends AbstractMessage<ByteString> {
     @Override
     public ResponseHeader header() {
         return (ResponseHeader) super.header();
@@ -17,6 +17,6 @@ public abstract class AbstractResponse extends AbstractMessage {
 
     @Override
     public ByteString body() {
-        return (ByteString) super.body();
+        return super.body();
     }
 }

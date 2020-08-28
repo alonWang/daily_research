@@ -2,11 +2,9 @@ package com.github.alonwang.transport.protocol.factory;
 
 import com.github.alonwang.transport.core.Context;
 import com.github.alonwang.transport.protocol.*;
-import com.github.alonwang.transport.core.MessageRegistry;
 import com.google.common.base.Preconditions;
+import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Constructor;
 
@@ -19,7 +17,7 @@ import java.lang.reflect.Constructor;
 public class MessageFactory {
 
 
-    public static <T extends AbstractRequest> T createRequest(int moduleId, int commandId, Object body) {
+    public static <T extends AbstractRequest> T createRequest(int moduleId, int commandId, ByteString body) {
         Class<? extends AbstractMessage> messageClazz = Context.getMessageRegistry().getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
         Preconditions.checkArgument(AbstractRequest.class.isAssignableFrom(messageClazz));
