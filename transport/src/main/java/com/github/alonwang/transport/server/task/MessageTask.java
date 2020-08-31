@@ -4,6 +4,8 @@ import com.github.alonwang.transport.protocol.AbstractRequest;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 消息任务
+ *
  * @author alonwang
  * @date 2020/7/28 11:11
  * @detail

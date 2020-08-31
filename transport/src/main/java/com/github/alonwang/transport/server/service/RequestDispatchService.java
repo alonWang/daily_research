@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 将消息分发到对应的方法上执行
+ * 分发器，将消息分发到对应的方法上执行
  *
  * @author alonwang
  * @date 2020/7/24 15:15

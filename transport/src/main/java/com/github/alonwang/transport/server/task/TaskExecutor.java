@@ -1,7 +1,7 @@
 package com.github.alonwang.transport.server.task;
 
 /**
- * 执行器,
+ * 执行器
  *
  * @author alonwang
  * @date 2020/7/27 15:47
