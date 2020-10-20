@@ -7,6 +7,7 @@ import com.github.alonwang.core.protocol.AbstractRequest;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.core.server.handler.ProtobufRequestDecoder;
+import com.github.alonwang.logic.core.MessageId;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.protobuf.Hello;
 import io.netty.bootstrap.Bootstrap;
@@ -54,9 +55,9 @@ public class NettyClient {
     private static final ChannelInboundHandler protobufResponseDecoder = new ProtobufResponseDecoder(messageFactory);
     private static final ChannelInboundHandler responseDispatchHandler = new ResponseDispatchHandler();
     private Channel channel;
+    private Bootstrap bootstrap;
 
-
-    public void start(int serverPort) throws UnknownHostException, InterruptedException {
+    public NettyClient() {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(bossGroup).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, true).handler(new ChannelInitializer<SocketChannel>() {
@@ -73,8 +74,15 @@ public class NettyClient {
                 pipeline.addLast(protobufEncoder);
             }
         });
+    }
+
+    public void start(int serverPort) throws UnknownHostException, InterruptedException {
         ChannelFuture future = bootstrap.connect("localhost", serverPort).sync();
         channel = future.channel();
+    }
+
+    public void stop() {
+        channel.close();
     }
 
     public void sendMessage(AbstractRequest request) {
@@ -94,10 +102,11 @@ public class NettyClient {
             if (input.equals("stop")) {
                 break;
             }
-            //TODO moduleId规范化
             Hello.HelloMessage helloMessage = Hello.HelloMessage.newBuilder().setMsg(input).build();
-            HelloRequest request = messageFactory.createRequest(1, 1, helloMessage.toByteString());
+            HelloRequest request = messageFactory.createRequest(MessageId.Hello.moduleId, MessageId.Hello.hello,
+                    helloMessage.toByteString());
             client.sendMessage(request);
         }
+        client.stop();
     }
 }

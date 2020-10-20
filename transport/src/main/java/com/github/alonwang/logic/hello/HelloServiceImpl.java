@@ -17,15 +17,11 @@ import static com.github.alonwang.logic.protobuf.Hello.MeToMessage;
 public class HelloServiceImpl implements HelloService {
     @Override
     public void hello(User user, HelloRequest request) {
-        System.out.println(request.getBody().getMsg());
+        System.out.println("收到客户端信息: " + request.getBody().getMsg());
         HelloResponse response = Context.getMessageFactory().createResponse(1, 2);
         MeToMessage me = MeToMessage.newBuilder().setMsg(request.getBody().getMsg()).build();
         response.setMessage(me);
         user.sendMessage(response);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 }
