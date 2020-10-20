@@ -1,5 +1,5 @@
 syntax = "proto3";
-option java_package = "com.github.alonwang.transport.protobuf";
+option java_package = "com.github.alonwang.logic.protobuf";
 
 message HelloMessage {
     string msg = 1;
