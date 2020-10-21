@@ -7,7 +7,7 @@ import com.github.alonwang.core.protocol.AbstractRequest;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.core.server.handler.ProtobufRequestDecoder;
-import com.github.alonwang.logic.core.MessageId;
+import com.github.alonwang.logic.core.CommandIds;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.protobuf.Hello;
 import io.netty.bootstrap.Bootstrap;
@@ -74,6 +74,7 @@ public class NettyClient {
                 pipeline.addLast(protobufEncoder);
             }
         });
+        this.bootstrap = bootstrap;
     }
 
     public void start(int serverPort) throws UnknownHostException, InterruptedException {
@@ -86,6 +87,7 @@ public class NettyClient {
     }
 
     public void sendMessage(AbstractRequest request) {
+        request.encode();
         Base.Request protoRequest =
                 Base.Request.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setData(request.body()).build();
         channel.writeAndFlush(protoRequest);
@@ -103,7 +105,7 @@ public class NettyClient {
                 break;
             }
             Hello.HelloMessage helloMessage = Hello.HelloMessage.newBuilder().setMsg(input).build();
-            HelloRequest request = messageFactory.createRequest(MessageId.Hello.moduleId, MessageId.Hello.hello,
+            HelloRequest request = messageFactory.parseRequest(CommandIds.HelloModule, CommandIds.Hello.hello,
                     helloMessage.toByteString());
             client.sendMessage(request);
         }

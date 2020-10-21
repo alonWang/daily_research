@@ -1,15 +1,16 @@
 package com.github.alonwang.logic.core;
 
 /**
- * Message标识
+ * 命令标识汇总
  *
  * @author alonwang
  * @date 2020/10/20 6:54 下午
  * @detail
  */
-public interface MessageId {
+public interface CommandIds {
+    int HelloModule = 1;
+
     interface Hello {
-        int moduleId = 1;
         /**
          * hello请求
          */

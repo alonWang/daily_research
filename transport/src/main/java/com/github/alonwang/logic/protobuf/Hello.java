@@ -78,42 +78,43 @@ public final class Hello {
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
                     com.google.protobuf.UnknownFieldSet.newBuilder();
             try {
-        boolean done = false;
-        while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-                case 0:
-                    done = true;
-                    break;
-                case 10: {
-                    java.lang.String s = input.readStringRequireUtf8();
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 10: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-                    msg_ = s;
-                    break;
-                }
-                default: {
-                    if (!parseUnknownField(
-                            input, unknownFields, extensionRegistry, tag)) {
-                        done = true;
-              }
-              break;
-            }
-          }
+                            msg_ = s;
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_descriptor;
-    }
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
+            }
+        }
+
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_descriptor;
+        }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -173,18 +174,18 @@ public final class Hello {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      memoizedIsInitialized = 1;
-      return true;
+        memoizedIsInitialized = 1;
+        return true;
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (!getMsgBytes().isEmpty()) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msg_);
-      }
-      unknownFields.writeTo(output);
-    }
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!getMsgBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msg_);
+            }
+            unknownFields.writeTo(output);
+        }
 
         @java.lang.Override
         public int getSerializedSize() {
@@ -196,8 +197,8 @@ public final class Hello {
                 size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msg_);
             }
             size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
+            memoizedSize = size;
+            return size;
         }
 
         @java.lang.Override
@@ -213,7 +214,7 @@ public final class Hello {
 
             if (!getMsg()
                     .equals(other.getMsg())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
             return true;
         }
 
@@ -309,7 +310,7 @@ public final class Hello {
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
             return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+                    .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
         @java.lang.Override
@@ -326,15 +327,15 @@ public final class Hello {
         @java.lang.Override
         public Builder toBuilder() {
             return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
 
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-    }
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
 
         /**
          * Protobuf type {@code HelloMessage}
@@ -353,16 +354,15 @@ public final class Hello {
             internalGetFieldAccessorTable() {
                 return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_fieldAccessorTable
                         .ensureFieldAccessorsInitialized(
-                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.class,
-                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.Builder.class);
-      }
+                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.class, com.github.alonwang.logic.protobuf.Hello.HelloMessage.Builder.class);
+            }
 
-      // Construct using com.github.alonwang.logic.protobuf.Hello.HelloMessage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
+            // Construct using com.github.alonwang.logic.protobuf.Hello.HelloMessage.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
 
-      private Builder(
+            private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
@@ -372,19 +372,20 @@ public final class Hello {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        msg_ = "";
 
-        return this;
-      }
+            @java.lang.Override
+            public Builder clear() {
+                super.clear();
+                msg_ = "";
 
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-          return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_descriptor;
-      }
+                return this;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_descriptor;
+            }
 
             @java.lang.Override
             public com.github.alonwang.logic.protobuf.Hello.HelloMessage getDefaultInstanceForType() {
@@ -404,12 +405,12 @@ public final class Hello {
             public com.github.alonwang.logic.protobuf.Hello.HelloMessage buildPartial() {
                 com.github.alonwang.logic.protobuf.Hello.HelloMessage result =
                         new com.github.alonwang.logic.protobuf.Hello.HelloMessage(this);
-        result.msg_ = msg_;
-        onBuilt();
-        return result;
-      }
+                result.msg_ = msg_;
+                onBuilt();
+                return result;
+            }
 
-      @java.lang.Override
+            @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
@@ -429,18 +430,20 @@ public final class Hello {
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-      }
+
+            @java.lang.Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @java.lang.Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return super.addRepeatedField(field, value);
+            }
 
             @java.lang.Override
             public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -463,29 +466,29 @@ public final class Hello {
                 return this;
             }
 
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
+            @java.lang.Override
+            public final boolean isInitialized() {
+                return true;
+            }
 
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-        com.github.alonwang.logic.protobuf.Hello.HelloMessage parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.github.alonwang.logic.protobuf.Hello.HelloMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-          }
-        }
-          return this;
-      }
+            @java.lang.Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                com.github.alonwang.logic.protobuf.Hello.HelloMessage parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (com.github.alonwang.logic.protobuf.Hello.HelloMessage) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
 
             private java.lang.Object msg_ = "";
 
@@ -682,10 +685,10 @@ public final class Hello {
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-      }
+            this();
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
                     com.google.protobuf.UnknownFieldSet.newBuilder();
             try {
@@ -697,23 +700,23 @@ public final class Hello {
                             done = true;
                             break;
                         case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+                            java.lang.String s = input.readStringRequireUtf8();
 
-              msg_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
+                            msg_ = s;
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(
                         e).setUnfinishedMessage(this);
             } finally {
@@ -741,7 +744,6 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
-         *
          * @return The msg.
          */
         @java.lang.Override
@@ -760,34 +762,34 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
-         *
          * @return The bytes for msg.
          */
         @java.lang.Override
         public com.google.protobuf.ByteString
         getMsgBytes() {
             java.lang.Object ref = msg_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        msg_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                msg_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
 
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
+        private byte memoizedIsInitialized = -1;
 
-      memoizedIsInitialized = 1;
-      return true;
-    }
+        @java.lang.Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
 
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -798,19 +800,19 @@ public final class Hello {
             unknownFields.writeTo(output);
         }
 
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-        if (size != -1) return size;
+        @java.lang.Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
 
-        size = 0;
-        if (!getMsgBytes().isEmpty()) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msg_);
+            size = 0;
+            if (!getMsgBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msg_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
         }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
 
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
@@ -914,24 +916,26 @@ public final class Hello {
                 throws java.io.IOException {
             return com.google.protobuf.GeneratedMessageV3
                     .parseWithIOException(PARSER, input);
-    }
-    public static com.github.alonwang.logic.protobuf.Hello.MeToMessage parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
+        }
+
+        public static com.github.alonwang.logic.protobuf.Hello.MeToMessage parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
 
         @java.lang.Override
         public Builder newBuilderForType() { return newBuilder(); }
 
         public static Builder newBuilder() {
             return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.github.alonwang.logic.protobuf.Hello.MeToMessage prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
+        }
+
+        public static Builder newBuilder(com.github.alonwang.logic.protobuf.Hello.MeToMessage prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
 
         @java.lang.Override
         public Builder toBuilder() {
@@ -962,26 +966,27 @@ public final class Hello {
             protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
                 return com.github.alonwang.logic.protobuf.Hello.internal_static_MeToMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.github.alonwang.logic.protobuf.Hello.MeToMessage.class,
-                    com.github.alonwang.logic.protobuf.Hello.MeToMessage.Builder.class);
-      }
+                        .ensureFieldAccessorsInitialized(
+                                com.github.alonwang.logic.protobuf.Hello.MeToMessage.class,
+                                com.github.alonwang.logic.protobuf.Hello.MeToMessage.Builder.class);
+            }
 
-      // Construct using com.github.alonwang.logic.protobuf.Hello.MeToMessage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
+            // Construct using com.github.alonwang.logic.protobuf.Hello.MeToMessage.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
 
-      private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-      }
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
 
             @java.lang.Override
             public Builder clear() {
@@ -1007,8 +1012,8 @@ public final class Hello {
                 com.github.alonwang.logic.protobuf.Hello.MeToMessage result = buildPartial();
                 if (!result.isInitialized()) {
                     throw newUninitializedMessageException(result);
-        }
-        return result;
+                }
+                return result;
       }
 
       @java.lang.Override
@@ -1028,24 +1033,27 @@ public final class Hello {
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+          return super.setField(field, value);
       }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-      }
+
+            @java.lang.Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @java.lang.Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @java.lang.Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
 
             @java.lang.Override
             public Builder addRepeatedField(
@@ -1066,38 +1074,38 @@ public final class Hello {
 
             public Builder mergeFrom(com.github.alonwang.logic.protobuf.Hello.MeToMessage other) {
                 if (other == com.github.alonwang.logic.protobuf.Hello.MeToMessage.getDefaultInstance()) return this;
-        if (!other.getMsg().isEmpty()) {
-          msg_ = other.msg_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
+                if (!other.getMsg().isEmpty()) {
+                    msg_ = other.msg_;
+                    onChanged();
+                }
+                this.mergeUnknownFields(other.unknownFields);
                 onChanged();
                 return this;
             }
 
             @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
+            public final boolean isInitialized() {
+                return true;
+            }
 
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-          com.github.alonwang.logic.protobuf.Hello.MeToMessage parsedMessage = null;
-          try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (com.github.alonwang.logic.protobuf.Hello.MeToMessage) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
-          } finally {
-              if (parsedMessage != null) {
-                  mergeFrom(parsedMessage);
-              }
-          }
-          return this;
-      }
+            @java.lang.Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                com.github.alonwang.logic.protobuf.Hello.MeToMessage parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (com.github.alonwang.logic.protobuf.Hello.MeToMessage) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
 
             private java.lang.Object msg_ = "";
 
@@ -1169,6 +1177,7 @@ public final class Hello {
 
             /**
              * <code>string msg = 1;</code>
+             *
              * @param value The bytes for msg to set.
              * @return This builder for chaining.
              */
@@ -1234,15 +1243,15 @@ public final class Hello {
         @java.lang.Override
         public com.github.alonwang.logic.protobuf.Hello.MeToMessage getDefaultInstanceForType() {
             return DEFAULT_INSTANCE;
+        }
+
     }
 
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HelloMessage_descriptor;
-  private static final 
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_HelloMessage_descriptor;
+    private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_HelloMessage_fieldAccessorTable;
+            internal_static_HelloMessage_fieldAccessorTable;
     private static final com.google.protobuf.Descriptors.Descriptor
             internal_static_MeToMessage_descriptor;
     private static final
@@ -1270,9 +1279,9 @@ public final class Hello {
         internal_static_HelloMessage_descriptor =
                 getDescriptor().getMessageTypes().get(0);
         internal_static_HelloMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_HelloMessage_descriptor,
-        new java.lang.String[] { "Msg", });
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_HelloMessage_descriptor,
+                new java.lang.String[] { "Msg", });
     internal_static_MeToMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_MeToMessage_fieldAccessorTable = new

@@ -2,7 +2,7 @@ package com.github.alonwang.logic.hello.message;
 
 import com.github.alonwang.core.protocol.AbstractResponse;
 import com.github.alonwang.core.protocol.MessageWrapper;
-import com.github.alonwang.logic.core.MessageId;
+import com.github.alonwang.logic.core.CommandIds;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import static com.github.alonwang.logic.protobuf.Hello.MeToMessage;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@MessageWrapper(moduleId = MessageId.Hello.moduleId, commandId = MessageId.Hello.meTo)
+@MessageWrapper(moduleId = CommandIds.HelloModule, commandId = CommandIds.Hello.meTo)
 public class HelloResponse extends AbstractResponse {
     private MeToMessage message;
 

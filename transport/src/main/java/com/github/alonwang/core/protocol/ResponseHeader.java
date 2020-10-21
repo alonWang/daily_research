@@ -8,9 +8,6 @@ package com.github.alonwang.core.protocol;
 public class ResponseHeader extends MessageHeader {
     private  int errorCode;
 
-    public ResponseHeader(int moduleId, int commandId) {
-        super(moduleId, commandId);
-    }
 
     public int errorCode() {
         return errorCode;

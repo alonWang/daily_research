@@ -7,6 +7,9 @@ package com.github.alonwang.core.protocol;
  */
 
 public class RequestHeader extends MessageHeader {
+    public RequestHeader() {
+    }
+
     public RequestHeader(int moduleId, int commandId) {
         super(moduleId, commandId);
     }

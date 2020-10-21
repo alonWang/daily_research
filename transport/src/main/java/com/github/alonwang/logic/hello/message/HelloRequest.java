@@ -2,7 +2,7 @@ package com.github.alonwang.logic.hello.message;
 
 import com.github.alonwang.core.protocol.AbstractRequest;
 import com.github.alonwang.core.protocol.MessageWrapper;
-import com.github.alonwang.logic.core.MessageId;
+import com.github.alonwang.logic.core.CommandIds;
 import com.github.alonwang.logic.protobuf.Hello;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -12,7 +12,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
  * @detail
  */
 
-@MessageWrapper(moduleId = MessageId.Hello.moduleId, commandId = MessageId.Hello.hello)
+@MessageWrapper(moduleId = CommandIds.HelloModule, commandId = CommandIds.Hello.hello)
 public class HelloRequest extends AbstractRequest {
     private Hello.HelloMessage body;
 
