@@ -2,11 +2,11 @@ package com.github.alonwang.core.protocol.factory;
 
 import com.github.alonwang.core.core.MessageRegistry;
 import com.github.alonwang.core.exception.NoSuchHeaderException;
-import com.github.alonwang.core.protocol.AbstractMessage;
-import com.github.alonwang.core.protocol.AbstractRequest;
-import com.github.alonwang.core.protocol.AbstractResponse;
+import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageHeader;
+import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.protocol.RequestHeader;
+import com.github.alonwang.core.protocol.Response;
 import com.github.alonwang.core.protocol.ResponseHeader;
 import com.google.common.base.Preconditions;
 import com.google.protobuf.ByteString;
@@ -39,17 +39,17 @@ public class MessageFactory {
      * @return
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public <T extends AbstractRequest> T parseRequest(int moduleId, int commandId, ByteString body) {
-        Class<? extends AbstractMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
+    public <T extends Request> T parseRequest(int moduleId, int commandId, ByteString body) {
+        Class<? extends Message> messageClazz = messageRegistry.getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
-        Preconditions.checkArgument(AbstractRequest.class.isAssignableFrom(messageClazz));
+        Preconditions.checkArgument(Request.class.isAssignableFrom(messageClazz));
         try {
-            Constructor<? extends AbstractMessage> constructor = messageClazz.getConstructor();
-            AbstractMessage abstractMessage = constructor.newInstance();
-            AbstractRequest abstractRequest = (AbstractRequest) abstractMessage;
+            Constructor<? extends Message> constructor = messageClazz.getConstructor();
+            Message message = constructor.newInstance();
+            Request abstractRequest = (Request) message;
             MessageHeader header = new RequestHeader(moduleId, commandId);
             abstractRequest.setHeader(header);
-            abstractRequest.setBody(body);
+            abstractRequest.setData(body);
             abstractRequest.decode();
             return (T) abstractRequest;
         } catch (Exception e) {
@@ -67,18 +67,18 @@ public class MessageFactory {
      * @return 协议包
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public <T extends AbstractMessage> T createMessage(int moduleId, int commandId) {
-        Class<? extends AbstractMessage> messageClazz = messageRegistry.getMessage(moduleId, commandId);
+    public <T extends Message> T createMessage(int moduleId, int commandId) {
+        Class<? extends Message> messageClazz = messageRegistry.getMessage(moduleId, commandId);
         Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
         try {
-            Constructor<? extends AbstractMessage> constructor = messageClazz.getConstructor();
-            AbstractMessage abstractMessage = constructor.newInstance();
+            Constructor<? extends Message> constructor = messageClazz.getConstructor();
+            Message message = constructor.newInstance();
 
             MessageHeader header = createHeader(messageClazz);
             header.setModuleId(moduleId);
             header.setCommandId(commandId);
-            abstractMessage.setHeader(header);
-            return (T) abstractMessage;
+            message.setHeader(header);
+            return (T) message;
         } catch (Exception e) {
             log.error("create request error", e);
         }
@@ -88,16 +88,16 @@ public class MessageFactory {
     /**
      * 实例化header
      *
-     * @param clazz 消息表示的类,继承自{@link AbstractMessage}
+     * @param clazz 消息表示的类,继承自{@link Message}
      * @return {@link RequestHeader}或{@link ResponseHeader}
      * @throws NoSuchHeaderException 没有对应类型的header
      */
     @SuppressWarnings("rawtypes")
-    private MessageHeader createHeader(Class<? extends AbstractMessage> clazz) {
-        if (AbstractRequest.class.isAssignableFrom(clazz)) {
+    private MessageHeader createHeader(Class<? extends Message> clazz) {
+        if (Request.class.isAssignableFrom(clazz)) {
             return new RequestHeader();
         }
-        if (AbstractResponse.class.isAssignableFrom(clazz)) {
+        if (Response.class.isAssignableFrom(clazz)) {
             return new ResponseHeader();
         }
         throw new NoSuchHeaderException(String.format("class(%s) no related header", clazz));

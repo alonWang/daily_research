@@ -1,6 +1,6 @@
 package com.github.alonwang.core.server.task;
 
-import com.github.alonwang.core.protocol.AbstractRequest;
+import com.github.alonwang.core.protocol.Request;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -13,9 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MessageTask implements Task<User> {
     private final MethodWrapper wrapper;
-    private final AbstractRequest request;
+    private final Request request;
 
-    public MessageTask(MethodWrapper wrapper, AbstractRequest request) {
+    public MessageTask(MethodWrapper wrapper, Request request) {
         this.wrapper = wrapper;
         this.request = request;
     }

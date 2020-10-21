@@ -7,12 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author alonwang
- * @date 2020/7/22 18:23
- * @detail
+ * 标识被标注的接口是消息处理入口.类似 {@link org.springframework.stereotype.Controller}
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-public @interface MessageHandler {
+public @interface MessageController {
 }

@@ -1,6 +1,6 @@
 package com.github.alonwang.core.server.handler;
 
-import com.github.alonwang.core.protocol.AbstractResponse;
+import com.github.alonwang.core.protocol.Response;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -16,9 +16,9 @@ import java.util.List;
  * @detail
  */
 @ChannelHandler.Sharable
-public class ProtobufResponseEncoder extends MessageToMessageEncoder<AbstractResponse> {
+public class ProtobufResponseEncoder extends MessageToMessageEncoder<Response> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, AbstractResponse msg, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, Response msg, List<Object> out) throws Exception {
         Base.Response.Builder response = Base.Response.newBuilder();
         response.setModuleId(msg.header().getModuleId()).setCommandId(msg.header().getCommandId()).setErrorCode(msg.header().getErrorCode());
         response.setData(msg.body());

@@ -7,6 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 消息id,标识具体{@link Message}的唯一标识
+ *
  * @author alonwang
  * @date 2020/7/16 17:41
  * @detail
@@ -14,8 +16,18 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-public @interface MessageWrapper {
+public @interface MessageId {
+    /**
+     * 模块id
+     *
+     * @return
+     */
     int moduleId();
 
+    /**
+     * 命令id
+     *
+     * @return
+     */
     int commandId();
 }

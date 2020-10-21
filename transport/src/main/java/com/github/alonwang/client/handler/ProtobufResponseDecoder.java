@@ -1,8 +1,7 @@
 package com.github.alonwang.client.handler;
 
-import com.github.alonwang.core.protocol.AbstractResponse;
+import com.github.alonwang.core.protocol.Response;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
-import com.github.alonwang.core.protocol.protobuf.Base.Response;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -16,7 +15,7 @@ import java.util.List;
  * @detail
  */
 @ChannelHandler.Sharable
-public class ProtobufResponseDecoder extends MessageToMessageDecoder<Response> {
+public class ProtobufResponseDecoder extends MessageToMessageDecoder<com.github.alonwang.core.protocol.protobuf.Base.Response> {
     private MessageFactory messageFactory;
 
     public ProtobufResponseDecoder(MessageFactory messageFactory) {
@@ -24,10 +23,11 @@ public class ProtobufResponseDecoder extends MessageToMessageDecoder<Response> {
     }
 
     @Override
-    protected void decode(ChannelHandlerContext ctx, Response msg, List<Object> out) throws Exception {
-        AbstractResponse abstractResponse = messageFactory.createMessage(msg.getModuleId(),
+    protected void decode(ChannelHandlerContext ctx, com.github.alonwang.core.protocol.protobuf.Base.Response msg,
+                          List<Object> out) throws Exception {
+        Response abstractResponse = messageFactory.createMessage(msg.getModuleId(),
                 msg.getCommandId());
-        abstractResponse.setBody(msg.getData());
+        abstractResponse.setData(msg.getData());
         abstractResponse.decode();
         out.add(abstractResponse);
     }

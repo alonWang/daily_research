@@ -1,7 +1,7 @@
 package com.github.alonwang.core.server.task;
 
 import com.github.alonwang.core.core.DefaultTaskExecutor;
-import com.github.alonwang.core.protocol.AbstractMessage;
+import com.github.alonwang.core.protocol.Message;
 import io.netty.channel.Channel;
 
 import java.util.Objects;
@@ -39,7 +39,7 @@ public class User extends DefaultTaskExecutor<User> {
         return Objects.hash(channel);
     }
 
-    public void sendMessage(AbstractMessage message) {
+    public void sendMessage(Message message) {
         message.encode();
         if (inThread()) {
             channel.writeAndFlush(message);

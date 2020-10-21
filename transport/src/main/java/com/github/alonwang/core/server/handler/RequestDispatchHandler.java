@@ -2,7 +2,7 @@ package com.github.alonwang.core.server.handler;
 
 
 import com.github.alonwang.core.Context;
-import com.github.alonwang.core.protocol.AbstractRequest;
+import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.server.task.MessageTask;
 import com.github.alonwang.core.server.task.MethodWrapper;
 import com.github.alonwang.core.server.task.User;
@@ -23,11 +23,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @detail
  */
 @ChannelHandler.Sharable
-public class RequestDispatchHandler extends SimpleChannelInboundHandler<AbstractRequest> {
+public class RequestDispatchHandler extends SimpleChannelInboundHandler<Request> {
     private static Map<Channel, User> channel2SessionMap = new ConcurrentHashMap<>();
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, AbstractRequest msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Request msg) throws Exception {
         User user = channel2SessionMap.compute(ctx.channel(), (c, s) -> {
             if (null == s) {
                 User createUser = new User();

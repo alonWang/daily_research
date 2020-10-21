@@ -1,24 +1,27 @@
 package com.github.alonwang.core.protocol;
 
 /**
- * 消息抽象
+ * 消息抽象,包含消息头和消息体两部分。
+ * 消息头容纳了标识,错误等元信息,消息体是具体的数据
  *
- * @author alonwang
- * @date 2020/7/13 17:15
- * @detail 消息包含消息头和消息体两部分。
- * 消息头容纳了 moduleId，commandId等元信息
- * 消息体是具体的数据，需要根据moduleId和commandId解析
+ * @param <T> 消息体的数据类型
  */
-public abstract class AbstractMessage<T> {
+public abstract class Message<T> {
+    /**
+     * 消息头
+     */
     private MessageHeader header;
-    private T body;
+    /**
+     * 消息数据
+     */
+    private T data;
 
     public MessageHeader header() {
         return header;
     }
 
     public T body() {
-        return body;
+        return data;
     }
 
     public abstract void decode() throws Exception;
@@ -29,15 +32,15 @@ public abstract class AbstractMessage<T> {
         this.header = header;
     }
 
-    public void setBody(T body) {
-        this.body = body;
+    public void setData(T data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
-        return "AbstractMessage{" +
+        return "Message{" +
                 "header=" + header +
-                ", body=" + body +
+                ", data=" + data +
                 '}';
     }
 }

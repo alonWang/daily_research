@@ -1,8 +1,8 @@
 package com.github.alonwang.logic.hello.message;
 
-import com.github.alonwang.core.protocol.AbstractResponse;
-import com.github.alonwang.core.protocol.MessageWrapper;
-import com.github.alonwang.logic.core.CommandIds;
+import com.github.alonwang.core.protocol.MessageId;
+import com.github.alonwang.core.protocol.Response;
+import com.github.alonwang.logic.core.MessageIds;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,8 +16,8 @@ import static com.github.alonwang.logic.protobuf.Hello.MeToMessage;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@MessageWrapper(moduleId = CommandIds.HelloModule, commandId = CommandIds.Hello.meTo)
-public class HelloResponse extends AbstractResponse {
+@MessageId(moduleId = MessageIds.HelloModule, commandId = MessageIds.Hello.meTo)
+public class HelloResponse extends Response {
     private MeToMessage message;
 
     @Override
@@ -27,7 +27,7 @@ public class HelloResponse extends AbstractResponse {
 
     @Override
     public void encode() {
-        setBody(message.toByteString());
+        setData(message.toByteString());
     }
 
     public MeToMessage getMessage() {

@@ -1,7 +1,7 @@
 package com.github.alonwang.core.core;
 
-import com.github.alonwang.core.protocol.AbstractMessage;
-import com.github.alonwang.core.protocol.MessageHandler;
+import com.github.alonwang.core.protocol.Message;
+import com.github.alonwang.core.protocol.MessageController;
 import com.github.alonwang.core.server.task.MethodWrapper;
 import com.github.alonwang.logic.LogicPackageMarker;
 import com.google.common.base.Preconditions;
@@ -32,14 +32,14 @@ public class MessageMethodRegistry {
     private ApplicationContext applicationContext;
     @Autowired
     private MessageRegistry messageRegistry;
-    private Map<Class<? extends AbstractMessage>, MethodWrapper> messageMethods;
+    private Map<Class<? extends Message>, MethodWrapper> messageMethods;
 
     @PostConstruct
     public void init() {
         //解析所有message对应的方法
         Reflections reflections = new Reflections(LogicPackageMarker.class.getPackage().getName());
-        Map<Class<? extends AbstractMessage>, MethodWrapper> tempMethodWrappers = new HashMap<>();
-        Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageHandler.class, true);
+        Map<Class<? extends Message>, MethodWrapper> tempMethodWrappers = new HashMap<>();
+        Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageController.class, true);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal," +
                     "@MessageHandler annotated class must be interface");
@@ -49,14 +49,14 @@ public class MessageMethodRegistry {
             for (Method method : methods) {
                 var parameterTypes = method.getParameterTypes();
                 List<Class<?>> satisfyParameters =
-                        Arrays.stream(parameterTypes).filter(AbstractMessage.class::isAssignableFrom).filter(type -> messageRegistry.getMessages().containsValue(type)).collect(Collectors.toList());
+                        Arrays.stream(parameterTypes).filter(Message.class::isAssignableFrom).filter(type -> messageRegistry.getMessages().containsValue(type)).collect(Collectors.toList());
                 if (satisfyParameters.isEmpty()) {
                     continue;
                 }
                 Preconditions.checkArgument(satisfyParameters.size() == 1, "method {} signature illegal,parameters " +
                         "should only contain exactly one AbstractCSMessage", method);
-                Class<? extends AbstractMessage> messageClazz =
-                        (Class<? extends AbstractMessage>) satisfyParameters.get(0);
+                Class<? extends Message> messageClazz =
+                        (Class<? extends Message>) satisfyParameters.get(0);
                 Preconditions.checkArgument(!tempMethodWrappers.containsKey(messageClazz), "parameter illegal,{} " +
                         "appear in different methods", messageClazz);
                 MethodWrapper methodWrapper = new MethodWrapper(method, bean);
@@ -66,7 +66,7 @@ public class MessageMethodRegistry {
         messageMethods = Collections.unmodifiableMap(tempMethodWrappers);
     }
 
-    public MethodWrapper getWrapper(Class<? extends AbstractMessage> clazz) {
+    public MethodWrapper getWrapper(Class<? extends Message> clazz) {
         return messageMethods.get(clazz);
     }
 
