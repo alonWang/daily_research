@@ -22,7 +22,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class NioServerChannelInitializer extends ChannelInitializer<SocketChannel> {
     private static final ChannelHandler idleEventHandler = new IdleStateEventHandler();
-    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Request.getDefaultInstance());
+    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
     private static final ChannelInboundHandler requestDispatchHandler = new RequestDispatchHandler();
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
     private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();

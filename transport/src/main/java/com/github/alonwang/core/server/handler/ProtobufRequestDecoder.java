@@ -2,6 +2,7 @@ package com.github.alonwang.core.server.handler;
 
 import com.github.alonwang.core.Context;
 import com.github.alonwang.core.protocol.Request;
+import com.github.alonwang.core.protocol.protobuf.Base;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -17,11 +18,11 @@ import java.util.List;
  * @detail
  */
 @ChannelHandler.Sharable
-public class ProtobufRequestDecoder extends MessageToMessageDecoder<com.github.alonwang.core.protocol.protobuf.Base.Request> {
+public class ProtobufRequestDecoder extends MessageToMessageDecoder<com.github.alonwang.core.protocol.protobuf.Base.Protocol> {
 
 
     @Override
-    protected void decode(ChannelHandlerContext ctx, com.github.alonwang.core.protocol.protobuf.Base.Request msg,
+    protected void decode(ChannelHandlerContext ctx, Base.Protocol msg,
                           List<Object> out) throws Exception {
         int moduleId = msg.getModuleId();
         int commandId = msg.getCommandId();

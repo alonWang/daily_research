@@ -2,21 +2,12 @@ syntax = "proto3";
 option java_package = "com.github.alonwang.core.protocol.protobuf";
 
 /**
-基础请求数据包
+协议包
  */
-message Request {
+message Protocol {
     int32 moduleId = 1; //模块id
     int32 commandId = 2; //命令id
     bytes data = 3;
-    //TODO 待拓展
-}
-/**
-基础响应数据包
- */
-message Response {
-    int32 moduleId = 1; //模块id
-    int32 commandId = 2; //命令id
-    bytes data = 3; //数据
     int32 errorCode = 4; //0表示正常 其他表示错误码
     string errorMsg = 5;
     //TODO 待拓展

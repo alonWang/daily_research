@@ -99,8 +99,8 @@ public final class Hello {
                             break;
                         }
                     }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
                 throw e.setUnfinishedMessage(this);
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(
@@ -130,7 +130,6 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
-         *
          * @return The msg.
          */
         @java.lang.Override
@@ -149,7 +148,6 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
-         *
          * @return The bytes for msg.
          */
         @java.lang.Override
@@ -164,19 +162,20 @@ public final class Hello {
                 return b;
             } else {
                 return (com.google.protobuf.ByteString) ref;
-      }
-    }
+            }
+        }
 
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+        private byte memoizedIsInitialized = -1;
 
-        memoizedIsInitialized = 1;
-        return true;
-    }
+        @java.lang.Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
 
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -354,7 +353,8 @@ public final class Hello {
             internalGetFieldAccessorTable() {
                 return com.github.alonwang.logic.protobuf.Hello.internal_static_HelloMessage_fieldAccessorTable
                         .ensureFieldAccessorsInitialized(
-                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.class, com.github.alonwang.logic.protobuf.Hello.HelloMessage.Builder.class);
+                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.class,
+                                com.github.alonwang.logic.protobuf.Hello.HelloMessage.Builder.class);
             }
 
             // Construct using com.github.alonwang.logic.protobuf.Hello.HelloMessage.newBuilder()
@@ -363,15 +363,16 @@ public final class Hello {
             }
 
             private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
 
             @java.lang.Override
             public Builder clear() {
@@ -411,25 +412,28 @@ public final class Hello {
             }
 
             @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @java.lang.Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return super.setField(field, value);
+            }
+
+            @java.lang.Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @java.lang.Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
 
             @java.lang.Override
             public Builder setRepeatedField(
@@ -1014,27 +1018,28 @@ public final class Hello {
                     throw newUninitializedMessageException(result);
                 }
                 return result;
-      }
+            }
 
-      @java.lang.Override
-      public com.github.alonwang.logic.protobuf.Hello.MeToMessage buildPartial() {
-        com.github.alonwang.logic.protobuf.Hello.MeToMessage result =
-                new com.github.alonwang.logic.protobuf.Hello.MeToMessage(this);
-        result.msg_ = msg_;
-        onBuilt();
-        return result;
-      }
+            @java.lang.Override
+            public com.github.alonwang.logic.protobuf.Hello.MeToMessage buildPartial() {
+                com.github.alonwang.logic.protobuf.Hello.MeToMessage result =
+                        new com.github.alonwang.logic.protobuf.Hello.MeToMessage(this);
+                result.msg_ = msg_;
+                onBuilt();
+                return result;
+            }
 
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-          return super.setField(field, value);
-      }
+            @java.lang.Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @java.lang.Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return super.setField(field, value);
+            }
 
             @java.lang.Override
             public Builder clearField(
@@ -1281,9 +1286,9 @@ public final class Hello {
         internal_static_HelloMessage_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_HelloMessage_descriptor,
-                new java.lang.String[] { "Msg", });
-    internal_static_MeToMessage_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+                new java.lang.String[]{"Msg",});
+        internal_static_MeToMessage_descriptor =
+                getDescriptor().getMessageTypes().get(1);
     internal_static_MeToMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_MeToMessage_descriptor,

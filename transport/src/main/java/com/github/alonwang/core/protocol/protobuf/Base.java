@@ -16,8 +16,8 @@ public final class Base {
                 (com.google.protobuf.ExtensionRegistryLite) registry);
     }
 
-    public interface RequestOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:Request)
+    public interface ProtocolOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:Protocol)
             com.google.protobuf.MessageOrBuilder {
 
         /**
@@ -43,774 +43,6 @@ public final class Base {
         int getCommandId();
 
         /**
-         * <pre>
-         * TODO 待拓展
-         * </pre>
-         *
-         * <code>bytes data = 3;</code>
-         *
-         * @return The data.
-         */
-        com.google.protobuf.ByteString getData();
-    }
-
-    /**
-     * <pre>
-     * *
-     * 基础请求数据包
-     * </pre>
-     * <p>
-     * Protobuf type {@code Request}
-     */
-    public static final class Request extends
-            com.google.protobuf.GeneratedMessageV3 implements
-            // @@protoc_insertion_point(message_implements:Request)
-            RequestOrBuilder {
-        private static final long serialVersionUID = 0L;
-
-        // Use Request.newBuilder() to construct.
-        private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-            super(builder);
-        }
-
-        private Request() {
-            data_ = com.google.protobuf.ByteString.EMPTY;
-        }
-
-        @java.lang.Override
-        @SuppressWarnings({"unused"})
-        protected java.lang.Object newInstance(
-                UnusedPrivateParameter unused) {
-            return new Request();
-        }
-
-        @java.lang.Override
-        public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-            return this.unknownFields;
-        }
-
-        private Request(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            this();
-            if (extensionRegistry == null) {
-                throw new java.lang.NullPointerException();
-            }
-            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                    com.google.protobuf.UnknownFieldSet.newBuilder();
-            try {
-                boolean done = false;
-                while (!done) {
-                    int tag = input.readTag();
-                    switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 8: {
-
-                            moduleId_ = input.readInt32();
-                            break;
-                        }
-                        case 16: {
-
-                            commandId_ = input.readInt32();
-                            break;
-                        }
-                        case 26: {
-
-                            data_ = input.readBytes();
-                            break;
-                        }
-                        default: {
-                            if (!parseUnknownField(
-                                    input, unknownFields, extensionRegistry, tag)) {
-                                done = true;
-                            }
-                            break;
-                        }
-                    }
-                }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.setUnfinishedMessage(this);
-            } catch (java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(
-                        e).setUnfinishedMessage(this);
-            } finally {
-                this.unknownFields = unknownFields.build();
-                makeExtensionsImmutable();
-            }
-        }
-
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Request_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Request_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            com.github.alonwang.core.protocol.protobuf.Base.Request.class,
-                            com.github.alonwang.core.protocol.protobuf.Base.Request.Builder.class);
-        }
-
-        public static final int MODULEID_FIELD_NUMBER = 1;
-        private int moduleId_;
-
-        /**
-         * <pre>
-         * 模块id
-         * </pre>
-         *
-         * <code>int32 moduleId = 1;</code>
-         *
-         * @return The moduleId.
-         */
-        @java.lang.Override
-        public int getModuleId() {
-            return moduleId_;
-        }
-
-        public static final int COMMANDID_FIELD_NUMBER = 2;
-        private int commandId_;
-
-        /**
-         * <pre>
-         * 命令id
-         * </pre>
-         *
-         * <code>int32 commandId = 2;</code>
-         *
-         * @return The commandId.
-         */
-        @java.lang.Override
-        public int getCommandId() {
-            return commandId_;
-        }
-
-        public static final int DATA_FIELD_NUMBER = 3;
-        private com.google.protobuf.ByteString data_;
-
-        /**
-         * <pre>
-         * TODO 待拓展
-         * </pre>
-         *
-         * <code>bytes data = 3;</code>
-         *
-         * @return The data.
-         */
-        @java.lang.Override
-        public com.google.protobuf.ByteString getData() {
-            return data_;
-        }
-
-        private byte memoizedIsInitialized = -1;
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-            byte isInitialized = memoizedIsInitialized;
-            if (isInitialized == 1) return true;
-            if (isInitialized == 0) return false;
-
-            memoizedIsInitialized = 1;
-            return true;
-        }
-
-        @java.lang.Override
-        public void writeTo(com.google.protobuf.CodedOutputStream output)
-                throws java.io.IOException {
-            if (moduleId_ != 0) {
-                output.writeInt32(1, moduleId_);
-            }
-            if (commandId_ != 0) {
-                output.writeInt32(2, commandId_);
-            }
-            if (!data_.isEmpty()) {
-                output.writeBytes(3, data_);
-            }
-            unknownFields.writeTo(output);
-        }
-
-        @java.lang.Override
-        public int getSerializedSize() {
-            int size = memoizedSize;
-            if (size != -1) return size;
-
-            size = 0;
-            if (moduleId_ != 0) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt32Size(1, moduleId_);
-            }
-            if (commandId_ != 0) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt32Size(2, commandId_);
-            }
-            if (!data_.isEmpty()) {
-                size += com.google.protobuf.CodedOutputStream
-                        .computeBytesSize(3, data_);
-            }
-            size += unknownFields.getSerializedSize();
-            memoizedSize = size;
-            return size;
-        }
-
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof com.github.alonwang.core.protocol.protobuf.Base.Request)) {
-                return super.equals(obj);
-            }
-            com.github.alonwang.core.protocol.protobuf.Base.Request other =
-                    (com.github.alonwang.core.protocol.protobuf.Base.Request) obj;
-
-            if (getModuleId()
-                    != other.getModuleId()) return false;
-            if (getCommandId()
-                    != other.getCommandId()) return false;
-            if (!getData()
-                    .equals(other.getData())) return false;
-            if (!unknownFields.equals(other.unknownFields)) return false;
-            return true;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-            if (memoizedHashCode != 0) {
-                return memoizedHashCode;
-            }
-            int hash = 41;
-            hash = (19 * hash) + getDescriptor().hashCode();
-            hash = (37 * hash) + MODULEID_FIELD_NUMBER;
-            hash = (53 * hash) + getModuleId();
-            hash = (37 * hash) + COMMANDID_FIELD_NUMBER;
-            hash = (53 * hash) + getCommandId();
-            hash = (37 * hash) + DATA_FIELD_NUMBER;
-            hash = (53 * hash) + getData().hashCode();
-            hash = (29 * hash) + unknownFields.hashCode();
-            memoizedHashCode = hash;
-            return hash;
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return PARSER.parseFrom(data, extensionRegistry);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseDelimitedWithIOException(PARSER, input);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input);
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageV3
-                    .parseWithIOException(PARSER, input, extensionRegistry);
-        }
-
-        @java.lang.Override
-        public Builder newBuilderForType() { return newBuilder(); }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(com.github.alonwang.core.protocol.protobuf.Base.Request prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        @java.lang.Override
-        public Builder toBuilder() {
-            return this == DEFAULT_INSTANCE
-                    ? new Builder() : new Builder().mergeFrom(this);
-        }
-
-        @java.lang.Override
-        protected Builder newBuilderForType(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-            Builder builder = new Builder(parent);
-            return builder;
-        }
-
-        /**
-         * <pre>
-         * *
-         * 基础请求数据包
-         * </pre>
-         * <p>
-         * Protobuf type {@code Request}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-                // @@protoc_insertion_point(builder_implements:Request)
-                com.github.alonwang.core.protocol.protobuf.Base.RequestOrBuilder {
-            public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Request_descriptor;
-            }
-
-            @java.lang.Override
-            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Request_fieldAccessorTable
-                        .ensureFieldAccessorsInitialized(
-                                com.github.alonwang.core.protocol.protobuf.Base.Request.class,
-                                com.github.alonwang.core.protocol.protobuf.Base.Request.Builder.class);
-            }
-
-            // Construct using com.github.alonwang.core.protocol.protobuf.Base.Request.newBuilder()
-            private Builder() {
-                maybeForceBuilderInitialization();
-            }
-
-            private Builder(
-                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-                super(parent);
-                maybeForceBuilderInitialization();
-            }
-
-            private void maybeForceBuilderInitialization() {
-                if (com.google.protobuf.GeneratedMessageV3
-                        .alwaysUseFieldBuilders) {
-                }
-            }
-
-            @java.lang.Override
-            public Builder clear() {
-                super.clear();
-                moduleId_ = 0;
-
-                commandId_ = 0;
-
-                data_ = com.google.protobuf.ByteString.EMPTY;
-
-                return this;
-            }
-
-            @java.lang.Override
-            public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Request_descriptor;
-            }
-
-            @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Request getDefaultInstanceForType() {
-                return com.github.alonwang.core.protocol.protobuf.Base.Request.getDefaultInstance();
-            }
-
-            @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Request build() {
-                com.github.alonwang.core.protocol.protobuf.Base.Request result = buildPartial();
-                if (!result.isInitialized()) {
-                    throw newUninitializedMessageException(result);
-                }
-                return result;
-            }
-
-            @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Request buildPartial() {
-                com.github.alonwang.core.protocol.protobuf.Base.Request result =
-                        new com.github.alonwang.core.protocol.protobuf.Base.Request(this);
-                result.moduleId_ = moduleId_;
-                result.commandId_ = commandId_;
-                result.data_ = data_;
-                onBuilt();
-                return result;
-            }
-
-            @java.lang.Override
-            public Builder clone() {
-                return super.clone();
-            }
-
-            @java.lang.Override
-            public Builder setField(
-                    com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value) {
-                return super.setField(field, value);
-            }
-
-            @java.lang.Override
-            public Builder clearField(
-                    com.google.protobuf.Descriptors.FieldDescriptor field) {
-                return super.clearField(field);
-            }
-
-            @java.lang.Override
-            public Builder clearOneof(
-                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-                return super.clearOneof(oneof);
-            }
-
-            @java.lang.Override
-            public Builder setRepeatedField(
-                    com.google.protobuf.Descriptors.FieldDescriptor field,
-                    int index, java.lang.Object value) {
-                return super.setRepeatedField(field, index, value);
-            }
-
-            @java.lang.Override
-            public Builder addRepeatedField(
-                    com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value) {
-                return super.addRepeatedField(field, value);
-            }
-
-            @java.lang.Override
-            public Builder mergeFrom(com.google.protobuf.Message other) {
-                if (other instanceof com.github.alonwang.core.protocol.protobuf.Base.Request) {
-                    return mergeFrom((com.github.alonwang.core.protocol.protobuf.Base.Request) other);
-                } else {
-                    super.mergeFrom(other);
-                    return this;
-                }
-            }
-
-            public Builder mergeFrom(com.github.alonwang.core.protocol.protobuf.Base.Request other) {
-                if (other == com.github.alonwang.core.protocol.protobuf.Base.Request.getDefaultInstance()) return this;
-                if (other.getModuleId() != 0) {
-                    setModuleId(other.getModuleId());
-                }
-                if (other.getCommandId() != 0) {
-                    setCommandId(other.getCommandId());
-                }
-                if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
-                    setData(other.getData());
-                }
-                this.mergeUnknownFields(other.unknownFields);
-                onChanged();
-                return this;
-            }
-
-            @java.lang.Override
-            public final boolean isInitialized() {
-                return true;
-            }
-
-            @java.lang.Override
-            public Builder mergeFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws java.io.IOException {
-                com.github.alonwang.core.protocol.protobuf.Base.Request parsedMessage = null;
-                try {
-                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                    parsedMessage = (com.github.alonwang.core.protocol.protobuf.Base.Request) e.getUnfinishedMessage();
-                    throw e.unwrapIOException();
-                } finally {
-                    if (parsedMessage != null) {
-                        mergeFrom(parsedMessage);
-                    }
-                }
-                return this;
-            }
-
-            private int moduleId_;
-
-            /**
-             * <pre>
-             * 模块id
-             * </pre>
-             *
-             * <code>int32 moduleId = 1;</code>
-             *
-             * @return The moduleId.
-             */
-            @java.lang.Override
-            public int getModuleId() {
-                return moduleId_;
-            }
-
-            /**
-             * <pre>
-             * 模块id
-             * </pre>
-             *
-             * <code>int32 moduleId = 1;</code>
-             *
-             * @param value The moduleId to set.
-             * @return This builder for chaining.
-             */
-            public Builder setModuleId(int value) {
-
-                moduleId_ = value;
-                onChanged();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * 模块id
-             * </pre>
-             *
-             * <code>int32 moduleId = 1;</code>
-             *
-             * @return This builder for chaining.
-             */
-            public Builder clearModuleId() {
-
-                moduleId_ = 0;
-                onChanged();
-                return this;
-            }
-
-            private int commandId_;
-
-            /**
-             * <pre>
-             * 命令id
-             * </pre>
-             *
-             * <code>int32 commandId = 2;</code>
-             *
-             * @return The commandId.
-             */
-            @java.lang.Override
-            public int getCommandId() {
-                return commandId_;
-            }
-
-            /**
-             * <pre>
-             * 命令id
-             * </pre>
-             *
-             * <code>int32 commandId = 2;</code>
-             *
-             * @param value The commandId to set.
-             * @return This builder for chaining.
-             */
-            public Builder setCommandId(int value) {
-
-                commandId_ = value;
-                onChanged();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * 命令id
-             * </pre>
-             *
-             * <code>int32 commandId = 2;</code>
-             *
-             * @return This builder for chaining.
-             */
-            public Builder clearCommandId() {
-
-                commandId_ = 0;
-                onChanged();
-                return this;
-            }
-
-            private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
-
-            /**
-             * <pre>
-             * TODO 待拓展
-             * </pre>
-             *
-             * <code>bytes data = 3;</code>
-             *
-             * @return The data.
-             */
-            @java.lang.Override
-            public com.google.protobuf.ByteString getData() {
-                return data_;
-            }
-
-            /**
-             * <pre>
-             * TODO 待拓展
-             * </pre>
-             *
-             * <code>bytes data = 3;</code>
-             *
-             * @param value The data to set.
-             * @return This builder for chaining.
-             */
-            public Builder setData(com.google.protobuf.ByteString value) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-
-                data_ = value;
-                onChanged();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * TODO 待拓展
-             * </pre>
-             *
-             * <code>bytes data = 3;</code>
-             *
-             * @return This builder for chaining.
-             */
-            public Builder clearData() {
-
-                data_ = getDefaultInstance().getData();
-                onChanged();
-                return this;
-            }
-
-            @java.lang.Override
-            public final Builder setUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
-                return super.setUnknownFields(unknownFields);
-            }
-
-            @java.lang.Override
-            public final Builder mergeUnknownFields(
-                    final com.google.protobuf.UnknownFieldSet unknownFields) {
-                return super.mergeUnknownFields(unknownFields);
-            }
-
-
-            // @@protoc_insertion_point(builder_scope:Request)
-        }
-
-        // @@protoc_insertion_point(class_scope:Request)
-        private static final com.github.alonwang.core.protocol.protobuf.Base.Request DEFAULT_INSTANCE;
-
-        static {
-            DEFAULT_INSTANCE = new com.github.alonwang.core.protocol.protobuf.Base.Request();
-        }
-
-        public static com.github.alonwang.core.protocol.protobuf.Base.Request getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        private static final com.google.protobuf.Parser<Request>
-                PARSER = new com.google.protobuf.AbstractParser<Request>() {
-            @java.lang.Override
-            public Request parsePartialFrom(
-                    com.google.protobuf.CodedInputStream input,
-                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                    throws com.google.protobuf.InvalidProtocolBufferException {
-                return new Request(input, extensionRegistry);
-            }
-        };
-
-        public static com.google.protobuf.Parser<Request> parser() {
-            return PARSER;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Parser<Request> getParserForType() {
-            return PARSER;
-        }
-
-        @java.lang.Override
-        public com.github.alonwang.core.protocol.protobuf.Base.Request getDefaultInstanceForType() {
-            return DEFAULT_INSTANCE;
-        }
-
-    }
-
-    public interface ResponseOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:Response)
-            com.google.protobuf.MessageOrBuilder {
-
-        /**
-         * <pre>
-         * 模块id
-         * </pre>
-         *
-         * <code>int32 moduleId = 1;</code>
-         *
-         * @return The moduleId.
-         */
-        int getModuleId();
-
-        /**
-         * <pre>
-         * 命令id
-         * </pre>
-         *
-         * <code>int32 commandId = 2;</code>
-         *
-         * @return The commandId.
-         */
-        int getCommandId();
-
-        /**
-         * <pre>
-         * 数据
-         * </pre>
-         *
          * <code>bytes data = 3;</code>
          *
          * @return The data.
@@ -855,23 +87,23 @@ public final class Base {
     /**
      * <pre>
      * *
-     * 基础响应数据包
+     * 协议包
      * </pre>
      * <p>
-     * Protobuf type {@code Response}
+     * Protobuf type {@code Protocol}
      */
-    public static final class Response extends
+    public static final class Protocol extends
             com.google.protobuf.GeneratedMessageV3 implements
-            // @@protoc_insertion_point(message_implements:Response)
-            ResponseOrBuilder {
+            // @@protoc_insertion_point(message_implements:Protocol)
+            ProtocolOrBuilder {
         private static final long serialVersionUID = 0L;
 
-        // Use Response.newBuilder() to construct.
-        private Response(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        // Use Protocol.newBuilder() to construct.
+        private Protocol(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
             super(builder);
         }
 
-        private Response() {
+        private Protocol() {
             data_ = com.google.protobuf.ByteString.EMPTY;
             errorMsg_ = "";
         }
@@ -880,7 +112,7 @@ public final class Base {
         @SuppressWarnings({"unused"})
         protected java.lang.Object newInstance(
                 UnusedPrivateParameter unused) {
-            return new Response();
+            return new Protocol();
         }
 
         @java.lang.Override
@@ -889,7 +121,7 @@ public final class Base {
             return this.unknownFields;
         }
 
-        private Response(
+        private Protocol(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
@@ -955,16 +187,16 @@ public final class Base {
 
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Response_descriptor;
+            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Response_fieldAccessorTable
+            return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            com.github.alonwang.core.protocol.protobuf.Base.Response.class,
-                            com.github.alonwang.core.protocol.protobuf.Base.Response.Builder.class);
+                            com.github.alonwang.core.protocol.protobuf.Base.Protocol.class,
+                            com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
         }
 
         public static final int MODULEID_FIELD_NUMBER = 1;
@@ -1005,10 +237,6 @@ public final class Base {
         private com.google.protobuf.ByteString data_;
 
         /**
-         * <pre>
-         * 数据
-         * </pre>
-         *
          * <code>bytes data = 3;</code>
          *
          * @return The data.
@@ -1153,11 +381,11 @@ public final class Base {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof com.github.alonwang.core.protocol.protobuf.Base.Response)) {
+            if (!(obj instanceof com.github.alonwang.core.protocol.protobuf.Base.Protocol)) {
                 return super.equals(obj);
             }
-            com.github.alonwang.core.protocol.protobuf.Base.Response other =
-                    (com.github.alonwang.core.protocol.protobuf.Base.Response) obj;
+            com.github.alonwang.core.protocol.protobuf.Base.Protocol other =
+                    (com.github.alonwang.core.protocol.protobuf.Base.Protocol) obj;
 
             if (getModuleId()
                     != other.getModuleId()) return false;
@@ -1195,51 +423,51 @@ public final class Base {
             return hash;
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 java.nio.ByteBuffer data)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 java.nio.ByteBuffer data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 com.google.protobuf.ByteString data)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 com.google.protobuf.ByteString data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(byte[] data)
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(byte[] data)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 byte[] data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(java.io.InputStream input)
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(java.io.InputStream input)
                 throws java.io.IOException {
             return com.google.protobuf.GeneratedMessageV3
                     .parseWithIOException(PARSER, input);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
@@ -1247,13 +475,13 @@ public final class Base {
                     .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseDelimitedFrom(java.io.InputStream input)
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseDelimitedFrom(java.io.InputStream input)
                 throws java.io.IOException {
             return com.google.protobuf.GeneratedMessageV3
                     .parseDelimitedWithIOException(PARSER, input);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseDelimitedFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseDelimitedFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
@@ -1261,14 +489,14 @@ public final class Base {
                     .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 com.google.protobuf.CodedInputStream input)
                 throws java.io.IOException {
             return com.google.protobuf.GeneratedMessageV3
                     .parseWithIOException(PARSER, input);
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response parseFrom(
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
@@ -1283,7 +511,7 @@ public final class Base {
             return DEFAULT_INSTANCE.toBuilder();
         }
 
-        public static Builder newBuilder(com.github.alonwang.core.protocol.protobuf.Base.Response prototype) {
+        public static Builder newBuilder(com.github.alonwang.core.protocol.protobuf.Base.Protocol prototype) {
             return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
         }
 
@@ -1303,30 +531,30 @@ public final class Base {
         /**
          * <pre>
          * *
-         * 基础响应数据包
+         * 协议包
          * </pre>
          * <p>
-         * Protobuf type {@code Response}
+         * Protobuf type {@code Protocol}
          */
         public static final class Builder extends
                 com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-                // @@protoc_insertion_point(builder_implements:Response)
-                com.github.alonwang.core.protocol.protobuf.Base.ResponseOrBuilder {
+                // @@protoc_insertion_point(builder_implements:Protocol)
+                com.github.alonwang.core.protocol.protobuf.Base.ProtocolOrBuilder {
             public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Response_descriptor;
+                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
             }
 
             @java.lang.Override
             protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Response_fieldAccessorTable
+                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_fieldAccessorTable
                         .ensureFieldAccessorsInitialized(
-                                com.github.alonwang.core.protocol.protobuf.Base.Response.class,
-                                com.github.alonwang.core.protocol.protobuf.Base.Response.Builder.class);
+                                com.github.alonwang.core.protocol.protobuf.Base.Protocol.class,
+                                com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
             }
 
-            // Construct using com.github.alonwang.core.protocol.protobuf.Base.Response.newBuilder()
+            // Construct using com.github.alonwang.core.protocol.protobuf.Base.Protocol.newBuilder()
             private Builder() {
                 maybeForceBuilderInitialization();
             }
@@ -1362,17 +590,17 @@ public final class Base {
             @java.lang.Override
             public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Response_descriptor;
+                return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
             }
 
             @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Response getDefaultInstanceForType() {
-                return com.github.alonwang.core.protocol.protobuf.Base.Response.getDefaultInstance();
+            public com.github.alonwang.core.protocol.protobuf.Base.Protocol getDefaultInstanceForType() {
+                return com.github.alonwang.core.protocol.protobuf.Base.Protocol.getDefaultInstance();
             }
 
             @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Response build() {
-                com.github.alonwang.core.protocol.protobuf.Base.Response result = buildPartial();
+            public com.github.alonwang.core.protocol.protobuf.Base.Protocol build() {
+                com.github.alonwang.core.protocol.protobuf.Base.Protocol result = buildPartial();
                 if (!result.isInitialized()) {
                     throw newUninitializedMessageException(result);
                 }
@@ -1380,9 +608,9 @@ public final class Base {
             }
 
             @java.lang.Override
-            public com.github.alonwang.core.protocol.protobuf.Base.Response buildPartial() {
-                com.github.alonwang.core.protocol.protobuf.Base.Response result =
-                        new com.github.alonwang.core.protocol.protobuf.Base.Response(this);
+            public com.github.alonwang.core.protocol.protobuf.Base.Protocol buildPartial() {
+                com.github.alonwang.core.protocol.protobuf.Base.Protocol result =
+                        new com.github.alonwang.core.protocol.protobuf.Base.Protocol(this);
                 result.moduleId_ = moduleId_;
                 result.commandId_ = commandId_;
                 result.data_ = data_;
@@ -1432,16 +660,16 @@ public final class Base {
 
             @java.lang.Override
             public Builder mergeFrom(com.google.protobuf.Message other) {
-                if (other instanceof com.github.alonwang.core.protocol.protobuf.Base.Response) {
-                    return mergeFrom((com.github.alonwang.core.protocol.protobuf.Base.Response) other);
+                if (other instanceof com.github.alonwang.core.protocol.protobuf.Base.Protocol) {
+                    return mergeFrom((com.github.alonwang.core.protocol.protobuf.Base.Protocol) other);
                 } else {
                     super.mergeFrom(other);
                     return this;
                 }
             }
 
-            public Builder mergeFrom(com.github.alonwang.core.protocol.protobuf.Base.Response other) {
-                if (other == com.github.alonwang.core.protocol.protobuf.Base.Response.getDefaultInstance()) return this;
+            public Builder mergeFrom(com.github.alonwang.core.protocol.protobuf.Base.Protocol other) {
+                if (other == com.github.alonwang.core.protocol.protobuf.Base.Protocol.getDefaultInstance()) return this;
                 if (other.getModuleId() != 0) {
                     setModuleId(other.getModuleId());
                 }
@@ -1473,11 +701,11 @@ public final class Base {
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                     throws java.io.IOException {
-                com.github.alonwang.core.protocol.protobuf.Base.Response parsedMessage = null;
+                com.github.alonwang.core.protocol.protobuf.Base.Protocol parsedMessage = null;
                 try {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                 } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                    parsedMessage = (com.github.alonwang.core.protocol.protobuf.Base.Response) e.getUnfinishedMessage();
+                    parsedMessage = (com.github.alonwang.core.protocol.protobuf.Base.Protocol) e.getUnfinishedMessage();
                     throw e.unwrapIOException();
                 } finally {
                     if (parsedMessage != null) {
@@ -1588,10 +816,6 @@ public final class Base {
             private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
 
             /**
-             * <pre>
-             * 数据
-             * </pre>
-             *
              * <code>bytes data = 3;</code>
              *
              * @return The data.
@@ -1602,10 +826,6 @@ public final class Base {
             }
 
             /**
-             * <pre>
-             * 数据
-             * </pre>
-             *
              * <code>bytes data = 3;</code>
              *
              * @param value The data to set.
@@ -1622,10 +842,6 @@ public final class Base {
             }
 
             /**
-             * <pre>
-             * 数据
-             * </pre>
-             *
              * <code>bytes data = 3;</code>
              *
              * @return This builder for chaining.
@@ -1805,57 +1021,52 @@ public final class Base {
             }
 
 
-            // @@protoc_insertion_point(builder_scope:Response)
+            // @@protoc_insertion_point(builder_scope:Protocol)
         }
 
-        // @@protoc_insertion_point(class_scope:Response)
-        private static final com.github.alonwang.core.protocol.protobuf.Base.Response DEFAULT_INSTANCE;
+        // @@protoc_insertion_point(class_scope:Protocol)
+        private static final com.github.alonwang.core.protocol.protobuf.Base.Protocol DEFAULT_INSTANCE;
 
         static {
-            DEFAULT_INSTANCE = new com.github.alonwang.core.protocol.protobuf.Base.Response();
+            DEFAULT_INSTANCE = new com.github.alonwang.core.protocol.protobuf.Base.Protocol();
         }
 
-        public static com.github.alonwang.core.protocol.protobuf.Base.Response getDefaultInstance() {
+        public static com.github.alonwang.core.protocol.protobuf.Base.Protocol getDefaultInstance() {
             return DEFAULT_INSTANCE;
         }
 
-        private static final com.google.protobuf.Parser<Response>
-                PARSER = new com.google.protobuf.AbstractParser<Response>() {
+        private static final com.google.protobuf.Parser<Protocol>
+                PARSER = new com.google.protobuf.AbstractParser<Protocol>() {
             @java.lang.Override
-            public Response parsePartialFrom(
+            public Protocol parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                     throws com.google.protobuf.InvalidProtocolBufferException {
-                return new Response(input, extensionRegistry);
+                return new Protocol(input, extensionRegistry);
             }
         };
 
-        public static com.google.protobuf.Parser<Response> parser() {
+        public static com.google.protobuf.Parser<Protocol> parser() {
             return PARSER;
         }
 
         @java.lang.Override
-        public com.google.protobuf.Parser<Response> getParserForType() {
+        public com.google.protobuf.Parser<Protocol> getParserForType() {
             return PARSER;
         }
 
         @java.lang.Override
-        public com.github.alonwang.core.protocol.protobuf.Base.Response getDefaultInstanceForType() {
+        public com.github.alonwang.core.protocol.protobuf.Base.Protocol getDefaultInstanceForType() {
             return DEFAULT_INSTANCE;
         }
 
     }
 
     private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_Request_descriptor;
+            internal_static_Protocol_descriptor;
     private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_Request_fieldAccessorTable;
-    private static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_Response_descriptor;
-    private static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_Response_fieldAccessorTable;
+            internal_static_Protocol_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -1867,28 +1078,21 @@ public final class Base {
 
     static {
         java.lang.String[] descriptorData = {
-                "\n\nbase.proto\"<\n\007Request\022\020\n\010moduleId\030\001 \001(" +
-                        "\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\"b\n\010Re" +
-                        "sponse\022\020\n\010moduleId\030\001 \001(\005\022\021\n\tcommandId\030\002 " +
-                        "\001(\005\022\014\n\004data\030\003 \001(\014\022\021\n\terrorCode\030\004 \001(\005\022\020\n\010" +
-                        "errorMsg\030\005 \001(\tB,\n*com.github.alonwang.co" +
-                        "re.protocol.protobufb\006proto3"
+                "\n\nbase.proto\"b\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
+                        "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\021\n\te" +
+                        "rrorCode\030\004 \001(\005\022\020\n\010errorMsg\030\005 \001(\tB,\n*com." +
+                        "github.alonwang.core.protocol.protobufb\006" +
+                        "proto3"
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
                         new com.google.protobuf.Descriptors.FileDescriptor[]{
                         });
-        internal_static_Request_descriptor =
+        internal_static_Protocol_descriptor =
                 getDescriptor().getMessageTypes().get(0);
-        internal_static_Request_fieldAccessorTable = new
+        internal_static_Protocol_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_Request_descriptor,
-                new java.lang.String[]{"ModuleId", "CommandId", "Data",});
-        internal_static_Response_descriptor =
-                getDescriptor().getMessageTypes().get(1);
-        internal_static_Response_fieldAccessorTable = new
-                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_Response_descriptor,
+                internal_static_Protocol_descriptor,
                 new java.lang.String[]{"ModuleId", "CommandId", "Data", "ErrorCode", "ErrorMsg",});
     }
 

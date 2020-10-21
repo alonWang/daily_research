@@ -51,7 +51,7 @@ public class NettyClient {
 
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
     private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
-    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Response.getDefaultInstance());
+    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
     private static final ChannelInboundHandler protobufResponseDecoder = new ProtobufResponseDecoder(messageFactory);
     private static final ChannelInboundHandler responseDispatchHandler = new ResponseDispatchHandler();
     private Channel channel;
@@ -88,8 +88,8 @@ public class NettyClient {
 
     public void sendMessage(Request request) {
         request.encode();
-        Base.Request protoRequest =
-                Base.Request.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setData(request.body()).build();
+        Base.Protocol protoRequest =
+                Base.Protocol.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setData(request.body()).build();
         channel.writeAndFlush(protoRequest);
     }
 
