@@ -130,6 +130,7 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
+         *
          * @return The msg.
          */
         @java.lang.Override
@@ -148,6 +149,7 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
+         *
          * @return The bytes for msg.
          */
         @java.lang.Override
@@ -748,6 +750,7 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
+         *
          * @return The msg.
          */
         @java.lang.Override
@@ -766,6 +769,7 @@ public final class Hello {
 
         /**
          * <code>string msg = 1;</code>
+         *
          * @return The bytes for msg.
          */
         @java.lang.Override
@@ -1289,11 +1293,11 @@ public final class Hello {
                 new java.lang.String[]{"Msg",});
         internal_static_MeToMessage_descriptor =
                 getDescriptor().getMessageTypes().get(1);
-    internal_static_MeToMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_MeToMessage_descriptor,
-        new java.lang.String[] { "Msg", });
-  }
+        internal_static_MeToMessage_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_MeToMessage_descriptor,
+                new java.lang.String[]{"Msg",});
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

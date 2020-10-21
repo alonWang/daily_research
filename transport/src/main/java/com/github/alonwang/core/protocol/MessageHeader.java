@@ -6,8 +6,14 @@ package com.github.alonwang.core.protocol;
  * @detail
  */
 public class MessageHeader {
+    /**
+     * 关联errorCode,标记消息正常,无错误
+     */
+    public static final int ERR_CODE_SUCCESS = 0;
     private int moduleId;
     private int commandId;
+    private int errCode;
+    private String errMsg;
 
     public MessageHeader() {
     }
@@ -31,6 +37,23 @@ public class MessageHeader {
 
     public int getCommandId() {
         return commandId;
+    }
+
+
+    public int getErrCode() {
+        return errCode;
+    }
+
+    public void setErrCode(int errCode) {
+        this.errCode = errCode;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     @Override

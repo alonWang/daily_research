@@ -8,7 +8,7 @@ message Protocol {
     int32 moduleId = 1; //模块id
     int32 commandId = 2; //命令id
     bytes data = 3;
-    int32 errorCode = 4; //0表示正常 其他表示错误码
-    string errorMsg = 5;
+    int32 errCode = 4; //0表示正常 其他表示错误码
+    string errMsg = 5;
     //TODO 待拓展
 }

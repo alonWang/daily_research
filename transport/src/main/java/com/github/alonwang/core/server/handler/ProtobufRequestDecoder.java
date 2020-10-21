@@ -24,9 +24,7 @@ public class ProtobufRequestDecoder extends MessageToMessageDecoder<com.github.a
     @Override
     protected void decode(ChannelHandlerContext ctx, Base.Protocol msg,
                           List<Object> out) throws Exception {
-        int moduleId = msg.getModuleId();
-        int commandId = msg.getCommandId();
-        Request request = Context.getMessageFactory().parseRequest(moduleId, commandId, msg.getData());
+        Request request = Context.getMessageFactory().toMessage(msg);
         out.add(request);
     }
 }

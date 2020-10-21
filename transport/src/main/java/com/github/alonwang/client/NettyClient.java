@@ -7,7 +7,6 @@ import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.core.server.handler.ProtobufRequestDecoder;
-import com.github.alonwang.logic.core.MessageIds;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.protobuf.Hello;
 import io.netty.bootstrap.Bootstrap;
@@ -105,8 +104,8 @@ public class NettyClient {
                 break;
             }
             Hello.HelloMessage helloMessage = Hello.HelloMessage.newBuilder().setMsg(input).build();
-            HelloRequest request = messageFactory.parseRequest(MessageIds.HelloModule, MessageIds.Hello.hello,
-                    helloMessage.toByteString());
+            //TODO 外部直接构造Request
+            HelloRequest request = ;
             client.sendMessage(request);
         }
         client.stop();

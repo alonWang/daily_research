@@ -10,10 +10,7 @@ import com.google.protobuf.ByteString;
  * @detail
  */
 public abstract class Request extends Message<ByteString> {
-    @Override
-    public RequestHeader header() {
-        return (RequestHeader) super.header();
-    }
+
 
 
 }

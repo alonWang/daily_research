@@ -10,9 +10,6 @@ import com.google.protobuf.ByteString;
  * @detail
  */
 public abstract class Response extends Message<ByteString> {
-    @Override
-    public ResponseHeader header() {
-        return (ResponseHeader) super.header();
-    }
+
 
 }

@@ -54,34 +54,34 @@ public final class Base {
          * 0表示正常 其他表示错误码
          * </pre>
          *
-         * <code>int32 errorCode = 4;</code>
+         * <code>int32 errCode = 4;</code>
          *
-         * @return The errorCode.
+         * @return The errCode.
          */
-        int getErrorCode();
+        int getErrCode();
 
         /**
          * <pre>
          * TODO 待拓展
          * </pre>
          *
-         * <code>string errorMsg = 5;</code>
+         * <code>string errMsg = 5;</code>
          *
-         * @return The errorMsg.
+         * @return The errMsg.
          */
-        java.lang.String getErrorMsg();
+        java.lang.String getErrMsg();
 
         /**
          * <pre>
          * TODO 待拓展
          * </pre>
          *
-         * <code>string errorMsg = 5;</code>
+         * <code>string errMsg = 5;</code>
          *
-         * @return The bytes for errorMsg.
+         * @return The bytes for errMsg.
          */
         com.google.protobuf.ByteString
-        getErrorMsgBytes();
+        getErrMsgBytes();
     }
 
     /**
@@ -105,7 +105,7 @@ public final class Base {
 
         private Protocol() {
             data_ = com.google.protobuf.ByteString.EMPTY;
-            errorMsg_ = "";
+            errMsg_ = "";
         }
 
         @java.lang.Override
@@ -156,13 +156,13 @@ public final class Base {
                         }
                         case 32: {
 
-                            errorCode_ = input.readInt32();
+                            errCode_ = input.readInt32();
                             break;
                         }
                         case 42: {
                             java.lang.String s = input.readStringRequireUtf8();
 
-                            errorMsg_ = s;
+                            errMsg_ = s;
                             break;
                         }
                         default: {
@@ -246,45 +246,45 @@ public final class Base {
             return data_;
         }
 
-        public static final int ERRORCODE_FIELD_NUMBER = 4;
-        private int errorCode_;
+        public static final int ERRCODE_FIELD_NUMBER = 4;
+        private int errCode_;
 
         /**
          * <pre>
          * 0表示正常 其他表示错误码
          * </pre>
          *
-         * <code>int32 errorCode = 4;</code>
+         * <code>int32 errCode = 4;</code>
          *
-         * @return The errorCode.
+         * @return The errCode.
          */
         @java.lang.Override
-        public int getErrorCode() {
-            return errorCode_;
+        public int getErrCode() {
+            return errCode_;
         }
 
-        public static final int ERRORMSG_FIELD_NUMBER = 5;
-        private volatile java.lang.Object errorMsg_;
+        public static final int ERRMSG_FIELD_NUMBER = 5;
+        private volatile java.lang.Object errMsg_;
 
         /**
          * <pre>
          * TODO 待拓展
          * </pre>
          *
-         * <code>string errorMsg = 5;</code>
+         * <code>string errMsg = 5;</code>
          *
-         * @return The errorMsg.
+         * @return The errMsg.
          */
         @java.lang.Override
-        public java.lang.String getErrorMsg() {
-            java.lang.Object ref = errorMsg_;
+        public java.lang.String getErrMsg() {
+            java.lang.Object ref = errMsg_;
             if (ref instanceof java.lang.String) {
                 return (java.lang.String) ref;
             } else {
                 com.google.protobuf.ByteString bs =
                         (com.google.protobuf.ByteString) ref;
                 java.lang.String s = bs.toStringUtf8();
-                errorMsg_ = s;
+                errMsg_ = s;
                 return s;
             }
         }
@@ -294,19 +294,19 @@ public final class Base {
          * TODO 待拓展
          * </pre>
          *
-         * <code>string errorMsg = 5;</code>
+         * <code>string errMsg = 5;</code>
          *
-         * @return The bytes for errorMsg.
+         * @return The bytes for errMsg.
          */
         @java.lang.Override
         public com.google.protobuf.ByteString
-        getErrorMsgBytes() {
-            java.lang.Object ref = errorMsg_;
+        getErrMsgBytes() {
+            java.lang.Object ref = errMsg_;
             if (ref instanceof java.lang.String) {
                 com.google.protobuf.ByteString b =
                         com.google.protobuf.ByteString.copyFromUtf8(
                                 (java.lang.String) ref);
-                errorMsg_ = b;
+                errMsg_ = b;
                 return b;
             } else {
                 return (com.google.protobuf.ByteString) ref;
@@ -337,11 +337,11 @@ public final class Base {
             if (!data_.isEmpty()) {
                 output.writeBytes(3, data_);
             }
-            if (errorCode_ != 0) {
-                output.writeInt32(4, errorCode_);
+            if (errCode_ != 0) {
+                output.writeInt32(4, errCode_);
             }
-            if (!getErrorMsgBytes().isEmpty()) {
-                com.google.protobuf.GeneratedMessageV3.writeString(output, 5, errorMsg_);
+            if (!getErrMsgBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 5, errMsg_);
             }
             unknownFields.writeTo(output);
         }
@@ -364,12 +364,12 @@ public final class Base {
                 size += com.google.protobuf.CodedOutputStream
                         .computeBytesSize(3, data_);
             }
-            if (errorCode_ != 0) {
+            if (errCode_ != 0) {
                 size += com.google.protobuf.CodedOutputStream
-                        .computeInt32Size(4, errorCode_);
+                        .computeInt32Size(4, errCode_);
             }
-            if (!getErrorMsgBytes().isEmpty()) {
-                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, errorMsg_);
+            if (!getErrMsgBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, errMsg_);
             }
             size += unknownFields.getSerializedSize();
             memoizedSize = size;
@@ -393,10 +393,10 @@ public final class Base {
                     != other.getCommandId()) return false;
             if (!getData()
                     .equals(other.getData())) return false;
-            if (getErrorCode()
-                    != other.getErrorCode()) return false;
-            if (!getErrorMsg()
-                    .equals(other.getErrorMsg())) return false;
+            if (getErrCode()
+                    != other.getErrCode()) return false;
+            if (!getErrMsg()
+                    .equals(other.getErrMsg())) return false;
             if (!unknownFields.equals(other.unknownFields)) return false;
             return true;
         }
@@ -414,10 +414,10 @@ public final class Base {
             hash = (53 * hash) + getCommandId();
             hash = (37 * hash) + DATA_FIELD_NUMBER;
             hash = (53 * hash) + getData().hashCode();
-            hash = (37 * hash) + ERRORCODE_FIELD_NUMBER;
-            hash = (53 * hash) + getErrorCode();
-            hash = (37 * hash) + ERRORMSG_FIELD_NUMBER;
-            hash = (53 * hash) + getErrorMsg().hashCode();
+            hash = (37 * hash) + ERRCODE_FIELD_NUMBER;
+            hash = (53 * hash) + getErrCode();
+            hash = (37 * hash) + ERRMSG_FIELD_NUMBER;
+            hash = (53 * hash) + getErrMsg().hashCode();
             hash = (29 * hash) + unknownFields.hashCode();
             memoizedHashCode = hash;
             return hash;
@@ -580,9 +580,9 @@ public final class Base {
 
                 data_ = com.google.protobuf.ByteString.EMPTY;
 
-                errorCode_ = 0;
+                errCode_ = 0;
 
-                errorMsg_ = "";
+                errMsg_ = "";
 
                 return this;
             }
@@ -614,8 +614,8 @@ public final class Base {
                 result.moduleId_ = moduleId_;
                 result.commandId_ = commandId_;
                 result.data_ = data_;
-                result.errorCode_ = errorCode_;
-                result.errorMsg_ = errorMsg_;
+                result.errCode_ = errCode_;
+                result.errMsg_ = errMsg_;
                 onBuilt();
                 return result;
             }
@@ -679,11 +679,11 @@ public final class Base {
                 if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
                     setData(other.getData());
                 }
-                if (other.getErrorCode() != 0) {
-                    setErrorCode(other.getErrorCode());
+                if (other.getErrCode() != 0) {
+                    setErrCode(other.getErrCode());
                 }
-                if (!other.getErrorMsg().isEmpty()) {
-                    errorMsg_ = other.errorMsg_;
+                if (!other.getErrMsg().isEmpty()) {
+                    errMsg_ = other.errMsg_;
                     onChanged();
                 }
                 this.mergeUnknownFields(other.unknownFields);
@@ -853,20 +853,20 @@ public final class Base {
                 return this;
             }
 
-            private int errorCode_;
+            private int errCode_;
 
             /**
              * <pre>
              * 0表示正常 其他表示错误码
              * </pre>
              *
-             * <code>int32 errorCode = 4;</code>
+             * <code>int32 errCode = 4;</code>
              *
-             * @return The errorCode.
+             * @return The errCode.
              */
             @java.lang.Override
-            public int getErrorCode() {
-                return errorCode_;
+            public int getErrCode() {
+                return errCode_;
             }
 
             /**
@@ -874,14 +874,14 @@ public final class Base {
              * 0表示正常 其他表示错误码
              * </pre>
              *
-             * <code>int32 errorCode = 4;</code>
+             * <code>int32 errCode = 4;</code>
              *
-             * @param value The errorCode to set.
+             * @param value The errCode to set.
              * @return This builder for chaining.
              */
-            public Builder setErrorCode(int value) {
+            public Builder setErrCode(int value) {
 
-                errorCode_ = value;
+                errCode_ = value;
                 onChanged();
                 return this;
             }
@@ -891,35 +891,35 @@ public final class Base {
              * 0表示正常 其他表示错误码
              * </pre>
              *
-             * <code>int32 errorCode = 4;</code>
+             * <code>int32 errCode = 4;</code>
              *
              * @return This builder for chaining.
              */
-            public Builder clearErrorCode() {
+            public Builder clearErrCode() {
 
-                errorCode_ = 0;
+                errCode_ = 0;
                 onChanged();
                 return this;
             }
 
-            private java.lang.Object errorMsg_ = "";
+            private java.lang.Object errMsg_ = "";
 
             /**
              * <pre>
              * TODO 待拓展
              * </pre>
              *
-             * <code>string errorMsg = 5;</code>
+             * <code>string errMsg = 5;</code>
              *
-             * @return The errorMsg.
+             * @return The errMsg.
              */
-            public java.lang.String getErrorMsg() {
-                java.lang.Object ref = errorMsg_;
+            public java.lang.String getErrMsg() {
+                java.lang.Object ref = errMsg_;
                 if (!(ref instanceof java.lang.String)) {
                     com.google.protobuf.ByteString bs =
                             (com.google.protobuf.ByteString) ref;
                     java.lang.String s = bs.toStringUtf8();
-                    errorMsg_ = s;
+                    errMsg_ = s;
                     return s;
                 } else {
                     return (java.lang.String) ref;
@@ -931,18 +931,18 @@ public final class Base {
              * TODO 待拓展
              * </pre>
              *
-             * <code>string errorMsg = 5;</code>
+             * <code>string errMsg = 5;</code>
              *
-             * @return The bytes for errorMsg.
+             * @return The bytes for errMsg.
              */
             public com.google.protobuf.ByteString
-            getErrorMsgBytes() {
-                java.lang.Object ref = errorMsg_;
+            getErrMsgBytes() {
+                java.lang.Object ref = errMsg_;
                 if (ref instanceof String) {
                     com.google.protobuf.ByteString b =
                             com.google.protobuf.ByteString.copyFromUtf8(
                                     (java.lang.String) ref);
-                    errorMsg_ = b;
+                    errMsg_ = b;
                     return b;
                 } else {
                     return (com.google.protobuf.ByteString) ref;
@@ -954,18 +954,18 @@ public final class Base {
              * TODO 待拓展
              * </pre>
              *
-             * <code>string errorMsg = 5;</code>
+             * <code>string errMsg = 5;</code>
              *
-             * @param value The errorMsg to set.
+             * @param value The errMsg to set.
              * @return This builder for chaining.
              */
-            public Builder setErrorMsg(
+            public Builder setErrMsg(
                     java.lang.String value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
 
-                errorMsg_ = value;
+                errMsg_ = value;
                 onChanged();
                 return this;
             }
@@ -975,13 +975,13 @@ public final class Base {
              * TODO 待拓展
              * </pre>
              *
-             * <code>string errorMsg = 5;</code>
+             * <code>string errMsg = 5;</code>
              *
              * @return This builder for chaining.
              */
-            public Builder clearErrorMsg() {
+            public Builder clearErrMsg() {
 
-                errorMsg_ = getDefaultInstance().getErrorMsg();
+                errMsg_ = getDefaultInstance().getErrMsg();
                 onChanged();
                 return this;
             }
@@ -991,19 +991,19 @@ public final class Base {
              * TODO 待拓展
              * </pre>
              *
-             * <code>string errorMsg = 5;</code>
+             * <code>string errMsg = 5;</code>
              *
-             * @param value The bytes for errorMsg to set.
+             * @param value The bytes for errMsg to set.
              * @return This builder for chaining.
              */
-            public Builder setErrorMsgBytes(
+            public Builder setErrMsgBytes(
                     com.google.protobuf.ByteString value) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
                 checkByteStringIsUtf8(value);
 
-                errorMsg_ = value;
+                errMsg_ = value;
                 onChanged();
                 return this;
             }
@@ -1078,11 +1078,11 @@ public final class Base {
 
     static {
         java.lang.String[] descriptorData = {
-                "\n\nbase.proto\"b\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
-                        "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\021\n\te" +
-                        "rrorCode\030\004 \001(\005\022\020\n\010errorMsg\030\005 \001(\tB,\n*com." +
-                        "github.alonwang.core.protocol.protobufb\006" +
-                        "proto3"
+                "\n\nbase.proto\"^\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
+                        "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\017\n\007e" +
+                        "rrCode\030\004 \001(\005\022\016\n\006errMsg\030\005 \001(\tB,\n*com.gith" +
+                        "ub.alonwang.core.protocol.protobufb\006prot" +
+                        "o3"
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
@@ -1093,7 +1093,7 @@ public final class Base {
         internal_static_Protocol_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_Protocol_descriptor,
-                new java.lang.String[]{"ModuleId", "CommandId", "Data", "ErrorCode", "ErrorMsg",});
+                new java.lang.String[]{"ModuleId", "CommandId", "Data", "ErrCode", "ErrMsg",});
     }
 
     // @@protoc_insertion_point(outer_class_scope)

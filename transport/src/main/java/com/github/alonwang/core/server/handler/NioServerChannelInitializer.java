@@ -1,6 +1,7 @@
 package com.github.alonwang.core.server.handler;
 
 
+import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInboundHandler;
@@ -15,18 +16,21 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 /**
- *
  * @author alonwang
  * @date 2020/7/13 16:16
  * @detail
  */
 public class NioServerChannelInitializer extends ChannelInitializer<SocketChannel> {
-    private static final ChannelHandler idleEventHandler = new IdleStateEventHandler();
-    private static final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
-    private static final ChannelInboundHandler requestDispatchHandler = new RequestDispatchHandler();
-    private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
-    private static final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
-    private static final ChannelOutboundHandler responseEncoder = new ProtobufResponseEncoder();
+    private final ChannelHandler idleEventHandler = new IdleStateEventHandler();
+    private final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
+    private final ChannelInboundHandler requestDispatchHandler = new RequestDispatchHandler();
+    private final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
+    private final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
+    private final ChannelOutboundHandler responseEncoder;
+
+    public NioServerChannelInitializer(MessageFactory messageFactory) {
+        responseEncoder = new ProtobufResponseEncoder(messageFactory);
+    }
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {

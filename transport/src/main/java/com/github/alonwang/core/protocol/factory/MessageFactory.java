@@ -1,13 +1,9 @@
 package com.github.alonwang.core.protocol.factory;
 
 import com.github.alonwang.core.core.MessageRegistry;
-import com.github.alonwang.core.exception.NoSuchHeaderException;
 import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageHeader;
-import com.github.alonwang.core.protocol.Request;
-import com.github.alonwang.core.protocol.RequestHeader;
-import com.github.alonwang.core.protocol.Response;
-import com.github.alonwang.core.protocol.ResponseHeader;
+import com.github.alonwang.core.protocol.protobuf.Base.Protocol;
 import com.google.common.base.Preconditions;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
@@ -30,28 +26,26 @@ public class MessageFactory {
     }
 
     /**
-     * 解析请求,生成协议包
+     * 解析协议包,生成消息
      *
-     * @param moduleId
-     * @param commandId
-     * @param body
+     * @param protocol
      * @param <T>
      * @return
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public <T extends Request> T parseRequest(int moduleId, int commandId, ByteString body) {
-        Class<? extends Message> messageClazz = messageRegistry.getMessage(moduleId, commandId);
-        Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message", moduleId, commandId);
-        Preconditions.checkArgument(Request.class.isAssignableFrom(messageClazz));
+    public <T extends Message> T toMessage(Protocol protocol) {
+        Class<? extends Message> messageClazz = messageRegistry.getMessage(protocol.getModuleId(),
+                protocol.getCommandId());
+        Preconditions.checkNotNull(messageClazz, "moduleId({}),commandId({}) no relate Message",
+                protocol.getModuleId(), protocol.getCommandId());
         try {
             Constructor<? extends Message> constructor = messageClazz.getConstructor();
             Message message = constructor.newInstance();
-            Request abstractRequest = (Request) message;
-            MessageHeader header = new RequestHeader(moduleId, commandId);
-            abstractRequest.setHeader(header);
-            abstractRequest.setData(body);
-            abstractRequest.decode();
-            return (T) abstractRequest;
+            MessageHeader header = new MessageHeader(protocol.getModuleId(), protocol.getCommandId());
+            message.setHeader(header);
+            message.setData(protocol.getData());
+            message.decode();
+            return (T) message;
         } catch (Exception e) {
             log.error("create request error", e);
         }
@@ -73,10 +67,7 @@ public class MessageFactory {
         try {
             Constructor<? extends Message> constructor = messageClazz.getConstructor();
             Message message = constructor.newInstance();
-
-            MessageHeader header = createHeader(messageClazz);
-            header.setModuleId(moduleId);
-            header.setCommandId(commandId);
+            MessageHeader header = new MessageHeader(moduleId, commandId);
             message.setHeader(header);
             return (T) message;
         } catch (Exception e) {
@@ -86,20 +77,20 @@ public class MessageFactory {
     }
 
     /**
-     * 实例化header
+     * 解析{@link Message},生成{@link Protocol}
      *
-     * @param clazz 消息表示的类,继承自{@link Message}
-     * @return {@link RequestHeader}或{@link ResponseHeader}
-     * @throws NoSuchHeaderException 没有对应类型的header
+     * @param msg
+     * @return
      */
-    @SuppressWarnings("rawtypes")
-    private MessageHeader createHeader(Class<? extends Message> clazz) {
-        if (Request.class.isAssignableFrom(clazz)) {
-            return new RequestHeader();
+    public static Protocol toProtocol(Message<ByteString> msg) {
+        var protocol = Protocol.newBuilder();
+        protocol.setModuleId(msg.header().getModuleId()).setCommandId(msg.header().getCommandId());
+        if (msg.header().getErrCode() != MessageHeader.ERR_CODE_SUCCESS) {
+            protocol.setErrCode(msg.header().getErrCode());
+            protocol.setErrMsg(msg.header().getErrMsg());
+        } else {
+            protocol.setData(msg.body());
         }
-        if (Response.class.isAssignableFrom(clazz)) {
-            return new ResponseHeader();
-        }
-        throw new NoSuchHeaderException(String.format("class(%s) no related header", clazz));
+        return protocol.build();
     }
 }
