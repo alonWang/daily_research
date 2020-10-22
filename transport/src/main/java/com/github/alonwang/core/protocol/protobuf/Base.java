@@ -5,104 +5,92 @@ package com.github.alonwang.core.protocol.protobuf;
 
 public final class Base {
   private Base() {}
-
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistryLite registry) {
+      com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistry registry) {
+      com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-            (com.google.protobuf.ExtensionRegistryLite) registry);
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-
   public interface ProtocolOrBuilder extends
-          // @@protoc_insertion_point(interface_extends:Protocol)
-          com.google.protobuf.MessageOrBuilder {
+      // @@protoc_insertion_point(interface_extends:Protocol)
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * 模块id
+     *模块id
      * </pre>
      *
      * <code>int32 moduleId = 1;</code>
-     *
      * @return The moduleId.
      */
     int getModuleId();
 
     /**
      * <pre>
-     * 命令id
+     *命令id
      * </pre>
      *
      * <code>int32 commandId = 2;</code>
-     *
      * @return The commandId.
      */
     int getCommandId();
 
     /**
      * <code>bytes data = 3;</code>
-     *
      * @return The data.
      */
     com.google.protobuf.ByteString getData();
 
     /**
      * <pre>
-     * 0表示正常 其他表示错误码
+     *0表示正常 其他表示错误码
      * </pre>
      *
      * <code>int32 errCode = 4;</code>
-     *
      * @return The errCode.
      */
     int getErrCode();
 
     /**
      * <pre>
-     * TODO 待拓展
+     *TODO 待拓展
      * </pre>
      *
      * <code>string errMsg = 5;</code>
-     *
      * @return The errMsg.
      */
     java.lang.String getErrMsg();
-
     /**
      * <pre>
-     * TODO 待拓展
+     *TODO 待拓展
      * </pre>
      *
      * <code>string errMsg = 5;</code>
-     *
      * @return The bytes for errMsg.
      */
     com.google.protobuf.ByteString
-    getErrMsgBytes();
+        getErrMsgBytes();
   }
-
   /**
    * <pre>
-   * *
-   * 协议包
+   **
+   *协议包
    * </pre>
-   * <p>
+   *
    * Protobuf type {@code Protocol}
    */
   public static final class Protocol extends
-          com.google.protobuf.GeneratedMessageV3 implements
-          // @@protoc_insertion_point(message_implements:Protocol)
-          ProtocolOrBuilder {
-    private static final long serialVersionUID = 0L;
-
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol)
+      ProtocolOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Protocol.newBuilder() to construct.
     private Protocol(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private Protocol() {
       data_ = com.google.protobuf.ByteString.EMPTY;
       errMsg_ = "";
@@ -111,7 +99,7 @@ public final class Base {
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
+        UnusedPrivateParameter unused) {
       return new Protocol();
     }
 
@@ -120,17 +108,16 @@ public final class Base {
     getUnknownFields() {
       return this.unknownFields;
     }
-
     private Protocol(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-              com.google.protobuf.UnknownFieldSet.newBuilder();
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -167,7 +154,7 @@ public final class Base {
             }
             default: {
               if (!parseUnknownField(
-                      input, unknownFields, extensionRegistry, tag)) {
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -178,37 +165,33 @@ public final class Base {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-                e).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
-
     public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+        getDescriptor() {
       return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+        internalGetFieldAccessorTable() {
       return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      com.github.alonwang.core.protocol.protobuf.Base.Protocol.class,
-                      com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
+          .ensureFieldAccessorsInitialized(
+              com.github.alonwang.core.protocol.protobuf.Base.Protocol.class, com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
     }
 
     public static final int MODULEID_FIELD_NUMBER = 1;
     private int moduleId_;
-
     /**
      * <pre>
-     * 模块id
+     *模块id
      * </pre>
      *
      * <code>int32 moduleId = 1;</code>
-     *
      * @return The moduleId.
      */
     @java.lang.Override
@@ -218,14 +201,12 @@ public final class Base {
 
     public static final int COMMANDID_FIELD_NUMBER = 2;
     private int commandId_;
-
     /**
      * <pre>
-     * 命令id
+     *命令id
      * </pre>
      *
      * <code>int32 commandId = 2;</code>
-     *
      * @return The commandId.
      */
     @java.lang.Override
@@ -235,10 +216,8 @@ public final class Base {
 
     public static final int DATA_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString data_;
-
     /**
      * <code>bytes data = 3;</code>
-     *
      * @return The data.
      */
     @java.lang.Override
@@ -248,14 +227,12 @@ public final class Base {
 
     public static final int ERRCODE_FIELD_NUMBER = 4;
     private int errCode_;
-
     /**
      * <pre>
-     * 0表示正常 其他表示错误码
+     *0表示正常 其他表示错误码
      * </pre>
      *
      * <code>int32 errCode = 4;</code>
-     *
      * @return The errCode.
      */
     @java.lang.Override
@@ -265,14 +242,12 @@ public final class Base {
 
     public static final int ERRMSG_FIELD_NUMBER = 5;
     private volatile java.lang.Object errMsg_;
-
     /**
      * <pre>
-     * TODO 待拓展
+     *TODO 待拓展
      * </pre>
      *
      * <code>string errMsg = 5;</code>
-     *
      * @return The errMsg.
      */
     @java.lang.Override
@@ -281,31 +256,29 @@ public final class Base {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         errMsg_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
-     * TODO 待拓展
+     *TODO 待拓展
      * </pre>
      *
      * <code>string errMsg = 5;</code>
-     *
      * @return The bytes for errMsg.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-    getErrMsgBytes() {
+        getErrMsgBytes() {
       java.lang.Object ref = errMsg_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         errMsg_ = b;
         return b;
       } else {
@@ -314,7 +287,6 @@ public final class Base {
     }
 
     private byte memoizedIsInitialized = -1;
-
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -327,7 +299,7 @@ public final class Base {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
+                        throws java.io.IOException {
       if (moduleId_ != 0) {
         output.writeInt32(1, moduleId_);
       }
@@ -354,19 +326,19 @@ public final class Base {
       size = 0;
       if (moduleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(1, moduleId_);
+          .computeInt32Size(1, moduleId_);
       }
       if (commandId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(2, commandId_);
+          .computeInt32Size(2, commandId_);
       }
       if (!data_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(3, data_);
+          .computeBytesSize(3, data_);
       }
       if (errCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(4, errCode_);
+          .computeInt32Size(4, errCode_);
       }
       if (!getErrMsgBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, errMsg_);
@@ -379,24 +351,23 @@ public final class Base {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-        return true;
+       return true;
       }
       if (!(obj instanceof com.github.alonwang.core.protocol.protobuf.Base.Protocol)) {
         return super.equals(obj);
       }
-      com.github.alonwang.core.protocol.protobuf.Base.Protocol other =
-              (com.github.alonwang.core.protocol.protobuf.Base.Protocol) obj;
+      com.github.alonwang.core.protocol.protobuf.Base.Protocol other = (com.github.alonwang.core.protocol.protobuf.Base.Protocol) obj;
 
       if (getModuleId()
-              != other.getModuleId()) return false;
+          != other.getModuleId()) return false;
       if (getCommandId()
-              != other.getCommandId()) return false;
+          != other.getCommandId()) return false;
       if (!getData()
-              .equals(other.getData())) return false;
+          .equals(other.getData())) return false;
       if (getErrCode()
-              != other.getErrCode()) return false;
+          != other.getErrCode()) return false;
       if (!getErrMsg()
-              .equals(other.getErrMsg())) return false;
+          .equals(other.getErrMsg())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -424,134 +395,118 @@ public final class Base {
     }
 
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          .parseDelimitedWithIOException(PARSER, input);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          .parseWithIOException(PARSER, input);
     }
-
     public static com.github.alonwang.core.protocol.protobuf.Base.Protocol parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
-
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-
     public static Builder newBuilder(com.github.alonwang.core.protocol.protobuf.Base.Protocol prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-
     /**
      * <pre>
-     * *
-     * 协议包
+     **
+     *协议包
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code Protocol}
      */
     public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:Protocol)
-            com.github.alonwang.core.protocol.protobuf.Base.ProtocolOrBuilder {
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol)
+        com.github.alonwang.core.protocol.protobuf.Base.ProtocolOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
+          getDescriptor() {
         return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
+          internalGetFieldAccessorTable() {
         return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        com.github.alonwang.core.protocol.protobuf.Base.Protocol.class,
-                        com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
+            .ensureFieldAccessorsInitialized(
+                com.github.alonwang.core.protocol.protobuf.Base.Protocol.class, com.github.alonwang.core.protocol.protobuf.Base.Protocol.Builder.class);
       }
 
       // Construct using com.github.alonwang.core.protocol.protobuf.Base.Protocol.newBuilder()
@@ -560,17 +515,15 @@ public final class Base {
       }
 
       private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
-
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
         }
       }
-
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -589,7 +542,7 @@ public final class Base {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
+          getDescriptorForType() {
         return com.github.alonwang.core.protocol.protobuf.Base.internal_static_Protocol_descriptor;
       }
 
@@ -609,8 +562,7 @@ public final class Base {
 
       @java.lang.Override
       public com.github.alonwang.core.protocol.protobuf.Base.Protocol buildPartial() {
-        com.github.alonwang.core.protocol.protobuf.Base.Protocol result =
-                new com.github.alonwang.core.protocol.protobuf.Base.Protocol(this);
+        com.github.alonwang.core.protocol.protobuf.Base.Protocol result = new com.github.alonwang.core.protocol.protobuf.Base.Protocol(this);
         result.moduleId_ = moduleId_;
         result.commandId_ = commandId_;
         result.data_ = data_;
@@ -624,44 +576,38 @@ public final class Base {
       public Builder clone() {
         return super.clone();
       }
-
       @java.lang.Override
       public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-
       @java.lang.Override
       public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-
       @java.lang.Override
       public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-
       @java.lang.Override
       public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-
       @java.lang.Override
       public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.github.alonwang.core.protocol.protobuf.Base.Protocol) {
-          return mergeFrom((com.github.alonwang.core.protocol.protobuf.Base.Protocol) other);
+          return mergeFrom((com.github.alonwang.core.protocol.protobuf.Base.Protocol)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -698,9 +644,9 @@ public final class Base {
 
       @java.lang.Override
       public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
         com.github.alonwang.core.protocol.protobuf.Base.Protocol parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -715,209 +661,183 @@ public final class Base {
         return this;
       }
 
-      private int moduleId_;
-
+      private int moduleId_ ;
       /**
        * <pre>
-       * 模块id
+       *模块id
        * </pre>
        *
        * <code>int32 moduleId = 1;</code>
-       *
        * @return The moduleId.
        */
       @java.lang.Override
       public int getModuleId() {
         return moduleId_;
       }
-
       /**
        * <pre>
-       * 模块id
+       *模块id
        * </pre>
        *
        * <code>int32 moduleId = 1;</code>
-       *
        * @param value The moduleId to set.
        * @return This builder for chaining.
        */
       public Builder setModuleId(int value) {
-
+        
         moduleId_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
-       * 模块id
+       *模块id
        * </pre>
        *
        * <code>int32 moduleId = 1;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearModuleId() {
-
+        
         moduleId_ = 0;
         onChanged();
         return this;
       }
 
-      private int commandId_;
-
+      private int commandId_ ;
       /**
        * <pre>
-       * 命令id
+       *命令id
        * </pre>
        *
        * <code>int32 commandId = 2;</code>
-       *
        * @return The commandId.
        */
       @java.lang.Override
       public int getCommandId() {
         return commandId_;
       }
-
       /**
        * <pre>
-       * 命令id
+       *命令id
        * </pre>
        *
        * <code>int32 commandId = 2;</code>
-       *
        * @param value The commandId to set.
        * @return This builder for chaining.
        */
       public Builder setCommandId(int value) {
-
+        
         commandId_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
-       * 命令id
+       *命令id
        * </pre>
        *
        * <code>int32 commandId = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearCommandId() {
-
+        
         commandId_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
-
       /**
        * <code>bytes data = 3;</code>
-       *
        * @return The data.
        */
       @java.lang.Override
       public com.google.protobuf.ByteString getData() {
         return data_;
       }
-
       /**
        * <code>bytes data = 3;</code>
-       *
        * @param value The data to set.
        * @return This builder for chaining.
        */
       public Builder setData(com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
-
+    throw new NullPointerException();
+  }
+  
         data_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>bytes data = 3;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearData() {
-
+        
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
       }
 
-      private int errCode_;
-
+      private int errCode_ ;
       /**
        * <pre>
-       * 0表示正常 其他表示错误码
+       *0表示正常 其他表示错误码
        * </pre>
        *
        * <code>int32 errCode = 4;</code>
-       *
        * @return The errCode.
        */
       @java.lang.Override
       public int getErrCode() {
         return errCode_;
       }
-
       /**
        * <pre>
-       * 0表示正常 其他表示错误码
+       *0表示正常 其他表示错误码
        * </pre>
        *
        * <code>int32 errCode = 4;</code>
-       *
        * @param value The errCode to set.
        * @return This builder for chaining.
        */
       public Builder setErrCode(int value) {
-
+        
         errCode_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
-       * 0表示正常 其他表示错误码
+       *0表示正常 其他表示错误码
        * </pre>
        *
        * <code>int32 errCode = 4;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearErrCode() {
-
+        
         errCode_ = 0;
         onChanged();
         return this;
       }
 
       private java.lang.Object errMsg_ = "";
-
       /**
        * <pre>
-       * TODO 待拓展
+       *TODO 待拓展
        * </pre>
        *
        * <code>string errMsg = 5;</code>
-       *
        * @return The errMsg.
        */
       public java.lang.String getErrMsg() {
         java.lang.Object ref = errMsg_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-                  (com.google.protobuf.ByteString) ref;
+              (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           errMsg_ = s;
           return s;
@@ -925,98 +845,89 @@ public final class Base {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
-       * TODO 待拓展
+       *TODO 待拓展
        * </pre>
        *
        * <code>string errMsg = 5;</code>
-       *
        * @return The bytes for errMsg.
        */
       public com.google.protobuf.ByteString
-      getErrMsgBytes() {
+          getErrMsgBytes() {
         java.lang.Object ref = errMsg_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
           errMsg_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
-       * TODO 待拓展
+       *TODO 待拓展
        * </pre>
        *
        * <code>string errMsg = 5;</code>
-       *
        * @param value The errMsg to set.
        * @return This builder for chaining.
        */
       public Builder setErrMsg(
-              java.lang.String value) {
+          java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
-
+    throw new NullPointerException();
+  }
+  
         errMsg_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
-       * TODO 待拓展
+       *TODO 待拓展
        * </pre>
        *
        * <code>string errMsg = 5;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearErrMsg() {
-
+        
         errMsg_ = getDefaultInstance().getErrMsg();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
-       * TODO 待拓展
+       *TODO 待拓展
        * </pre>
        *
        * <code>string errMsg = 5;</code>
-       *
        * @param value The bytes for errMsg to set.
        * @return This builder for chaining.
        */
       public Builder setErrMsgBytes(
-              com.google.protobuf.ByteString value) {
+          com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
-        checkByteStringIsUtf8(value);
-
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
         errMsg_ = value;
         onChanged();
         return this;
       }
-
       @java.lang.Override
       public final Builder setUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -1026,7 +937,6 @@ public final class Base {
 
     // @@protoc_insertion_point(class_scope:Protocol)
     private static final com.github.alonwang.core.protocol.protobuf.Base.Protocol DEFAULT_INSTANCE;
-
     static {
       DEFAULT_INSTANCE = new com.github.alonwang.core.protocol.protobuf.Base.Protocol();
     }
@@ -1036,12 +946,12 @@ public final class Base {
     }
 
     private static final com.google.protobuf.Parser<Protocol>
-            PARSER = new com.google.protobuf.AbstractParser<Protocol>() {
+        PARSER = new com.google.protobuf.AbstractParser<Protocol>() {
       @java.lang.Override
       public Protocol parsePartialFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         return new Protocol(input, extensionRegistry);
       }
     };
@@ -1063,37 +973,35 @@ public final class Base {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_Protocol_descriptor;
-  private static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_Protocol_fieldAccessorTable;
+    internal_static_Protocol_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
+      getDescriptor() {
     return descriptor;
   }
-
-  private static com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
-
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
   static {
     java.lang.String[] descriptorData = {
-            "\n\nbase.proto\"^\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
-                    "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\017\n\007e" +
-                    "rrCode\030\004 \001(\005\022\016\n\006errMsg\030\005 \001(\tB,\n*com.gith" +
-                    "ub.alonwang.core.protocol.protobufb\006prot" +
-                    "o3"
+      "\n\nbase.proto\"^\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
+      "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\017\n\007e" +
+      "rrCode\030\004 \001(\005\022\016\n\006errMsg\030\005 \001(\tB,\n*com.gith" +
+      "ub.alonwang.core.protocol.protobufb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[]{
-                    });
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        });
     internal_static_Protocol_descriptor =
-            getDescriptor().getMessageTypes().get(0);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_Protocol_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_Protocol_descriptor,
-            new java.lang.String[]{"ModuleId", "CommandId", "Data", "ErrCode", "ErrMsg",});
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_descriptor,
+        new java.lang.String[] { "ModuleId", "CommandId", "Data", "ErrCode", "ErrMsg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
