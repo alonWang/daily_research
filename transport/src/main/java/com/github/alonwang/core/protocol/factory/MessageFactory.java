@@ -43,7 +43,7 @@ public class MessageFactory {
             Message message = constructor.newInstance();
             MessageHeader header = new MessageHeader(protocol.getModuleId(), protocol.getCommandId());
             message.setHeader(header);
-            message.setData(protocol.getData());
+            message.setBody(protocol.getData());
             message.decode();
             return (T) message;
         } catch (Exception e) {

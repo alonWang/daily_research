@@ -7,7 +7,7 @@ package com.github.alonwang.core.protocol;
  */
 public class MessageHeader {
     /**
-     * 关联errorCode,标记消息正常,无错误
+     * 关联errCode,标记消息正常,无错误
      */
     public static final int ERR_CODE_SUCCESS = 0;
     private int moduleId;

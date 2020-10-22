@@ -3,10 +3,13 @@ package com.github.alonwang.client;
 import com.github.alonwang.client.handler.ProtobufResponseDecoder;
 import com.github.alonwang.client.handler.ResponseDispatchHandler;
 import com.github.alonwang.core.core.MessageRegistry;
+import com.github.alonwang.core.protocol.Message;
+import com.github.alonwang.core.protocol.ProtobufCodecDelegate;
 import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.core.server.handler.ProtobufRequestDecoder;
+import com.github.alonwang.logic.core.MessageIds;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.protobuf.Hello;
 import io.netty.bootstrap.Bootstrap;
@@ -46,6 +49,10 @@ public class NettyClient {
             throw new RuntimeException(e);
         }
         messageFactory = new MessageFactory(messageRegistry);
+
+        for (Class<? extends Message<?>> messageClazz : messageRegistry.getMessages().values()) {
+            ProtobufCodecDelegate.register(messageClazz);
+        }
     }
 
     private static final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
@@ -104,8 +111,9 @@ public class NettyClient {
                 break;
             }
             Hello.HelloMessage helloMessage = Hello.HelloMessage.newBuilder().setMsg(input).build();
-            //TODO 外部直接构造Request
-            HelloRequest request = ;
+
+            HelloRequest request = messageFactory.createMessage(MessageIds.HelloModule, MessageIds.Hello.hello);
+            request.setReq(helloMessage);
             client.sendMessage(request);
         }
         client.stop();

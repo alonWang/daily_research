@@ -49,7 +49,7 @@ public class MessageRegistry {
             if (tempMessageMap.containsKey(key)) {
                 Class<? extends Message<?>> old = tempMessageMap.get(key);
                 throw new IllegalArgumentException(old.getSimpleName() + " and " + wrapperClazz.getSimpleName() + " " +
-                        "conflict,please check @MessageWrapper's moduleId and commandId");
+                        "conflict,please check @MessageId's moduleId and commandId");
             }
             tempMessageMap.put(key, (Class<? extends Message<?>>) wrapperClazz);
         }
