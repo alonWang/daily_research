@@ -44,4 +44,13 @@ public class SessionManager {
         return Optional.of(session);
     }
 
+    /**
+     * 移除session
+     *
+     * @param channel
+     * @return 移除的session 可能为null
+     */
+    public Session removeSession(Channel channel) {
+        return channel2SessionMap.remove(channel);
+    }
 }

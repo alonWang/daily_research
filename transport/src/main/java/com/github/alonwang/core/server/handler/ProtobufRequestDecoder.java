@@ -6,6 +6,7 @@ import com.github.alonwang.core.protocol.protobuf.Base;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @date 2020/7/13 17:29
  * @detail
  */
+@Component
 @ChannelHandler.Sharable
 public class ProtobufRequestDecoder extends MessageToMessageDecoder<com.github.alonwang.core.protocol.protobuf.Base.Protocol> {
 

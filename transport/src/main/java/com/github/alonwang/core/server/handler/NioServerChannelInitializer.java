@@ -1,12 +1,8 @@
 package com.github.alonwang.core.server.handler;
 
 
-import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelInboundHandler;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOutboundHandler;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
@@ -14,23 +10,27 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author alonwang
  * @date 2020/7/13 16:16
  * @detail
  */
+@Component
 public class NioServerChannelInitializer extends ChannelInitializer<SocketChannel> {
-    private final ChannelHandler idleEventHandler = new IdleStateEventHandler();
-    private final ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
-    private final ChannelInboundHandler requestDispatchHandler = new RequestDispatchHandler();
-    private final ProtobufEncoder protobufEncoder = new ProtobufEncoder();
-    private final ChannelInboundHandler protobufRequestDecoder = new ProtobufRequestDecoder();
-    private final ChannelOutboundHandler responseEncoder;
+    @Autowired
+    private IdleStateEventHandler idleEventHandler;
+    @Autowired
+    private RequestDispatchHandler requestDispatchHandler;
+    @Autowired
+    private ProtobufRequestDecoder protobufRequestDecoder;
+    @Autowired
+    private ProtobufResponseEncoder responseEncoder;
 
-    public NioServerChannelInitializer(MessageFactory messageFactory) {
-        responseEncoder = new ProtobufResponseEncoder(messageFactory);
-    }
+    private ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
+    private ProtobufEncoder protobufEncoder = new ProtobufEncoder();
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {

@@ -10,6 +10,7 @@ import com.google.common.base.Preconditions;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import java.util.Optional;
  * @date 2020/7/13 16:46
  * @detail
  */
+@Component
 @ChannelHandler.Sharable
 public class RequestDispatchHandler extends SimpleChannelInboundHandler<Request> {
 

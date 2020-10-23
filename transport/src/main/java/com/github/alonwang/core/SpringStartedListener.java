@@ -39,9 +39,8 @@ public class SpringStartedListener implements ApplicationListener<ApplicationSta
     }
 
     private void startNetty(ApplicationContext applicationContext) {
-        MessageFactory messageFactory = applicationContext.getBean(MessageFactory.class);
         try {
-            new NettyServer().start(80, new NioServerChannelInitializer(messageFactory));
+            new NettyServer().start(80, applicationContext.getBean(NioServerChannelInitializer.class));
         } catch (Exception e) {
             log.error("Netty start failed", e);
         }

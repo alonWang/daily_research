@@ -2,6 +2,7 @@ package com.github.alonwang.core.server.task;
 
 import com.github.alonwang.core.core.DefaultJobExecutor;
 import com.github.alonwang.core.protocol.Message;
+import groovy.transform.ToString;
 import io.netty.channel.Channel;
 
 import java.util.Objects;
@@ -15,6 +16,7 @@ import java.util.Objects;
  * * 唯一标识一个用户
  * * 异步串行无锁化
  */
+@ToString
 public class Session extends DefaultJobExecutor<Session> {
     /**
      * 用户关联的Channel
