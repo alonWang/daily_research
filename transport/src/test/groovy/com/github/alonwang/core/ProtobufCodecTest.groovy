@@ -1,7 +1,7 @@
 package com.github.alonwang.core
 
 
-import com.github.alonwang.core.protocol.BodyField
+import com.github.alonwang.core.protocol.PayLoad
 import com.github.alonwang.core.protocol.MessageId
 import com.github.alonwang.core.protocol.ProtobufCodecDelegate
 import com.github.alonwang.core.protocol.ProtobufMessage
@@ -30,7 +30,7 @@ class ProtobufCodecTest extends Specification {
 
     @MessageId(moduleId = 99999, commandId = 99998)
     static class ValidMessage extends ProtobufMessage {
-        @BodyField
+        @PayLoad
         private HelloMessage hello;
         private MeToMessage meto;
 

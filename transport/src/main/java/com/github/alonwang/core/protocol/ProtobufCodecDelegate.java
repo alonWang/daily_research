@@ -46,13 +46,13 @@ public class ProtobufCodecDelegate {
     }
 
     /**
-     * 将{@link Message#body()}转换并设置到Protobuf的java表示
+     * 将{@link Message#getPayload()}转换并设置到Protobuf的java表示
      *
      * @param <T>
      * @param message
      */
     public static <T extends ProtobufMessage> void decode(T message) {
-        ByteString body = message.body();
+        ByteString body = message.getPayload();
         if (body == null) {
             return;
         }
@@ -77,7 +77,7 @@ public class ProtobufCodecDelegate {
     }
 
     /**
-     * Protobuf的java表示转换并设置为{@link Message#body()}
+     * Protobuf的java表示转换并设置为{@link Message#getPayload()}
      *
      * @param message
      * @param <T>
@@ -99,7 +99,7 @@ public class ProtobufCodecDelegate {
         try {
             protoValue = protoField.get(message);
             byteStringValue = toByteStringMethod.invoke(protoValue, (Object[]) null);
-            message.setBody((ByteString) byteStringValue);
+            message.setPayload((ByteString) byteStringValue);
         } catch (Exception e) {
             log.error(String.format("%s encode error,field name(%s), value(%s),byteString(%s)", message.getClass(),
                     protoField.getName(), protoValue, byteStringValue), e);
@@ -120,7 +120,7 @@ public class ProtobufCodecDelegate {
         }
 
         Field bodyField =
-                Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> f.isAnnotationPresent(BodyField.class)).findAny().orElse(null);
+                Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> f.isAnnotationPresent(PayLoad.class)).findAny().orElse(null);
         if (bodyField == null) {
             List<Field> possibleFields =
                     Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> AbstractMessage.class.isAssignableFrom(f.getType())).collect(Collectors.toList());

@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 标记字段为 {@link Message#body()}的java表示
+ * 标记字段为 {@link Message#getPayload()}有效载荷
  *
  * @author alonwang
  * @date 2020/10/22 4:21 下午
@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Documented
-public @interface BodyField {
+public @interface PayLoad {
 }

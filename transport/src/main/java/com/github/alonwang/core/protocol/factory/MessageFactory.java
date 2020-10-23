@@ -43,7 +43,7 @@ public class MessageFactory {
             Message message = constructor.newInstance();
             MessageHeader header = new MessageHeader(protocol.getModuleId(), protocol.getCommandId());
             message.setHeader(header);
-            message.setBody(protocol.getData());
+            message.setPayload(protocol.getPayload());
             message.decode();
             return (T) message;
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class MessageFactory {
             protocol.setErrCode(msg.header().getErrCode());
             protocol.setErrMsg(msg.header().getErrMsg());
         } else {
-            protocol.setData(msg.body());
+            protocol.setPayload(msg.getPayload());
         }
         return protocol.build();
     }

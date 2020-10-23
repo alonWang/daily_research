@@ -39,10 +39,10 @@ public final class Base {
     int getCommandId();
 
     /**
-     * <code>bytes data = 3;</code>
-     * @return The data.
+     * <code>bytes payload = 3;</code>
+     * @return The payload.
      */
-    com.google.protobuf.ByteString getData();
+    com.google.protobuf.ByteString getPayload();
 
     /**
      * <pre>
@@ -92,7 +92,7 @@ public final class Base {
       super(builder);
     }
     private Protocol() {
-      data_ = com.google.protobuf.ByteString.EMPTY;
+      payload_ = com.google.protobuf.ByteString.EMPTY;
       errMsg_ = "";
     }
 
@@ -138,7 +138,7 @@ public final class Base {
             }
             case 26: {
 
-              data_ = input.readBytes();
+              payload_ = input.readBytes();
               break;
             }
             case 32: {
@@ -214,15 +214,15 @@ public final class Base {
       return commandId_;
     }
 
-    public static final int DATA_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString data_;
+    public static final int PAYLOAD_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString payload_;
     /**
-     * <code>bytes data = 3;</code>
-     * @return The data.
+     * <code>bytes payload = 3;</code>
+     * @return The payload.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getData() {
-      return data_;
+    public com.google.protobuf.ByteString getPayload() {
+      return payload_;
     }
 
     public static final int ERRCODE_FIELD_NUMBER = 4;
@@ -306,8 +306,8 @@ public final class Base {
       if (commandId_ != 0) {
         output.writeInt32(2, commandId_);
       }
-      if (!data_.isEmpty()) {
-        output.writeBytes(3, data_);
+      if (!payload_.isEmpty()) {
+        output.writeBytes(3, payload_);
       }
       if (errCode_ != 0) {
         output.writeInt32(4, errCode_);
@@ -332,9 +332,9 @@ public final class Base {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, commandId_);
       }
-      if (!data_.isEmpty()) {
+      if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, data_);
+          .computeBytesSize(3, payload_);
       }
       if (errCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -362,8 +362,8 @@ public final class Base {
           != other.getModuleId()) return false;
       if (getCommandId()
           != other.getCommandId()) return false;
-      if (!getData()
-          .equals(other.getData())) return false;
+      if (!getPayload()
+          .equals(other.getPayload())) return false;
       if (getErrCode()
           != other.getErrCode()) return false;
       if (!getErrMsg()
@@ -383,8 +383,8 @@ public final class Base {
       hash = (53 * hash) + getModuleId();
       hash = (37 * hash) + COMMANDID_FIELD_NUMBER;
       hash = (53 * hash) + getCommandId();
-      hash = (37 * hash) + DATA_FIELD_NUMBER;
-      hash = (53 * hash) + getData().hashCode();
+      hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+      hash = (53 * hash) + getPayload().hashCode();
       hash = (37 * hash) + ERRCODE_FIELD_NUMBER;
       hash = (53 * hash) + getErrCode();
       hash = (37 * hash) + ERRMSG_FIELD_NUMBER;
@@ -531,7 +531,7 @@ public final class Base {
 
         commandId_ = 0;
 
-        data_ = com.google.protobuf.ByteString.EMPTY;
+        payload_ = com.google.protobuf.ByteString.EMPTY;
 
         errCode_ = 0;
 
@@ -565,7 +565,7 @@ public final class Base {
         com.github.alonwang.core.protocol.protobuf.Base.Protocol result = new com.github.alonwang.core.protocol.protobuf.Base.Protocol(this);
         result.moduleId_ = moduleId_;
         result.commandId_ = commandId_;
-        result.data_ = data_;
+        result.payload_ = payload_;
         result.errCode_ = errCode_;
         result.errMsg_ = errMsg_;
         onBuilt();
@@ -622,8 +622,8 @@ public final class Base {
         if (other.getCommandId() != 0) {
           setCommandId(other.getCommandId());
         }
-        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
-          setData(other.getData());
+        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
+          setPayload(other.getPayload());
         }
         if (other.getErrCode() != 0) {
           setErrCode(other.getErrCode());
@@ -747,36 +747,36 @@ public final class Base {
         return this;
       }
 
-      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes data = 3;</code>
-       * @return The data.
+       * <code>bytes payload = 3;</code>
+       * @return The payload.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getData() {
-        return data_;
+      public com.google.protobuf.ByteString getPayload() {
+        return payload_;
       }
       /**
-       * <code>bytes data = 3;</code>
-       * @param value The data to set.
+       * <code>bytes payload = 3;</code>
+       * @param value The payload to set.
        * @return This builder for chaining.
        */
-      public Builder setData(com.google.protobuf.ByteString value) {
+      public Builder setPayload(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        data_ = value;
+        payload_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes data = 3;</code>
+       * <code>bytes payload = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearData() {
+      public Builder clearPayload() {
         
-        data_ = getDefaultInstance().getData();
+        payload_ = getDefaultInstance().getPayload();
         onChanged();
         return this;
       }
@@ -986,11 +986,11 @@ public final class Base {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nbase.proto\"^\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
-      "(\005\022\021\n\tcommandId\030\002 \001(\005\022\014\n\004data\030\003 \001(\014\022\017\n\007e" +
-      "rrCode\030\004 \001(\005\022\016\n\006errMsg\030\005 \001(\tB,\n*com.gith" +
-      "ub.alonwang.core.protocol.protobufb\006prot" +
-      "o3"
+      "\n\nbase.proto\"a\n\010Protocol\022\020\n\010moduleId\030\001 \001" +
+      "(\005\022\021\n\tcommandId\030\002 \001(\005\022\017\n\007payload\030\003 \001(\014\022\017" +
+      "\n\007errCode\030\004 \001(\005\022\016\n\006errMsg\030\005 \001(\tB,\n*com.g" +
+      "ithub.alonwang.core.protocol.protobufb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1001,7 +1001,7 @@ public final class Base {
     internal_static_Protocol_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_descriptor,
-        new java.lang.String[] { "ModuleId", "CommandId", "Data", "ErrCode", "ErrMsg", });
+        new java.lang.String[] { "ModuleId", "CommandId", "Payload", "ErrCode", "ErrMsg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

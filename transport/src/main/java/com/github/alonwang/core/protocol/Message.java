@@ -1,10 +1,10 @@
 package com.github.alonwang.core.protocol;
 
 /**
- * 消息抽象,包含消息头和消息体两部分。
- * 消息头容纳了标识,错误等元信息,消息体是具体的数据
+ * 消息抽象,包含消息头和有效载荷两部分。
+ * 消息头容纳了标识,错误等元信息,有效载荷是具体的数据
  *
- * @param <T> 消息体的数据类型 例如ByteString,byte[]
+ * @param <T> 有效载荷的数据类型 例如ByteString,byte[]
  */
 public abstract class Message<T> {
     /**
@@ -12,16 +12,16 @@ public abstract class Message<T> {
      */
     private MessageHeader header;
     /**
-     * 消息数据
+     * 有效载荷
      */
-    private T body;
+    private T payload;
 
     public MessageHeader header() {
         return header;
     }
 
-    public T body() {
-        return body;
+    public T getPayload() {
+        return payload;
     }
 
     public abstract void decode();
@@ -32,15 +32,15 @@ public abstract class Message<T> {
         this.header = header;
     }
 
-    public void setBody(T body) {
-        this.body = body;
+    public void setPayload(T payload) {
+        this.payload = payload;
     }
 
     @Override
     public String toString() {
         return "Message{" +
                 "header=" + header +
-                ", body=" + body +
+                ", payload=" + payload +
                 '}';
     }
 }

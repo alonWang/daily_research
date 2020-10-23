@@ -28,7 +28,7 @@ public class ProtobufResponseDecoder extends MessageToMessageDecoder<Base.Protoc
                           List<Object> out) throws Exception {
         Response abstractResponse = messageFactory.createMessage(msg.getModuleId(),
                 msg.getCommandId());
-        abstractResponse.setBody(msg.getData());
+        abstractResponse.setPayload(msg.getPayload());
         abstractResponse.decode();
         out.add(abstractResponse);
     }

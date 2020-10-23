@@ -7,7 +7,7 @@ option java_package = "com.github.alonwang.core.protocol.protobuf";
 message Protocol {
     int32 moduleId = 1; //模块id
     int32 commandId = 2; //命令id
-    bytes data = 3;
+    bytes payload = 3;
     int32 errCode = 4; //0表示正常 其他表示错误码
     string errMsg = 5;
     //TODO 待拓展

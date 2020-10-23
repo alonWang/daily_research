@@ -95,7 +95,7 @@ public class NettyClient {
     public void sendMessage(Request request) {
         request.encode();
         Base.Protocol protoRequest =
-                Base.Protocol.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setData(request.body()).build();
+                Base.Protocol.newBuilder().setModuleId(request.header().getModuleId()).setCommandId(request.header().getCommandId()).setPayload(request.getPayload()).build();
         channel.writeAndFlush(protoRequest);
     }
 

@@ -1,6 +1,6 @@
 package com.github.alonwang.logic.hello.message;
 
-import com.github.alonwang.core.protocol.BodyField;
+import com.github.alonwang.core.protocol.PayLoad;
 import com.github.alonwang.core.protocol.MessageId;
 import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.logic.core.MessageIds;
@@ -17,6 +17,6 @@ import lombok.Setter;
 @Setter
 @MessageId(moduleId = MessageIds.HelloModule, commandId = MessageIds.Hello.hello)
 public class HelloRequest extends Request {
-    @BodyField
+    @PayLoad
     private HelloMessage req;
 }
