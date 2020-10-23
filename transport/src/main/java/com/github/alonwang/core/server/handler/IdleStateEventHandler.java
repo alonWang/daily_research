@@ -23,6 +23,7 @@ public class IdleStateEventHandler extends ChannelInboundHandlerAdapter {
         IdleStateEvent event = (IdleStateEvent) evt;
         if (event == IdleStateEvent.READER_IDLE_STATE_EVENT || event == IdleStateEvent.WRITER_IDLE_STATE_EVENT) {
             ctx.channel().close();
+
         }
     }
 }

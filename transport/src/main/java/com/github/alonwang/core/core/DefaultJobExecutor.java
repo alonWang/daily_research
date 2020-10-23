@@ -1,7 +1,6 @@
 package com.github.alonwang.core.core;
 
-import com.github.alonwang.core.server.task.Task;
-import com.github.alonwang.core.server.task.TaskExecutor;
+import com.github.alonwang.core.server.task.JobExecutor;
 import io.netty.util.internal.PlatformDependent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
@@ -17,42 +16,49 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author alonwang
  * @date 2020/7/27 16:25
- * @detail DefaultTaskExecutor自身有一个任务队列, 用来存储任务.当添加任务后, 如果发现添加后正好有一个任务, 就会启动run逻辑.
- * DefaultTaskExecutor实现了Runnable接口.它的run()逻辑就是一直执行任务队列里的任务.
  */
 @Slf4j
-public class DefaultTaskExecutor<T extends TaskExecutor<?>> implements Runnable, TaskExecutor<T> {
-    private static final ExecutorService DEFAULT_EXECUTOR_SERVICE = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2, new CustomizableThreadFactory("MessageTask-Worker"));
+public abstract class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Runnable, JobExecutor<T> {
+    private static final ExecutorService DEFAULT_EXECUTOR_SERVICE =
+            Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2,
+                    new CustomizableThreadFactory("Task-Worker"));
     private final ExecutorService executorService;
-    private final Queue<Task<T>> tasks = PlatformDependent.newMpscQueue();
+    private final Queue<Job<T>> jobs = PlatformDependent.newMpscQueue();
     private final AtomicInteger size = new AtomicInteger();
     private volatile Thread current;
 
-    public DefaultTaskExecutor() {
+    public DefaultJobExecutor() {
         executorService = DEFAULT_EXECUTOR_SERVICE;
     }
 
+    public DefaultJobExecutor(ExecutorService executorService) {
+        this.executorService = executorService;
+    }
+
     @Override
-    public void execute(Task<T> task) {
-        tasks.add(task);
+    public void execute(Job<T> job) {
+        jobs.add(job);
         int curSize = size.incrementAndGet();
         if (curSize == 1) {
             executorService.execute(this);
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void run() {
         this.current = Thread.currentThread();
         while (true) {
-            Task<T> task = tasks.poll();
-            if (task == null) {
+            Job<T> job = jobs.poll();
+            if (job == null) {
                 break;
             }
             try {
-                task.execute((T) this);
+                job.run((T) this);
+
             } catch (Exception e) {
-                log.error("task execute error", e);
+                //TODO 异常处理机制
+                log.error(String.format("task(%s) execute error", job.description()), e);
             }
             int curSize = size.decrementAndGet();
             if (curSize <= 0) {

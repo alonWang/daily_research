@@ -1,6 +1,6 @@
 package com.github.alonwang.core.server.task;
 
-import com.github.alonwang.core.core.DefaultTaskExecutor;
+import com.github.alonwang.core.core.DefaultJobExecutor;
 import com.github.alonwang.core.protocol.Message;
 import io.netty.channel.Channel;
 
@@ -15,8 +15,27 @@ import java.util.Objects;
  * * 唯一标识一个用户
  * * 异步串行无锁化
  */
-public class User extends DefaultTaskExecutor<User> {
+public class Session extends DefaultJobExecutor<Session> {
+    /**
+     * 用户关联的Channel
+     */
     private volatile Channel channel;
+
+    /**
+     * 发送消息
+     *
+     * @param message
+     */
+    public void sendMessage(Message<?> message) {
+        message.encode();
+        if (inThread()) {
+            channel.writeAndFlush(message);
+        } else {
+            execute((user -> {
+                channel.writeAndFlush(message);
+            }));
+        }
+    }
 
     public Channel getChannel() {
         return channel;
@@ -30,8 +49,8 @@ public class User extends DefaultTaskExecutor<User> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(channel, user.channel);
+        Session session = (Session) o;
+        return Objects.equals(channel, session.channel);
     }
 
     @Override
@@ -39,14 +58,5 @@ public class User extends DefaultTaskExecutor<User> {
         return Objects.hash(channel);
     }
 
-    public void sendMessage(Message message) {
-        message.encode();
-        if (inThread()) {
-            channel.writeAndFlush(message);
-        } else {
-            execute((user -> {
-                channel.writeAndFlush(message);
-            }));
-        }
-    }
+
 }

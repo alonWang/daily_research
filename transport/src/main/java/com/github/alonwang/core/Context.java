@@ -1,6 +1,7 @@
 package com.github.alonwang.core;
 
 import com.github.alonwang.core.core.MessageMethodRegistry;
+import com.github.alonwang.core.core.SessionManager;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class Context implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
     private static MessageMethodRegistry methodRegistry;
     private static MessageFactory messageFactory;
+    private static SessionManager sessionManager;
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -46,5 +48,14 @@ public class Context implements ApplicationContextAware {
     @Autowired
     public void setMessageFactory(MessageFactory messageFactory) {
         Context.messageFactory = messageFactory;
+    }
+
+    public static SessionManager getSessionManager() {
+        return sessionManager;
+    }
+
+    @Autowired
+    public void setSessionManager(SessionManager sessionManager) {
+        Context.sessionManager = sessionManager;
     }
 }
