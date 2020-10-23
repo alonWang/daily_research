@@ -28,6 +28,8 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
     private ProtobufRequestDecoder protobufRequestDecoder;
     @Autowired
     private ProtobufResponseEncoder responseEncoder;
+    @Autowired
+    private CleanupHandler cleanupHandler;
 
     private ProtobufDecoder protobufDecoder = new ProtobufDecoder(Base.Protocol.getDefaultInstance());
     private ProtobufEncoder protobufEncoder = new ProtobufEncoder();
@@ -51,5 +53,7 @@ public class NioServerChannelInitializer extends ChannelInitializer<SocketChanne
         pipeline.addLast(protobufEncoder);
         //one Response转换为protobuf单元
         pipeline.addLast(responseEncoder);
+        // 异常处理单元
+        pipeline.addLast(cleanupHandler);
     }
 }
