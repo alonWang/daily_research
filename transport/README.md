@@ -1,0 +1,2 @@
+# 一个简单的通信框架
+启动TransportStarter和NettyClient即可体验.

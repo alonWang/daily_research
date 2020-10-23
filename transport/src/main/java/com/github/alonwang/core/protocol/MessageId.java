@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 消息id,标识具体{@link Message}的唯一标识
+ * 消息id,标识{@link Message}对应的命令标识
  *
  * @author alonwang
  * @date 2020/7/16 17:41

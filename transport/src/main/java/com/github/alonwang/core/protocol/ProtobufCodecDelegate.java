@@ -1,5 +1,7 @@
 package com.github.alonwang.core.protocol;
 
+import com.github.alonwang.logic.hello.message.HelloRequest;
+import com.github.alonwang.logic.protobuf.Hello.HelloMessage;
 import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
@@ -23,11 +25,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProtobufCodecDelegate {
     /**
-     * <HelloRequest,req>
+     * 消息对应的有效荷载字段,eg {@link HelloRequest}的有效荷载字段为{@link HelloRequest#req}
      */
     private static final Map<Class<? extends ProtobufMessage>, Field> messageToField = new ConcurrentHashMap<>();
     /**
-     * <HelloMessage,HelloMessage#parseFrom>
+     * Protobuf生成类对应的parseFrom(ByteString)方法,eg {@link HelloMessage}对应{@link HelloMessage#parseFrom(ByteString)}
      */
     private static final Map<Class<? extends AbstractMessage>, Method> protoToParseFromMethod =
             new ConcurrentHashMap<>();
@@ -52,25 +54,25 @@ public class ProtobufCodecDelegate {
      * @param message
      */
     public static <T extends ProtobufMessage> void decode(T message) {
-        ByteString body = message.getPayload();
-        if (body == null) {
+        ByteString payLoadBytes = message.getPayload();
+        if (payLoadBytes == null) {
             return;
         }
 
 
-        Field protoField = messageToField.get(message.getClass());
-        if (protoField == null) {
+        Field payLoadField = messageToField.get(message.getClass());
+        if (payLoadField == null) {
             return;
         }
 
-        Method parseFromMethod = protoToParseFromMethod.get(protoField.getType());
+        Method parseFromMethod = protoToParseFromMethod.get(payLoadField.getType());
         if (parseFromMethod == null) {
             return;
         }
 
         try {
-            Object protoValue = parseFromMethod.invoke(message, body);
-            protoField.set(message, protoValue);
+            Object payloadObject = parseFromMethod.invoke(message, payLoadBytes);
+            payLoadField.set(message, payloadObject);
         } catch (Exception e) {
             log.error(String.format("%s decode error", message.getClass()), e);
         }
@@ -83,26 +85,26 @@ public class ProtobufCodecDelegate {
      * @param <T>
      */
     public static <T extends ProtobufMessage> void encode(T message) {
-        Field protoField = messageToField.get(message.getClass());
-        if (protoField == null) {
+        Field payLoadField = messageToField.get(message.getClass());
+        if (payLoadField == null) {
             return;
         }
 
-        Method parseFromMethod = protoToParseFromMethod.get(protoField.getType());
+        Method parseFromMethod = protoToParseFromMethod.get(payLoadField.getType());
         if (parseFromMethod == null) {
             return;
         }
 
 
-        Object protoValue = null;
-        Object byteStringValue = null;
+        Object payloadObject = null;
+        Object payloadBytes = null;
         try {
-            protoValue = protoField.get(message);
-            byteStringValue = toByteStringMethod.invoke(protoValue, (Object[]) null);
-            message.setPayload((ByteString) byteStringValue);
+            payloadObject = payLoadField.get(message);
+            payloadBytes = toByteStringMethod.invoke(payloadObject, (Object[]) null);
+            message.setPayload((ByteString) payloadBytes);
         } catch (Exception e) {
             log.error(String.format("%s encode error,field name(%s), value(%s),byteString(%s)", message.getClass(),
-                    protoField.getName(), protoValue, byteStringValue), e);
+                    payLoadField.getName(), payloadObject, payloadBytes), e);
         }
 
     }
