@@ -1,6 +1,8 @@
 package com.github.alonwang.logic.hello;
 
 import com.github.alonwang.core.Context;
+import com.github.alonwang.core.exception.BusinessException;
+import com.github.alonwang.core.exception.GlobalErrorCode;
 import com.github.alonwang.core.server.task.Session;
 import com.github.alonwang.logic.core.MessageIds;
 import com.github.alonwang.logic.hello.message.HelloRequest;
@@ -24,6 +26,7 @@ public class HelloServiceImpl implements HelloService {
         MeToMessage me = MeToMessage.newBuilder().setMsg(request.getReq().getMsg()).build();
         response.setMessage(me);
         session.sendMessage(response);
+        throw new BusinessException(GlobalErrorCode.SYSTEM_ERROR,"233");
 
     }
 }

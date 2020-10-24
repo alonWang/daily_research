@@ -2,10 +2,10 @@ package com.github.alonwang.core.server.task;
 
 import com.github.alonwang.core.core.DefaultJobExecutor;
 import com.github.alonwang.core.protocol.Message;
-import groovy.transform.ToString;
 import io.netty.channel.Channel;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 实体
@@ -16,12 +16,17 @@ import java.util.Objects;
  * * 唯一标识一个用户
  * * 异步串行无锁化
  */
-@ToString
 public class Session extends DefaultJobExecutor<Session> {
+    private static final AtomicLong idGenerator = new AtomicLong();
+    private final long sessionId;
     /**
      * 用户关联的Channel
      */
     private volatile Channel channel;
+
+    public Session() {
+        this.sessionId = idGenerator.incrementAndGet();
+    }
 
     /**
      * 发送消息
@@ -29,14 +34,31 @@ public class Session extends DefaultJobExecutor<Session> {
      * @param message
      */
     public void sendMessage(Message<?> message) {
-        message.encode();
+
         if (inThread()) {
-            channel.writeAndFlush(message);
+            doSendMessage(message);
         } else {
             execute((user -> {
-                channel.writeAndFlush(message);
+                doSendMessage(message);
             }));
         }
+    }
+
+    private void doSendMessage(Message<?> message) {
+        message.encode();
+        channel.writeAndFlush(message);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return Objects.equals(channel, session.channel);
+    }
+
+    public long getSessionId() {
+        return sessionId;
     }
 
     public Channel getChannel() {
@@ -48,17 +70,14 @@ public class Session extends DefaultJobExecutor<Session> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Session session = (Session) o;
-        return Objects.equals(channel, session.channel);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(channel);
     }
 
-
+    @Override
+    public String toString() {
+        return "Session{" +
+                "sessionId=" + sessionId +
+                '}';
+    }
 }

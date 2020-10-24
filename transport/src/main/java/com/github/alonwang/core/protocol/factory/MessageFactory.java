@@ -1,6 +1,7 @@
 package com.github.alonwang.core.protocol.factory;
 
 import com.github.alonwang.core.core.MessageRegistry;
+import com.github.alonwang.core.exception.GlobalErrorCode;
 import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageHeader;
 import com.github.alonwang.core.protocol.protobuf.Base.Protocol;
@@ -85,7 +86,7 @@ public class MessageFactory {
     public static Protocol toProtocol(Message<ByteString> msg) {
         var protocol = Protocol.newBuilder();
         protocol.setModuleId(msg.header().getModuleId()).setCommandId(msg.header().getCommandId());
-        if (msg.header().getErrCode() != MessageHeader.ERR_CODE_SUCCESS) {
+        if (msg.header().getErrCode() != GlobalErrorCode.SUCCESS) {
             protocol.setErrCode(msg.header().getErrCode());
             protocol.setErrMsg(msg.header().getErrMsg());
         } else {

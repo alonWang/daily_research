@@ -2,5 +2,6 @@
 启动TransportStarter和NettyClient即可体验.
 -[x] channel关闭处理
 -[x] handler容器管理
+-[x] 异常处理机制
 -[ ] 返回值处理机制 待确定
--[ ] 异常处理机制
+

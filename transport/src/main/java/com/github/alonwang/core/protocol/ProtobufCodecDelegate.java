@@ -100,8 +100,10 @@ public class ProtobufCodecDelegate {
         Object payloadBytes = null;
         try {
             payloadObject = payLoadField.get(message);
-            payloadBytes = toByteStringMethod.invoke(payloadObject, (Object[]) null);
-            message.setPayload((ByteString) payloadBytes);
+            if (payloadObject != null) {
+                payloadBytes = toByteStringMethod.invoke(payloadObject, (Object[]) null);
+                message.setPayload((ByteString) payloadBytes);
+            }
         } catch (Exception e) {
             log.error(String.format("%s encode error,field name(%s), value(%s),byteString(%s)", message.getClass(),
                     payLoadField.getName(), payloadObject, payloadBytes), e);

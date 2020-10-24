@@ -57,8 +57,7 @@ public abstract class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implem
                 job.run((T) this);
 
             } catch (Exception e) {
-                //TODO 异常处理机制
-                log.error(String.format("task(%s) execute error", job.description()), e);
+                onExceptionCaught(job, e);
             }
             int curSize = size.decrementAndGet();
             if (curSize <= 0) {
@@ -66,6 +65,10 @@ public abstract class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implem
                 break;
             }
         }
+    }
+
+    protected void onExceptionCaught(Job<T> job, Exception e) {
+        log.error(String.format("job(%s) run error", job.description()), e);
     }
 
     public boolean inThread() {

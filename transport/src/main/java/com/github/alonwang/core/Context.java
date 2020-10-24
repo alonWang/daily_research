@@ -7,6 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,6 +21,7 @@ public class Context implements ApplicationContextAware {
     private static MessageMethodRegistry methodRegistry;
     private static MessageFactory messageFactory;
     private static SessionManager sessionManager;
+    private static MessageSource messageSource;
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -57,5 +59,14 @@ public class Context implements ApplicationContextAware {
     @Autowired
     public void setSessionManager(SessionManager sessionManager) {
         Context.sessionManager = sessionManager;
+    }
+
+    public static MessageSource getMessageSource() {
+        return messageSource;
+    }
+
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        Context.messageSource = messageSource;
     }
 }

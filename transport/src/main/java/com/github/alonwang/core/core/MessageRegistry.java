@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 管理@MessageWrapper,@MessageHandler的映射
+ *
  *
  * @author alonwang
  * @date 2020/7/22 18:28

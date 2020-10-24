@@ -2,6 +2,7 @@ package com.github.alonwang.core.core;
 
 import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageController;
+import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.server.task.MethodWrapper;
 import com.github.alonwang.logic.LogicPackageMarker;
 import com.google.common.base.Preconditions;
@@ -22,6 +23,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
+ *
+ * void hello(Session,HelloRequest)
  * @author alonwang
  * @date 2020/10/20 5:29 下午
  * @detail
@@ -50,7 +53,7 @@ public class MessageMethodRegistry {
             for (Method method : methods) {
                 var parameterTypes = method.getParameterTypes();
                 List<Class<?>> satisfyParameters =
-                        Arrays.stream(parameterTypes).filter(Message.class::isAssignableFrom).filter(type -> messageRegistry.getMessages().containsValue(type)).collect(Collectors.toList());
+                        Arrays.stream(parameterTypes).filter(Request.class::isAssignableFrom).filter(type -> messageRegistry.getMessages().containsValue(type)).collect(Collectors.toList());
                 if (satisfyParameters.isEmpty()) {
                     continue;
                 }
