@@ -23,4 +23,8 @@ public class MethodWrapper {
         return method.invoke(target, args);
     }
 
+    public Class<?> returnType() {
+        return method.getReturnType();
+    }
+
 }

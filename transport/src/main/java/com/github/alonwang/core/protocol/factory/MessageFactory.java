@@ -4,12 +4,14 @@ import com.github.alonwang.core.core.MessageRegistry;
 import com.github.alonwang.core.exception.GlobalErrorCode;
 import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageHeader;
+import com.github.alonwang.core.protocol.MessageId;
 import com.github.alonwang.core.protocol.protobuf.Base.Protocol;
 import com.google.common.base.Preconditions;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 
 /**
@@ -74,7 +76,21 @@ public class MessageFactory {
         } catch (Exception e) {
             log.error("create request error", e);
         }
+        //TODO 更换为特定异常
         throw new RuntimeException();
+    }
+
+    public <T extends Message> T createMessage(Class<?> clazz) {
+        if (Message.class.isAssignableFrom(clazz)) {
+            throw new IllegalArgumentException(String.format("can't create message instance of %s. it's not sub class of Message", clazz));
+        }
+
+        MessageId messageIdAnnotation = clazz.getAnnotation(MessageId.class);
+        if (messageIdAnnotation == null) {
+            throw new IllegalArgumentException("can't create message instance of %s,class %s has no annotation @MessageId");
+        }
+
+        return createMessage(messageIdAnnotation.moduleId(), messageIdAnnotation.commandId());
     }
 
     /**

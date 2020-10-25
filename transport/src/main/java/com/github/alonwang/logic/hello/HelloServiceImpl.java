@@ -26,7 +26,7 @@ public class HelloServiceImpl implements HelloService {
         MeToMessage me = MeToMessage.newBuilder().setMsg(request.getReq().getMsg()).build();
         response.setMessage(me);
         session.sendMessage(response);
-        throw new BusinessException(GlobalErrorCode.SYSTEM_ERROR,"233");
+        throw new BusinessException(GlobalErrorCode.SYSTEM_ERROR);
 
     }
 }

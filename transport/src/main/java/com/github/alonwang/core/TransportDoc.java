@@ -15,7 +15,8 @@ import com.github.alonwang.core.protocol.protobuf.Base;
  * {@link ProtobufMessage} 消息的protobuf实现
  * {@link Request} 请求(行为)
  * {@link Response} 响应(行为)
- * {@link BusinessException} 异常体系
+ * {@link BusinessException} 异常
+ *
  *
  *
  *
