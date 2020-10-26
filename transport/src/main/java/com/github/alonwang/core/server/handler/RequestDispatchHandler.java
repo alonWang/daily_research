@@ -4,8 +4,8 @@ package com.github.alonwang.core.server.handler;
 import com.github.alonwang.core.Context;
 import com.github.alonwang.core.protocol.Request;
 import com.github.alonwang.core.server.task.JobExceptionLogProxy;
-import com.github.alonwang.core.server.task.MethodWrapper;
 import com.github.alonwang.core.server.task.RequestJob;
+import com.github.alonwang.core.server.task.RequestMethodWrapper;
 import com.github.alonwang.core.server.task.Session;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -29,9 +29,9 @@ public class RequestDispatchHandler extends SimpleChannelInboundHandler<Request>
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Request msg) throws Exception {
-        final int moduleId = msg.header().getModuleId();
-        final int commandId = msg.header().getCommandId();
-        MethodWrapper wrapper = Context.getMethodRegistry().getWrapper(moduleId,
+        final int moduleId = msg.getHeader().getModuleId();
+        final int commandId = msg.getHeader().getCommandId();
+        RequestMethodWrapper  wrapper = Context.getMethodRegistry().getWrapper(moduleId,
                 commandId);
         if (wrapper == null) {
             log.warn("no method wrapper for moduleId({}),commandId({})",
@@ -45,6 +45,6 @@ public class RequestDispatchHandler extends SimpleChannelInboundHandler<Request>
         }
 
         Session session = optSession.get();
-        session.execute(new JobExceptionLogProxy<>(new RequestJob(wrapper, msg)));
+        session.execute(new JobExceptionLogProxy<>(new  RequestJob(wrapper, msg)));
     }
 }

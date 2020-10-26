@@ -15,4 +15,8 @@ public interface GlobalErrorCode {
      * 系统异常
      */
     int SYSTEM_ERROR = 1;
+    /**
+     * 请求参数错误: {0}
+     */
+    int PARAMETER_ERROR=2;
 }

@@ -1,5 +1,7 @@
 package com.github.alonwang.core.server.task;
 
+import com.github.alonwang.core.protocol.Message;
+
 import java.lang.reflect.Method;
 
 /**
@@ -20,6 +22,6 @@ public class RequestMethodWrapper extends MethodWrapper {
      * @return
      */
     public boolean hasResponse() {
-        return returnType() != null;
+        return Message.class.isAssignableFrom(returnType());
     }
 }

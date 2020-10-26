@@ -3,7 +3,7 @@ package com.github.alonwang.core.core;
 import com.github.alonwang.core.protocol.Message;
 import com.github.alonwang.core.protocol.MessageController;
 import com.github.alonwang.core.protocol.Request;
-import com.github.alonwang.core.server.task.MethodWrapper;
+import com.github.alonwang.core.server.task.RequestMethodWrapper;
 import com.github.alonwang.logic.LogicPackageMarker;
 import com.google.common.base.Preconditions;
 import org.reflections.Reflections;
@@ -23,8 +23,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- *
  * void hello(Session,HelloRequest)
+ *
  * @author alonwang
  * @date 2020/10/20 5:29 下午
  * @detail
@@ -35,14 +35,14 @@ public class MessageMethodRegistry {
     private ApplicationContext applicationContext;
     @Autowired
     private MessageRegistry messageRegistry;
-    private Map<Class<? extends Message<?>>, MethodWrapper> messageMethods;
+    private Map<Class<? extends Message<?>>, RequestMethodWrapper> messageMethods;
 
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
         //解析所有message对应的方法
         Reflections reflections = new Reflections(LogicPackageMarker.class.getPackage().getName());
-        Map<Class<? extends Message<?>>, MethodWrapper> tempMethodWrappers = new HashMap<>();
+        Map<Class<? extends Message<?>>, RequestMethodWrapper> tempMethodWrappers = new HashMap<>();
         Set<Class<?>> handlerClasses = reflections.getTypesAnnotatedWith(MessageController.class, true);
         for (Class<?> handlerClazz : handlerClasses) {
             Preconditions.checkArgument(Modifier.isInterface(handlerClazz.getModifiers()), "{} illegal," +
@@ -63,18 +63,18 @@ public class MessageMethodRegistry {
                         (Class<? extends Message<?>>) satisfyParameters.get(0);
                 Preconditions.checkArgument(!tempMethodWrappers.containsKey(messageClazz), "parameter illegal,{} " +
                         "appear in different methods", messageClazz);
-                MethodWrapper methodWrapper = new MethodWrapper(method, bean);
+                RequestMethodWrapper methodWrapper = new RequestMethodWrapper(method, bean);
                 tempMethodWrappers.put(messageClazz, methodWrapper);
             }
         }
         messageMethods = Collections.unmodifiableMap(tempMethodWrappers);
     }
 
-    public MethodWrapper getWrapper(Class<? extends Message<?>> clazz) {
+    public RequestMethodWrapper getWrapper(Class<? extends Message<?>> clazz) {
         return messageMethods.get(clazz);
     }
 
-    public MethodWrapper getWrapper(int moduleId, int commandId) {
+    public RequestMethodWrapper getWrapper(int moduleId, int commandId) {
         return getWrapper(messageRegistry.getMessage(moduleId, commandId));
     }
 

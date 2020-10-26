@@ -2,12 +2,12 @@ package com.github.alonwang.core;
 
 import com.github.alonwang.core.core.MessageMethodRegistry;
 import com.github.alonwang.core.core.SessionManager;
+import com.github.alonwang.core.exception.ExceptionMessageHelper;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,7 +21,8 @@ public class Context implements ApplicationContextAware {
     private static MessageMethodRegistry methodRegistry;
     private static MessageFactory messageFactory;
     private static SessionManager sessionManager;
-    private static MessageSource messageSource;
+    private static ExceptionMessageHelper exceptionMessageHelper;
+
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -61,12 +62,12 @@ public class Context implements ApplicationContextAware {
         Context.sessionManager = sessionManager;
     }
 
-    public static MessageSource getMessageSource() {
-        return messageSource;
+    public static ExceptionMessageHelper getExceptionMessageHelper() {
+        return exceptionMessageHelper;
     }
 
     @Autowired
-    public void setMessageSource(MessageSource messageSource) {
-        Context.messageSource = messageSource;
+    public void setExceptionMessageHelper(ExceptionMessageHelper exceptionMessageHelper) {
+        Context.exceptionMessageHelper = exceptionMessageHelper;
     }
 }

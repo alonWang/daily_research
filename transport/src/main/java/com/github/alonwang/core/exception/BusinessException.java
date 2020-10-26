@@ -1,5 +1,7 @@
 package com.github.alonwang.core.exception;
 
+import javax.annotation.Nullable;
+
 /**
  * 业务异常基类
  * <p>
@@ -22,12 +24,24 @@ public class BusinessException extends RuntimeException {
      * 错误码.标识错误的类型
      */
     private int errCode;
+    @Nullable
+    private Object[] args;
 
     public BusinessException(int errCode) {
         this.errCode = errCode;
     }
 
+    public BusinessException(int errCode, Object... args) {
+        this.errCode = errCode;
+        this.args = args;
+    }
+
     public int getErrCode() {
         return errCode;
+    }
+
+    @Nullable
+    public Object[] getArgs() {
+        return args;
     }
 }

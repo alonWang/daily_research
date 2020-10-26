@@ -19,14 +19,14 @@ import static com.github.alonwang.logic.protobuf.Hello.MeToMessage;
 @Service
 public class HelloServiceImpl implements HelloService {
     @Override
-    public void hello(Session session, HelloRequest request) {
+    public HelloResponse hello(Session session, HelloRequest request) {
         System.out.println("收到客户端信息: " + request.getReq().getMsg());
         HelloResponse response = Context.getMessageFactory().createMessage(MessageIds.HelloModule,
                 MessageIds.Hello.meTo);
         MeToMessage me = MeToMessage.newBuilder().setMsg(request.getReq().getMsg()).build();
         response.setMessage(me);
-        session.sendMessage(response);
-        throw new BusinessException(GlobalErrorCode.SYSTEM_ERROR);
+        throw new BusinessException(GlobalErrorCode.PARAMETER_ERROR,"buddy, your are wrong");
+      //  return response;
 
     }
 }

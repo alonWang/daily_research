@@ -54,6 +54,10 @@ public class ProtobufCodecDelegate {
      * @param message
      */
     public static <T extends ProtobufMessage> void decode(T message) {
+        if (!message.getHeader().isSuccess()) {
+            return;
+        }
+
         ByteString payLoadBytes = message.getPayload();
         if (payLoadBytes == null) {
             return;
@@ -85,6 +89,10 @@ public class ProtobufCodecDelegate {
      * @param <T>
      */
     public static <T extends ProtobufMessage> void encode(T message) {
+        if (!message.getHeader().isSuccess()) {
+            return;
+        }
+
         Field payLoadField = messageToField.get(message.getClass());
         if (payLoadField == null) {
             return;

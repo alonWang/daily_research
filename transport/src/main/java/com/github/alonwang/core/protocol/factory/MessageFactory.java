@@ -11,7 +11,6 @@ import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 
 /**
@@ -44,7 +43,8 @@ public class MessageFactory {
         try {
             Constructor<? extends Message> constructor = messageClazz.getConstructor();
             Message message = constructor.newInstance();
-            MessageHeader header = new MessageHeader(protocol.getModuleId(), protocol.getCommandId());
+            MessageHeader header = new MessageHeader(protocol.getModuleId(), protocol.getCommandId(),
+                    protocol.getErrCode(), protocol.getErrMsg());
             message.setHeader(header);
             message.setPayload(protocol.getPayload());
             message.decode();
@@ -80,14 +80,16 @@ public class MessageFactory {
         throw new RuntimeException();
     }
 
-    public <T extends Message> T createMessage(Class<?> clazz) {
-        if (Message.class.isAssignableFrom(clazz)) {
-            throw new IllegalArgumentException(String.format("can't create message instance of %s. it's not sub class of Message", clazz));
+    public <T extends Message<?>> T createMessage(Class<?> clazz) {
+        if (!Message.class.isAssignableFrom(clazz)) {
+            throw new IllegalArgumentException(String.format("can't create message instance of %s. it's not sub class" +
+                    " of Message", clazz));
         }
 
         MessageId messageIdAnnotation = clazz.getAnnotation(MessageId.class);
         if (messageIdAnnotation == null) {
-            throw new IllegalArgumentException("can't create message instance of %s,class %s has no annotation @MessageId");
+            throw new IllegalArgumentException("can't create message instance of" + clazz.getSimpleName() + ",it has " +
+                    "no annotation @MessageId");
         }
 
         return createMessage(messageIdAnnotation.moduleId(), messageIdAnnotation.commandId());
@@ -101,10 +103,10 @@ public class MessageFactory {
      */
     public static Protocol toProtocol(Message<ByteString> msg) {
         var protocol = Protocol.newBuilder();
-        protocol.setModuleId(msg.header().getModuleId()).setCommandId(msg.header().getCommandId());
-        if (msg.header().getErrCode() != GlobalErrorCode.SUCCESS) {
-            protocol.setErrCode(msg.header().getErrCode());
-            protocol.setErrMsg(msg.header().getErrMsg());
+        protocol.setModuleId(msg.getHeader().getModuleId()).setCommandId(msg.getHeader().getCommandId());
+        if (msg.getHeader().getErrCode() != GlobalErrorCode.SUCCESS) {
+            protocol.setErrCode(msg.getHeader().getErrCode());
+            protocol.setErrMsg(msg.getHeader().getErrMsg());
         } else {
             protocol.setPayload(msg.getPayload());
         }

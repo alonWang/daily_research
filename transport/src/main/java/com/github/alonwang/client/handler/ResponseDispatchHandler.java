@@ -15,7 +15,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class ResponseDispatchHandler extends SimpleChannelInboundHandler<Response> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Response msg) throws Exception {
-        //先简单输出
-        System.out.println("服务器回应:" + ((HelloResponse) msg).getMessage().getMsg());
+        if (msg.getHeader().isSuccess()) {
+            //先简单输出
+            System.out.println("服务器回应:" + ((HelloResponse) msg).getMessage().getMsg());
+        } else {
+            System.out.println("服务端响应异常: " + msg.getHeader().getErrMsg());
+        }
+
     }
 }

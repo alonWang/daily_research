@@ -26,8 +26,7 @@ public class ProtobufResponseDecoder extends MessageToMessageDecoder<Base.Protoc
     @Override
     protected void decode(ChannelHandlerContext ctx, Base.Protocol msg,
                           List<Object> out) throws Exception {
-        Response abstractResponse = messageFactory.createMessage(msg.getModuleId(),
-                msg.getCommandId());
+        Response abstractResponse = messageFactory.toMessage(msg);
         abstractResponse.setPayload(msg.getPayload());
         abstractResponse.decode();
         out.add(abstractResponse);

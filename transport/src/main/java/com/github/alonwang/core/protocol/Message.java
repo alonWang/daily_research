@@ -16,7 +16,7 @@ public abstract class Message<T> {
      */
     private T payload;
 
-    public MessageHeader header() {
+    public MessageHeader getHeader() {
         return header;
     }
 
