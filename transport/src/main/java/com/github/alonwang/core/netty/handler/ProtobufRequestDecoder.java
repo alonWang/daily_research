@@ -1,7 +1,7 @@
-package com.github.alonwang.core.server.handler;
+package com.github.alonwang.core.netty.handler;
 
 import com.github.alonwang.core.Context;
-import com.github.alonwang.core.protocol.Request;
+import com.github.alonwang.core.protocol.message.Request;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

@@ -2,10 +2,10 @@ package com.github.alonwang.client;
 
 import com.github.alonwang.TransportStarter;
 import com.github.alonwang.client.handler.NioClientChannelInitializer;
-import com.github.alonwang.core.core.MessageRegistry;
-import com.github.alonwang.core.protocol.Message;
-import com.github.alonwang.core.protocol.ProtobufCodecDelegate;
-import com.github.alonwang.core.protocol.Request;
+import com.github.alonwang.core.protocol.message.MessageRegistry;
+import com.github.alonwang.core.protocol.message.Message;
+import com.github.alonwang.core.protocol.message.ProtobufCodecDelegate;
+import com.github.alonwang.core.protocol.message.Request;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.logic.core.MessageIds;

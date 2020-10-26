@@ -1,6 +1,6 @@
 package com.github.alonwang.client.handler;
 
-import com.github.alonwang.core.protocol.Response;
+import com.github.alonwang.core.protocol.message.Response;
 import com.github.alonwang.logic.hello.message.HelloResponse;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

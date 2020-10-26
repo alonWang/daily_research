@@ -1,7 +1,7 @@
 package com.github.alonwang.core;
 
-import com.github.alonwang.core.core.MessageMethodRegistry;
-import com.github.alonwang.core.core.SessionManager;
+import com.github.alonwang.core.protocol.message.MessageMethodRegistry;
+import com.github.alonwang.core.netty.SessionManager;
 import com.github.alonwang.core.exception.ExceptionMessageHelper;
 import com.github.alonwang.core.protocol.factory.MessageFactory;
 import org.springframework.beans.BeansException;

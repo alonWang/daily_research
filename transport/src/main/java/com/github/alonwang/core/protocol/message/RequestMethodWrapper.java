@@ -1,6 +1,4 @@
-package com.github.alonwang.core.server.task;
-
-import com.github.alonwang.core.protocol.Message;
+package com.github.alonwang.core.protocol.message;
 
 import java.lang.reflect.Method;
 

@@ -1,4 +1,4 @@
-package com.github.alonwang.core.server.handler;
+package com.github.alonwang.core.netty.handler;
 
 
 import com.github.alonwang.core.protocol.protobuf.Base;

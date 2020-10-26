@@ -1,11 +1,10 @@
 package com.github.alonwang.core;
 
-import com.github.alonwang.core.core.MessageRegistry;
-import com.github.alonwang.core.protocol.Message;
-import com.github.alonwang.core.protocol.ProtobufCodecDelegate;
-import com.github.alonwang.core.protocol.factory.MessageFactory;
-import com.github.alonwang.core.server.NettyServer;
-import com.github.alonwang.core.server.handler.NioServerChannelInitializer;
+import com.github.alonwang.core.protocol.message.MessageRegistry;
+import com.github.alonwang.core.protocol.message.Message;
+import com.github.alonwang.core.protocol.message.ProtobufCodecDelegate;
+import com.github.alonwang.core.netty.NettyServer;
+import com.github.alonwang.core.netty.handler.NioServerChannelInitializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationContext;

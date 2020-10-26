@@ -3,7 +3,7 @@ package com.github.alonwang.logic.hello;
 import com.github.alonwang.core.Context;
 import com.github.alonwang.core.exception.BusinessException;
 import com.github.alonwang.core.exception.GlobalErrorCode;
-import com.github.alonwang.core.server.task.Session;
+import com.github.alonwang.core.netty.Session;
 import com.github.alonwang.logic.core.MessageIds;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.hello.message.HelloResponse;

@@ -1,10 +1,10 @@
 package com.github.alonwang.core
 
 
-import com.github.alonwang.core.protocol.PayLoad
-import com.github.alonwang.core.protocol.MessageId
-import com.github.alonwang.core.protocol.ProtobufCodecDelegate
-import com.github.alonwang.core.protocol.ProtobufMessage
+import com.github.alonwang.core.protocol.annotation.Payload
+import com.github.alonwang.core.protocol.annotation.MessageId
+import com.github.alonwang.core.protocol.message.ProtobufCodecDelegate
+import com.github.alonwang.core.protocol.message.ProtobufMessage
 import com.github.alonwang.logic.hello.message.HelloRequest
 import com.github.alonwang.logic.protobuf.Hello.HelloMessage
 import com.github.alonwang.logic.protobuf.Hello.MeToMessage
@@ -30,7 +30,7 @@ class ProtobufCodecTest extends Specification {
 
     @MessageId(moduleId = 99999, commandId = 99998)
     static class ValidMessage extends ProtobufMessage {
-        @PayLoad
+        @Payload
         private HelloMessage hello;
         private MeToMessage meto;
 

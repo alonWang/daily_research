@@ -1,6 +1,5 @@
-package com.github.alonwang.core.core;
+package com.github.alonwang.core.netty;
 
-import com.github.alonwang.core.server.task.Session;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

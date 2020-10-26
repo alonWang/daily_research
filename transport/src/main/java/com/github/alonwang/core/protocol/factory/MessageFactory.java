@@ -1,10 +1,10 @@
 package com.github.alonwang.core.protocol.factory;
 
-import com.github.alonwang.core.core.MessageRegistry;
+import com.github.alonwang.core.protocol.message.MessageRegistry;
 import com.github.alonwang.core.exception.GlobalErrorCode;
-import com.github.alonwang.core.protocol.Message;
-import com.github.alonwang.core.protocol.MessageHeader;
-import com.github.alonwang.core.protocol.MessageId;
+import com.github.alonwang.core.protocol.message.Message;
+import com.github.alonwang.core.protocol.message.MessageHeader;
+import com.github.alonwang.core.protocol.annotation.MessageId;
 import com.github.alonwang.core.protocol.protobuf.Base.Protocol;
 import com.google.common.base.Preconditions;
 import com.google.protobuf.ByteString;

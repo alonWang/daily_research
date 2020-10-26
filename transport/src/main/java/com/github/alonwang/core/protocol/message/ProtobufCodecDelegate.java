@@ -1,5 +1,6 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.message;
 
+import com.github.alonwang.core.protocol.annotation.Payload;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.protobuf.Hello.HelloMessage;
 import com.google.protobuf.AbstractMessage;
@@ -132,7 +133,7 @@ public class ProtobufCodecDelegate {
         }
 
         Field bodyField =
-                Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> f.isAnnotationPresent(PayLoad.class)).findAny().orElse(null);
+                Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> f.isAnnotationPresent(Payload.class)).findAny().orElse(null);
         if (bodyField == null) {
             List<Field> possibleFields =
                     Arrays.stream(messageClazz.getDeclaredFields()).filter(f -> AbstractMessage.class.isAssignableFrom(f.getType())).collect(Collectors.toList());

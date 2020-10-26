@@ -1,7 +1,7 @@
-package com.github.alonwang.core.core;
+package com.github.alonwang.core.protocol.message;
 
-import com.github.alonwang.core.protocol.Message;
-import com.github.alonwang.core.protocol.MessageId;
+import com.github.alonwang.core.protocol.message.Message;
+import com.github.alonwang.core.protocol.annotation.MessageId;
 import com.github.alonwang.logic.LogicPackageMarker;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;

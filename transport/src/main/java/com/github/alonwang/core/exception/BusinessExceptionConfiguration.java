@@ -8,7 +8,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import java.nio.charset.StandardCharsets;
 
 /**
- * 配置异常处理相关messageSource
+ * 配置messageSource
  *
  * @author alonwang
  * @date 2020/10/24 11:24

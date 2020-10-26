@@ -1,4 +1,6 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.annotation;
+
+import com.github.alonwang.core.protocol.message.Message;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 消息id,标识{@link Message}对应的命令标识
+ * {@link Message}对应的协议包
  *
  * @author alonwang
  * @date 2020/7/16 17:41

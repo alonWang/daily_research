@@ -1,7 +1,7 @@
-package com.github.alonwang.core.server.task;
+package com.github.alonwang.core.job;
 
 import com.github.alonwang.core.exception.BusinessException;
-import com.github.alonwang.core.server.task.JobExecutor.Job;
+import com.github.alonwang.core.job.JobExecutor.Job;
 import lombok.extern.slf4j.Slf4j;
 
 /**

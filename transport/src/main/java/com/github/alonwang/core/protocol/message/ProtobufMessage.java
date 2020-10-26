@@ -1,12 +1,13 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.message;
 
+import com.github.alonwang.core.protocol.annotation.Payload;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link Message}的protobuf实现,提供自动编解码功能
  * <p>
- * 当子类有多个protobuf字段时,需要手动标记解析字段
+ * 当子类有多个protobuf字段时,需要手动使用{@link Payload}标记解析字段
  *
  * @author alonwang
  * @date 2020/10/22 10:21 上午

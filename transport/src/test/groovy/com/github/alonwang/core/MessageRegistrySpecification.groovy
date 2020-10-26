@@ -1,7 +1,7 @@
 package com.github.alonwang.core
 
 import com.github.alonwang.TransportStarter
-import com.github.alonwang.core.core.MessageRegistry
+import com.github.alonwang.core.protocol.message.MessageRegistry
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

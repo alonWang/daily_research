@@ -1,4 +1,4 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.message;
 
 /**
  * 响应,标识发送的{@link Message}

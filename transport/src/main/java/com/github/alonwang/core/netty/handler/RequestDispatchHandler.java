@@ -1,12 +1,12 @@
-package com.github.alonwang.core.server.handler;
+package com.github.alonwang.core.netty.handler;
 
 
 import com.github.alonwang.core.Context;
-import com.github.alonwang.core.protocol.Request;
-import com.github.alonwang.core.server.task.JobExceptionLogProxy;
-import com.github.alonwang.core.server.task.RequestJob;
-import com.github.alonwang.core.server.task.RequestMethodWrapper;
-import com.github.alonwang.core.server.task.Session;
+import com.github.alonwang.core.protocol.message.Request;
+import com.github.alonwang.core.job.JobExceptionLogProxy;
+import com.github.alonwang.core.job.RequestJob;
+import com.github.alonwang.core.protocol.message.RequestMethodWrapper;
+import com.github.alonwang.core.netty.Session;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

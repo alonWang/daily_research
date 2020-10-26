@@ -1,4 +1,4 @@
-package com.github.alonwang.core.server.task;
+package com.github.alonwang.core.protocol.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

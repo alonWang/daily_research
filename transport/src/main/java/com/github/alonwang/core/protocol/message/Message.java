@@ -1,8 +1,9 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.message;
+
+import static com.github.alonwang.core.protocol.protobuf.Base.Protocol;
 
 /**
- * 消息抽象,包含消息头和有效载荷两部分。
- * 消息头容纳了标识,错误等元信息,有效载荷是具体的数据
+ * 协议包抽象,包含消息头和有效载荷两部分。对应于{@link Protocol},参见base.proto#Protocol
  *
  * @param <T> 有效载荷的数据类型 例如ByteString,byte[]
  */
@@ -24,8 +25,15 @@ public abstract class Message<T> {
         return payload;
     }
 
+    /**
+     * 将有效荷载转换为消息中的特定数据结构.
+     *
+     */
     public abstract void decode();
 
+    /**
+     * 将消息中的特定数据结构转换为荷载
+     */
     public abstract void encode();
 
     public void setHeader(MessageHeader header) {

@@ -1,4 +1,4 @@
-package com.github.alonwang.core.server;
+package com.github.alonwang.core.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;

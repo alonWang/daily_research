@@ -1,7 +1,7 @@
-package com.github.alonwang.core.server.handler;
+package com.github.alonwang.core.netty.handler;
 
-import com.github.alonwang.core.core.SessionManager;
-import com.github.alonwang.core.server.task.Session;
+import com.github.alonwang.core.netty.SessionManager;
+import com.github.alonwang.core.netty.Session;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

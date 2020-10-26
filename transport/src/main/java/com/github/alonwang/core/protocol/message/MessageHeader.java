@@ -1,8 +1,10 @@
-package com.github.alonwang.core.protocol;
+package com.github.alonwang.core.protocol.message;
 
 import com.github.alonwang.core.exception.GlobalErrorCode;
 
 /**
+ * 消息头,承载了消息的标识和状态
+ *
  * @author alonwang
  * @date 2020/7/13 21:14
  * @detail
@@ -15,6 +17,9 @@ public class MessageHeader {
      * 错误状态下 {@link payload}无效. {@link errMsg}展示具体的错误信息
      */
     private int errCode;
+    /**
+     * 错误信息 {@link errCode}对应的详细描述
+     */
     private String errMsg;
 
     public MessageHeader() {

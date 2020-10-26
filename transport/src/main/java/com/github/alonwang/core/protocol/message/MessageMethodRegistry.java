@@ -1,9 +1,6 @@
-package com.github.alonwang.core.core;
+package com.github.alonwang.core.protocol.message;
 
-import com.github.alonwang.core.protocol.Message;
-import com.github.alonwang.core.protocol.MessageController;
-import com.github.alonwang.core.protocol.Request;
-import com.github.alonwang.core.server.task.RequestMethodWrapper;
+import com.github.alonwang.core.protocol.annotation.MessageController;
 import com.github.alonwang.logic.LogicPackageMarker;
 import com.google.common.base.Preconditions;
 import org.reflections.Reflections;

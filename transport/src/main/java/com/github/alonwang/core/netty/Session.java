@@ -1,7 +1,7 @@
-package com.github.alonwang.core.server.task;
+package com.github.alonwang.core.netty;
 
-import com.github.alonwang.core.core.DefaultJobExecutor;
-import com.github.alonwang.core.protocol.Message;
+import com.github.alonwang.core.job.DefaultJobExecutor;
+import com.github.alonwang.core.protocol.message.Message;
 import io.netty.channel.Channel;
 
 import java.util.Objects;

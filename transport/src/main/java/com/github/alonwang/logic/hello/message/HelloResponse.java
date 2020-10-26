@@ -1,7 +1,7 @@
 package com.github.alonwang.logic.hello.message;
 
-import com.github.alonwang.core.protocol.MessageId;
-import com.github.alonwang.core.protocol.Response;
+import com.github.alonwang.core.protocol.annotation.MessageId;
+import com.github.alonwang.core.protocol.message.Response;
 import com.github.alonwang.logic.core.MessageIds;
 import lombok.Getter;
 import lombok.Setter;

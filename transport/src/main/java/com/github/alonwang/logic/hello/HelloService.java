@@ -1,7 +1,7 @@
 package com.github.alonwang.logic.hello;
 
-import com.github.alonwang.core.protocol.MessageController;
-import com.github.alonwang.core.server.task.Session;
+import com.github.alonwang.core.protocol.annotation.MessageController;
+import com.github.alonwang.core.netty.Session;
 import com.github.alonwang.logic.hello.message.HelloRequest;
 import com.github.alonwang.logic.hello.message.HelloResponse;
 
