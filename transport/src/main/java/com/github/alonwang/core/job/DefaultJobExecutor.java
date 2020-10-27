@@ -7,6 +7,8 @@ import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -18,17 +20,25 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/7/27 16:25
  */
 @Slf4j
-public  class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Runnable, JobExecutor<T> {
+public class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Runnable, JobExecutor<T> {
     /**
      * 默认执行线程池
      */
     private static final ExecutorService DEFAULT_EXECUTOR_SERVICE =
             Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2,
                     new CustomizableThreadFactory("Task-Worker"));
+    private static final ScheduledExecutorService DEFAULT_SCHEDULE_EXECUTOR =
+            Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors() * 2,
+                    new CustomizableThreadFactory("Schedule-Task-Worker"));
+
     /**
      * 执行线程池
      */
     private final ExecutorService executorService;
+    /**
+     * 延时任务线程池
+     */
+    private final ScheduledExecutorService scheduleExecutor;
     /**
      * 任务队列
      * {@link DefaultJobExecutor#execute(Job)}添加任务到队列
@@ -49,10 +59,12 @@ public  class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Run
 
     public DefaultJobExecutor() {
         executorService = DEFAULT_EXECUTOR_SERVICE;
+        scheduleExecutor = DEFAULT_SCHEDULE_EXECUTOR;
     }
 
-    public DefaultJobExecutor(ExecutorService executorService) {
+    public DefaultJobExecutor(ExecutorService executorService, ScheduledExecutorService scheduleExecutor) {
         this.executorService = executorService;
+        this.scheduleExecutor = scheduleExecutor;
     }
 
     @Override
@@ -62,6 +74,21 @@ public  class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Run
         int curSize = size.incrementAndGet();
         if (curSize == 1) {
             executorService.execute(this);
+        }
+    }
+
+    public void schedule(Job<T> job, long delay, TimeUnit unit) {
+        scheduleExecutor.schedule(() -> {
+            execute(job);
+        }, delay, unit);
+    }
+
+    public void scheduler(Job<T> job, long timestamp) {
+        long diff = System.currentTimeMillis() - timestamp;
+        if (diff <= 0) {
+            execute(job);
+        } else {
+            schedule(job, diff, TimeUnit.MILLISECONDS);
         }
     }
 
