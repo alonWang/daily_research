@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/7/27 16:25
  */
 @Slf4j
-public abstract class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Runnable, JobExecutor<T> {
+public  class DefaultJobExecutor<T extends DefaultJobExecutor<?>> implements Runnable, JobExecutor<T> {
     /**
      * 默认执行线程池
      */

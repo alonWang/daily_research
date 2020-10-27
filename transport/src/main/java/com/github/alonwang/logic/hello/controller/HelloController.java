@@ -1,4 +1,4 @@
-package com.github.alonwang.logic.hello;
+package com.github.alonwang.logic.hello.controller;
 
 import com.github.alonwang.core.protocol.annotation.MessageController;
 import com.github.alonwang.core.netty.Session;
@@ -11,7 +11,7 @@ import com.github.alonwang.logic.hello.message.HelloResponse;
  * @detail
  */
 @MessageController
-public interface HelloService {
+public interface HelloController {
     HelloResponse hello(Session session, HelloRequest request);
 
 }
