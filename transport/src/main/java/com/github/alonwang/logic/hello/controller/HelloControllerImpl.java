@@ -1,4 +1,4 @@
-package com.github.alonwang.logic.hello;
+package com.github.alonwang.logic.hello.controller;
 
 import com.github.alonwang.core.Context;
 import com.github.alonwang.core.exception.BusinessException;
@@ -17,7 +17,7 @@ import static com.github.alonwang.logic.protobuf.Hello.MeToMessage;
  * @detail
  */
 @Service
-public class HelloServiceImpl implements HelloService {
+public class HelloControllerImpl implements HelloController {
     @Override
     public HelloResponse hello(Session session, HelloRequest request) {
         System.out.println("收到客户端信息: " + request.getReq().getMsg());
