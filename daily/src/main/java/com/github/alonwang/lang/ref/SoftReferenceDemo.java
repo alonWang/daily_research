@@ -26,6 +26,7 @@ import java.util.List;
  * C是否被回收 取决于 SoftRefLRUPolicyMSPerMB的值
  * * 为1时被回收
  * * 为1000时未被回收
+ * (如果无法重现,请尝试修改C的下标)
  *
  * @author alonwang
  * @date 2020/11/19 10:32
@@ -50,6 +51,9 @@ public class SoftReferenceDemo {
     private static Object C(){
         return list.get(2099).get();
     }
+    private static String pretty(Object o){
+        return o==null?"被回收":"存活";
+    }
 
     public static void main(String[] args) throws InterruptedException {
             for (int i = 0; i < 2500; i++) {
@@ -60,15 +64,8 @@ public class SoftReferenceDemo {
                     Thread.sleep(100);
                 }
             }
-
-
-
-        System.out.println("A: "+ A());
-        System.out.println("B: "+ B());
-        System.out.println("C: "+ C());
-
-
-
-
+        System.out.println("A: "+ pretty(A()));
+        System.out.println("B: "+ pretty(B()));
+        System.out.println("C: "+ pretty(C()));
     }
 }
