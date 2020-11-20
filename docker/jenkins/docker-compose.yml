@@ -2,7 +2,7 @@ version: "3"
 services:
 
   db:
-    image: jenkins:latest
+    image: jenkins/jenkins:latest
     container_name: jenkins
     restart: always
     environment:
@@ -10,3 +10,5 @@ services:
     ports:
       - 8080:8080
       - 50000:50000
+
+
