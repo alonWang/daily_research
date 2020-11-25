@@ -40,7 +40,7 @@ public class RequestDispatchHandler extends SimpleChannelInboundHandler<Request>
         }
 
         Optional<Session> optSession = Context.getSessionManager().getOrCreateSession(ctx.channel());
-        if (optSession.isEmpty()) {
+        if (!optSession.isPresent()) {
             return;
         }
 
