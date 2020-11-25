@@ -1,7 +1,5 @@
 package com.github.alonwang.lang.instrumentation;
 
-import com.sun.tools.attach.VirtualMachine;
-
 /**
  * @author alonwang
  * @date 2020/5/18 20:04
