@@ -46,9 +46,9 @@ public class MessageMethodRegistry {
                     "@MessageHandler annotated class must be interface");
             Object bean = applicationContext.getBean(handlerClazz);
             Preconditions.checkNotNull(bean, "{} annotated with @MessageHandler but no instance");
-            var methods = handlerClazz.getDeclaredMethods();
+            Method[] methods = handlerClazz.getDeclaredMethods();
             for (Method method : methods) {
-                var parameterTypes = method.getParameterTypes();
+                Class<?>[] parameterTypes = method.getParameterTypes();
                 List<Class<?>> satisfyParameters =
                         Arrays.stream(parameterTypes).filter(Request.class::isAssignableFrom).filter(type -> messageRegistry.getMessages().containsValue(type)).collect(Collectors.toList());
                 if (satisfyParameters.isEmpty()) {
