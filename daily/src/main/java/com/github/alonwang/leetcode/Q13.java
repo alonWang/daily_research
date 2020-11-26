@@ -1,10 +1,7 @@
 package com.github.alonwang.leetcode;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 
 /**
  * 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
@@ -67,21 +64,74 @@ import java.util.Queue;
  * @date 2020/11/25 23:10
  */
 public class Q13 {
-    static Map<Character, Integer> roma2Num;
-
-    static {
-        roma2Num = new HashMap<>(7);
-        roma2Num.put('I', 1);
-        roma2Num.put('V', 5);
-        roma2Num.put('X', 10);
-        roma2Num.put('L', 50);
-        roma2Num.put('C', 100);
-        roma2Num.put('D', 500);
-        roma2Num.put('M', 1000);
+    private int getValue(char ch) {
+        switch(ch) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 0;
+        }
+    }
+    /**
+     * 是否为特殊组合
+     *
+     * @param c1
+     * @param c2
+     * @return
+     */
+    private boolean isSpecial(char c1, char c2) {
+        return (c1 == 'I' && (c2 == 'V' || c2 == 'X')) ||
+                (c1 == 'X' && (c2 == 'L' || c2 == 'C')) ||
+                (c1 == 'C' && (c2 == 'D' || c2 == 'M'));
     }
 
+    /**
+     * 计算特殊规则数值
+     *
+     * @param c1
+     * @param c2
+     * @return
+     */
+    private int calSpecial(char c1, char c2) {
+        return getValue(c2) - getValue(c1);
+    }
+
+
     public int romanToInt(String s) {
-        int total=0;
-        Queue stack=new LinkedList<>();
+        char[] charArray = s.toCharArray();
+        //总值
+        int total = 0;
+        //上一个字符
+        Character prevChar = null;
+        //上一个字符出现次数
+        int prevCharCount = 0;
+        for (int i = charArray.length - 1; i >= 0; i--) {
+            char c = charArray[i];
+            if (prevChar == null) {
+                prevChar = c;
+                prevCharCount = 1;
+            } else {
+                if (c == prevChar) {
+                    prevCharCount++;
+                } else if (isSpecial(c, prevChar)) {
+                    total += calSpecial(c, prevChar);
+                    prevChar = null;
+                    prevCharCount = 0;
+                } else {
+                    total += getValue(prevChar) * prevCharCount;
+                    prevChar = c;
+                    prevCharCount = 1;
+                }
+            }
+        }
+        if (prevChar != null) {
+            total += getValue(prevChar) * prevCharCount;
+        }
+        return total;
+
     }
 }
