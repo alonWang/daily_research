@@ -4,6 +4,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * CountdownLatch演示
+ * count初始为3,
+ * 线程t1,t2各自完成一项耗时任务(以sleep模拟),完成后countdown
+ * 其中t1countdown两次
+ * 主线程wait等待
+ *
  * @author alonwang
  * @date 2020/11/30 7:55 上午
  */
