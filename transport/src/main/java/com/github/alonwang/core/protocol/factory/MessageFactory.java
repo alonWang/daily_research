@@ -5,6 +5,7 @@ import com.github.alonwang.core.exception.GlobalErrorCode;
 import com.github.alonwang.core.protocol.message.Message;
 import com.github.alonwang.core.protocol.message.MessageHeader;
 import com.github.alonwang.core.protocol.annotation.MessageId;
+import com.github.alonwang.core.protocol.protobuf.Base;
 import com.github.alonwang.core.protocol.protobuf.Base.Protocol;
 import com.google.common.base.Preconditions;
 import com.google.protobuf.ByteString;
@@ -102,14 +103,14 @@ public class MessageFactory {
      * @return
      */
     public static Protocol toProtocol(Message<ByteString> msg) {
-        var protocol = Protocol.newBuilder();
-        protocol.setModuleId(msg.getHeader().getModuleId()).setCommandId(msg.getHeader().getCommandId());
+        Protocol.Builder  builder = Protocol.newBuilder();
+        builder.setModuleId(msg.getHeader().getModuleId()).setCommandId(msg.getHeader().getCommandId());
         if (msg.getHeader().getErrCode() != GlobalErrorCode.SUCCESS) {
-            protocol.setErrCode(msg.getHeader().getErrCode());
-            protocol.setErrMsg(msg.getHeader().getErrMsg());
+            builder.setErrCode(msg.getHeader().getErrCode());
+            builder.setErrMsg(msg.getHeader().getErrMsg());
         } else {
-            protocol.setPayload(msg.getPayload());
+            builder.setPayload(msg.getPayload());
         }
-        return protocol.build();
+        return builder.build();
     }
 }

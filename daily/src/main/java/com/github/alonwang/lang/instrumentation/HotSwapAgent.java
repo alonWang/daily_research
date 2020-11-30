@@ -15,7 +15,7 @@ public class HotSwapAgent {
         System.out.println("agentmain run");
         try {
             File file = new File("C:\\Users\\DELL\\Desktop\\ggg\\RedefineClassesLimit.class");
-            ins.redefineClasses(new ClassDefinition(RedefineClassesLimit.class, new FileInputStream(file).readAllBytes()));
+           // ins.redefineClasses(new ClassDefinition(RedefineClassesLimit.class, new FileInputStream(file).));
         } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();

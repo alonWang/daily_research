@@ -1,7 +1,5 @@
 package com.github.alonwang.lang.instrumentation;
 
-import com.sun.tools.attach.VirtualMachine;
-
 /**
  * @author alonwang
  * @date 2020/5/18 20:04
@@ -10,9 +8,9 @@ import com.sun.tools.attach.VirtualMachine;
 public class HotSwapLauncher {
     public static void main(String[] args) {
         try {
-            VirtualMachine vm = VirtualMachine.attach("3084");
-            vm.loadAgent("C:\\Users\\DELL\\Desktop\\ggg\\hotswap.jar");
-            vm.detach();
+//            VirtualMachine vm = VirtualMachine.attach("3084");
+//            vm.loadAgent("C:\\Users\\DELL\\Desktop\\ggg\\hotswap.jar");
+//            vm.detach();
         } catch (Exception e) {
             e.printStackTrace();
         }

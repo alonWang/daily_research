@@ -39,6 +39,10 @@ public final class Base {
     int getCommandId();
 
     /**
+     * <pre>
+     *有效荷载
+     * </pre>
+     *
      * <code>bytes payload = 3;</code>
      * @return The payload.
      */
@@ -56,7 +60,7 @@ public final class Base {
 
     /**
      * <pre>
-     *TODO 待拓展
+     *错误信息
      * </pre>
      *
      * <code>string errMsg = 5;</code>
@@ -65,7 +69,7 @@ public final class Base {
     java.lang.String getErrMsg();
     /**
      * <pre>
-     *TODO 待拓展
+     *错误信息
      * </pre>
      *
      * <code>string errMsg = 5;</code>
@@ -217,6 +221,10 @@ public final class Base {
     public static final int PAYLOAD_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString payload_;
     /**
+     * <pre>
+     *有效荷载
+     * </pre>
+     *
      * <code>bytes payload = 3;</code>
      * @return The payload.
      */
@@ -244,7 +252,7 @@ public final class Base {
     private volatile java.lang.Object errMsg_;
     /**
      * <pre>
-     *TODO 待拓展
+     *错误信息
      * </pre>
      *
      * <code>string errMsg = 5;</code>
@@ -265,7 +273,7 @@ public final class Base {
     }
     /**
      * <pre>
-     *TODO 待拓展
+     *错误信息
      * </pre>
      *
      * <code>string errMsg = 5;</code>
@@ -749,6 +757,10 @@ public final class Base {
 
       private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
+       * <pre>
+       *有效荷载
+       * </pre>
+       *
        * <code>bytes payload = 3;</code>
        * @return The payload.
        */
@@ -757,6 +769,10 @@ public final class Base {
         return payload_;
       }
       /**
+       * <pre>
+       *有效荷载
+       * </pre>
+       *
        * <code>bytes payload = 3;</code>
        * @param value The payload to set.
        * @return This builder for chaining.
@@ -771,6 +787,10 @@ public final class Base {
         return this;
       }
       /**
+       * <pre>
+       *有效荷载
+       * </pre>
+       *
        * <code>bytes payload = 3;</code>
        * @return This builder for chaining.
        */
@@ -827,7 +847,7 @@ public final class Base {
       private java.lang.Object errMsg_ = "";
       /**
        * <pre>
-       *TODO 待拓展
+       *错误信息
        * </pre>
        *
        * <code>string errMsg = 5;</code>
@@ -847,7 +867,7 @@ public final class Base {
       }
       /**
        * <pre>
-       *TODO 待拓展
+       *错误信息
        * </pre>
        *
        * <code>string errMsg = 5;</code>
@@ -868,7 +888,7 @@ public final class Base {
       }
       /**
        * <pre>
-       *TODO 待拓展
+       *错误信息
        * </pre>
        *
        * <code>string errMsg = 5;</code>
@@ -887,7 +907,7 @@ public final class Base {
       }
       /**
        * <pre>
-       *TODO 待拓展
+       *错误信息
        * </pre>
        *
        * <code>string errMsg = 5;</code>
@@ -901,7 +921,7 @@ public final class Base {
       }
       /**
        * <pre>
-       *TODO 待拓展
+       *错误信息
        * </pre>
        *
        * <code>string errMsg = 5;</code>
