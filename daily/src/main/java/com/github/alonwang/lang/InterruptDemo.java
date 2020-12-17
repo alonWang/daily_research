@@ -5,25 +5,22 @@ package com.github.alonwang.lang;
  * @date 2020/12/17 22:18
  */
 public class InterruptDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread t = new Thread(() -> {
             Thread th = Thread.currentThread();
             while (true) {
                 if (th.isInterrupted()) {
-                    //调用Thread.interrupted()静态方法清除中断状态
-                    Thread.interrupted();
                     break;
                 }
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    th.interrupt();
                 }
             }
         });
         t.start();
+        Thread.sleep(10);
         t.interrupt();
-
-
     }
 }
