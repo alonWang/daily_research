@@ -1,6 +1,7 @@
 package com.github.alonwang.netty;
 
 import io.netty.util.Recycler;
+import io.netty.util.Recycler.Handle;
 
 /**
  * @author alonwang
@@ -13,7 +14,7 @@ public class RecyclerDemo {
         this.recycler = recycler;
     }
 
-    static class User extends Recycler<User>{
+    static class User {
         private final Handle<User> handle;
         public String name;
 
@@ -21,11 +22,8 @@ public class RecyclerDemo {
             this.handle = handle;
         }
         public void recycle(){
+            name="";
             handle.recycle(this);
-        }
-        @Override
-        protected User newObject(Handle<User> handle) {
-            return new User(handle);
         }
 
     }
