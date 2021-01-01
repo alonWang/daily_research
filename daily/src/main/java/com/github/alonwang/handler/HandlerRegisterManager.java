@@ -1,13 +1,10 @@
 package com.github.alonwang.handler;
 
-import org.springframework.beans.BeansException;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -19,12 +16,11 @@ import java.lang.reflect.Type;
  * @detail
  */
 @Component
-public class HandlerRegisterManager implements ApplicationContextAware, ApplicationRunner, Ordered {
-    private ApplicationContext applicationContext;
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
+public class HandlerRegisterManager {
+@Autowired
+private ApplicationContext applicationContext;
+    @PostConstruct
+    public void init() throws Exception {
         applicationContext.getBeansOfType(HandlerRegister.class).values().forEach(register -> {
             Type type = register.getClass().getGenericSuperclass();
             ParameterizedType parameterizedType = (ParameterizedType) type;
@@ -35,13 +31,4 @@ public class HandlerRegisterManager implements ApplicationContextAware, Applicat
         });
     }
 
-    @Override
-    public int getOrder() {
-        return Ordered.LOWEST_PRECEDENCE;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }
