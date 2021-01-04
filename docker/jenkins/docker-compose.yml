@@ -1,7 +1,7 @@
 version: "3"
 services:
 
-  db:
+  jenkins:
     image: jenkins/jenkins:latest
     container_name: jenkins
     restart: always
