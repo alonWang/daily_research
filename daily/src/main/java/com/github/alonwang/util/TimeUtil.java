@@ -33,12 +33,12 @@ public class TimeUtil {
     }
 
     /**
-     * 传入时间与今天是否是同一天
+     * 传入时间是否是今天
      *
      * @param timeMillis
      * @return
      */
-    public static boolean isSameDayQuick(long timeMillis) {
+    public static boolean isToday(long timeMillis) {
         long now = System.currentTimeMillis();
         Range<Long> todayTimeRange = todayTimeRangeCache.get();
         if (!todayTimeRange.contains(now)) {
