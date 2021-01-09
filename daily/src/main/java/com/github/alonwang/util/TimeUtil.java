@@ -22,18 +22,18 @@ public class TimeUtil {
      * 获取今日0点
      * @return
      */
-    public static long getTodayZeroTime() {
+    public static long getTodayZeroMillis() {
         return LocalDateTime.of(LocalDate.now(), LocalTime.MIN).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
     private static Range<Long> createTodayTimeRange() {
-        long todayStartTime = getTodayZeroTime();
+        long todayStartTime = getTodayZeroMillis();
         long todayEndTime = todayStartTime + MILLIS_ONE_DAY;
         return Range.closedOpen(todayStartTime, todayEndTime);
     }
 
     /**
-     * 传入时间是否是今天
+     * 传入时间是否属于今天
      *
      * @param timeMillis
      * @return
