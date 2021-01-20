@@ -11,7 +11,8 @@ public class PoolChunkTest {
     public static void main(String[] args) {
         ByteBufAllocator allocator=ByteBufAllocator.DEFAULT;
         ByteBuf buf=allocator.buffer(8192);
-        ByteBuf buf1=allocator.buffer(8192);
-
+        ByteBuf buf1=allocator.buffer(8193);
+        ByteBuf buf2=allocator.buffer(8193);
+        ByteBuf buf3=allocator.buffer(48);
     }
 }
