@@ -12,10 +12,10 @@ subprojects {
     apply plugin: 'idea'
     sourceCompatibility = 8
     //无法通过编译,暂时忽略
-    compileTestGroovy.enabled = false
+    //compileTestGroovy.enabled = false
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
     dependencies {
-        implementation 'org.codehaus.groovy:groovy-all:3.0.4'
+        implementation 'org.codehaus.groovy:groovy-all:3.0.7'
         implementation 'org.slf4j:slf4j-log4j12:1.7.25'
         implementation 'org.slf4j:slf4j-api:1.7.25'
         implementation 'com.google.guava:guava:28.1-jre'
