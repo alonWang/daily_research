@@ -1,11 +1,15 @@
 package com.github.alonwang.util;
 
+import com.alibaba.fastjson.JSON;
+import com.github.alonwang.lang.generic.TypeHelper;
 import com.google.common.collect.Range;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author alonwang
@@ -49,5 +53,10 @@ public class TimeUtil {
         long todayStartTime = getTodayZeroMillis();
         long todayEndTime = todayStartTime + MILLIS_ONE_DAY;
         return Range.closedOpen(todayStartTime, todayEndTime);
+    }
+
+    public static void main(String[] args) {
+        Map<Integer,Integer> a= JSON.parseObject("", new TypeHelper<HashMap<Integer,Integer>>().getType());
+        System.out.println(a);
     }
 }

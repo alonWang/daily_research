@@ -23,6 +23,20 @@ public class FastJsonTester {
         Pojo p2 = JSON.parseObject(str, Pojo.class);
 
         System.out.println(p2);
+
+        arrTest();
+    }
+    public static void arrTest() {
+        Object[][] arr = new Integer[2][2];
+//        for (int i = 0; i < 2; i++) {
+//            for (int j = 0; j < 2; j++) {
+//                arr[i][j] = 1;
+//            }
+//        }
+        String str = JSON.toJSONString(arr);
+        System.out.println(str);
+        Integer[][] array = JSON.parseObject(str, Integer[][].class);
+        System.out.println(array);
     }
 
     static class Pojo {

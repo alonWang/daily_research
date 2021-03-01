@@ -14,4 +14,8 @@ dependencies {
     implementation 'com.belerweb:pinyin4j:2.5.1'
     implementation 'org.json:json:20190722'
     implementation 'com.alibaba:fastjson:1.2.72'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+    implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.8'
+// https://mvnrepository.com/artifact/com.alibaba/easyexcel
+    implementation group: 'com.alibaba', name: 'easyexcel', version: '2.2.7'
 }
