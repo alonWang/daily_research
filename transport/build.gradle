@@ -2,6 +2,8 @@ apply plugin: 'com.google.protobuf'
 dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.12.2'
     compile 'io.netty:netty-all:4.1.51.Final'
+    // https://mvnrepository.com/artifact/com.weibo/motan-springsupport
+    compile group: 'com.weibo', name: 'motan-springsupport', version: '1.1.9'
     compile('org.springframework.boot:spring-boot-starter:2.3.1.RELEASE') {
         exclude group: 'ch.qos.logback'
     }
