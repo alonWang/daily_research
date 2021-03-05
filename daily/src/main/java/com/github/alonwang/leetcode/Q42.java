@@ -6,6 +6,13 @@ package com.github.alonwang.leetcode;
  */
 public class Q42 {
     class Solution {
+        /**
+         * 某一列能接的最大水量w取决于其左,右侧最大值中的最小值.
+         * w[i]=min(leftmax,rightmax)-height[i]
+         * 将leftmax和rightmax记录下来避免重复计算.
+         * @param height
+         * @return
+         */
         public int trap(int[] height) {
             if(height==null||height.length<=2){
                 return 0;
