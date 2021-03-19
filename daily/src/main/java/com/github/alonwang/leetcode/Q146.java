@@ -1,5 +1,9 @@
 package com.github.alonwang.leetcode;
 
+import org.ehcache.shadow.org.terracotta.offheapstore.HashingMap;
+import sun.util.resources.cldr.ext.LocaleNames_rm;
+
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -29,9 +33,58 @@ public class Q146 {
             return size()>capacity;
         }
     }
+    static class LRUCacheS  {
+        private final int capacity;
+        private Map<Integer,LRUNode> cache;
+        private LRUNode head;
+        private LRUNode tail;
 
+
+        public LRUCacheS(int capacity) {
+            this.capacity=capacity;
+            cache=new HashMap<>();
+            head=new LRUNode();
+            tail=new LRUNode();
+            head.next=tail;
+            tail.prev=head;
+        }
+
+        public int get(int key) {
+            LRUNode node=cache.get(key);
+            return node==null?-1:node.value;
+        }
+
+        public void put(int key, int value) {
+            LRUNode oldNode=cache.get(key);
+            if (oldNode!=null){
+                removeNode(oldNode);
+            }
+            LRUNode newNode=new LRUNode();
+            newNode.value=value;
+
+            insertNode(newNode);
+        }
+
+        private void insertNode(LRUNode node) {
+        head.next.prev=node;
+        node.next=head.next;
+        head.next=node;
+        node.prev=head;
+        }
+
+        private void removeNode(LRUNode node) {
+            node.prev.next=node.next;
+            node.next.prev=node.prev;
+        }
+
+        private class LRUNode {
+            int value;
+            LRUNode prev;
+            LRUNode next;
+        }
+    }
     public static void main(String[] args) {
-        LRUCache cache=new LRUCache(2);
+        LRUCacheS cache=new LRUCacheS(2);
         cache.put(1,1);
         cache.put(2,2);
         cache.get(1);
