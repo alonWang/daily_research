@@ -1,7 +1,5 @@
 package com.github.alonwang.leetcode;
 
-import org.ehcache.shadow.org.terracotta.offheapstore.HashingMap;
-import sun.util.resources.cldr.ext.LocaleNames_rm;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
